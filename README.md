@@ -1,6 +1,6 @@
-# AI Agent Website
+# Agentic Loops Website
 
-Documentation website for Agentic Loops - agentic engineering courses.
+A home for Agentic Loops - practical, production-grade patterns, repos, and explanations for software engineers building real systems.
 
 ## Quick Start
 
