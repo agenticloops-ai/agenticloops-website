@@ -9,6 +9,7 @@ import Search from './Search';
 export function Header() {
     const theme = useStore(themeAtom);
     const [scrolled, setScrolled] = useState(false);
+    const baseUrl = import.meta.env.BASE_URL || '';
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,7 +34,7 @@ export function Header() {
         >
             <div className="container h-full px-6 flex items-center justify-between gap-4">
                 {/* ZONE 1: BRAND */}
-                <a href="/" className="flex items-center gap-3 no-underline text-inherit opacity-90 hover:opacity-100 transition-opacity flex-shrink-0">
+                <a href={baseUrl || '/'} className="flex items-center gap-3 no-underline text-inherit opacity-90 hover:opacity-100 transition-opacity flex-shrink-0">
                     <div className="w-8 h-8 bg-black border-2 border-accent-cyan flex items-center justify-center font-mono text-base font-black text-accent-cyan -rotate-2">
                         &gt;_
                     </div>
@@ -48,9 +49,9 @@ export function Header() {
                 {/* ZONE 3: NAVIGATION */}
                 <nav className="hidden-mobile flex gap-4 items-center">
                     {[
-                        { label: 'Principles', href: '/#principles' },
-                        { label: 'Team', href: '/#team' },
-                        { label: 'Topics', href: '/#topics' },
+                        { label: 'Principles', href: `${baseUrl}/#principles` },
+                        { label: 'Team', href: `${baseUrl}/#team` },
+                        { label: 'Topics', href: `${baseUrl}/#topics` },
                     ].map(({ label, href }) => (
                         <a
                             key={label}

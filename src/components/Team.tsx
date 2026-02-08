@@ -1,6 +1,9 @@
 import { Linkedin } from './BrandIcons';
 import { ScrollReveal } from './ScrollReveal';
 
+// Get base URL from Astro (works for both root and subdirectory deployments)
+const baseUrl = import.meta.env.BASE_URL || '';
+
 interface TeamMember {
     name: string;
     role: string;
@@ -14,14 +17,14 @@ const team: TeamMember[] = [
         name: 'Vishal Banthia',
         role: 'Software Engineer',
         bio: 'Seasoned platform engineer specializing in security, DevOps, and reliability for resilient, scalable infrastructure.',
-        photo: '/photos/vishal.jpg',
+        photo: `${baseUrl}/photos/vishal.jpg`,
         linkedin: 'https://www.linkedin.com/in/vishal-banthia-b4191396/'
     },
     {
         name: 'Alex Mrynskyi',
         role: 'Software Engineer',
         bio: 'Hands-on technologist and lifelong learner. Builds distributed systems at scale, with experience in both startups and enterprise teams.',
-        photo: '/photos/alex.jpg',
+        photo: `${baseUrl}/photos/alex.jpg`,
         linkedin: 'https://www.linkedin.com/in/alexmynsky/'
     },
 ];
