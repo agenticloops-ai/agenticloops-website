@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Agentic Loops - Design patterns, system architecture, and production-grade implementations for AI agents" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<title>{title}</title>
+    {
+      import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}`}></script>
+          <script is:inline define:vars={{ GA_ID: import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', GA_ID);
+          </script>
+        </>
+      )
+    }
+	</head>
+	<body class="bg-bg-primary text-text-primary">
+		<slot />
+	</body>
+</html>

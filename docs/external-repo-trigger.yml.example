@@ -1,0 +1,23 @@
+# Workflow for EXTERNAL COURSE REPOS
+# Copy this file to: .github/workflows/trigger-website.yml in your course repo
+
+name: Trigger Website Rebuild
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lessons/**'    # Adjust to your content folder
+      - '.data/**'      # Or wherever your lessons are
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger website rebuild
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.WEBSITE_REPO_TOKEN }}
+          repository: your-org/ai-agent-website  # <-- Change to your website repo
+          event-type: content-update
+          client-payload: '{"repo": "${{ github.repository }}", "sha": "${{ github.sha }}"}'

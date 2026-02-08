@@ -1,0 +1,65 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+
+// Filter for h2 and h3
+const toc = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+<div class="toc-container">
+  <h4 class="toc-title">On this page</h4>
+  <ul class="toc-list">
+    {toc.map((heading) => (
+      <li class:list={["toc-item", { "toc-item-nested": heading.depth === 3 }]}>
+        <a href={`#${heading.slug}`} class="toc-link">
+          {heading.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .toc-container {
+    /* Styles are in parent */
+  }
+  
+  .toc-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin: 0 0 1rem 0;
+  }
+  
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .toc-item {
+    margin-bottom: 0.5rem;
+  }
+  
+  .toc-item-nested {
+    padding-left: 0.75rem;
+  }
+  
+  .toc-link {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.2s;
+  }
+  
+  .toc-link:hover {
+    color: var(--color-accent-cyan);
+  }
+</style>

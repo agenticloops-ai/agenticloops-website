@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AppIsland from '../components/AppIsland';
+import ThemeScript from '../components/ThemeScript.astro';
+
+// We use client:load because the landing page is heavy on interactivity and animations
+// and we are porting a React SPA. Optimizing into separate islands can be done later.
+---
+
+<Layout title="Agentic Loops">
+  <ThemeScript />
+  <AppIsland client:load />
+</Layout>
