@@ -35,14 +35,14 @@ jobs:
       
       - name: Build site
         env:
+          SITE_URL: https://agenticloops-ai.github.io
+          BASE_PATH: /agenticloops-website/
           COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
           PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
-          BASE_PATH: /agenticloops-website/
-          SITE_URL: https://agenticloops-ai.github.io
         run: npm run build
       
       - name: Validate build
-        run: node scripts/validate.js
+        run: npm run test
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
