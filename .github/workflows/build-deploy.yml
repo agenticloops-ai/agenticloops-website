@@ -35,10 +35,12 @@ jobs:
       
       - name: Sync content from external repos
         env:
-          GITHUB_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
+          COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
         run: npm run sync
       
       - name: Build site
+        env:
+          PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
         run: npm run build
       
       - name: Validate build

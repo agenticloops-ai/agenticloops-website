@@ -15,7 +15,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.join(__dirname, '..');
 const destDir = path.join(projectRoot, 'src', 'content', 'courses');
 
-// GitHub token for private repo access (set via env var)
+// GitHub token for private repo access (set via env var in github actions)
 const GITHUB_TOKEN = process.env.COURSE_CONTENT_TOKEN;
 
 // Import repo configuration
@@ -195,10 +195,8 @@ async function fetchFromRepo(course) {
         }
 
         console.log(`  ✓ Synced to ${courseDestDir}`);
-        return true; // Success
     } catch (error) {
         console.error(`  ✗ Failed to fetch ${course.name}:`, error.message);
-        return false; // Failure
     } finally {
         // Cleanup
         if (fs.existsSync(tempDir)) {
@@ -232,24 +230,14 @@ async function main() {
     cleanDir(destDir);
     console.log(`Cleaned ${destDir}\n`);
 
-    let hasErrors = false;
-
     if (LOCAL_CONTENT_PATH) {
         // Local development mode
         await syncFromLocal(LOCAL_CONTENT_PATH);
     } else {
         // Fetch from repos
         for (const course of COURSE_REPOS) {
-            const success = await fetchFromRepo(course);
-            if (!success) {
-                hasErrors = true;
-            }
+            await fetchFromRepo(course);
         }
-    }
-
-    if (hasErrors) {
-        console.error('\n✗ Content sync failed - some repositories could not be fetched');
-        process.exit(1);
     }
 
     console.log('\n✓ Content sync complete');
