@@ -62,18 +62,6 @@ function validateBuild() {
         }
     });
 
-    test('Build completes successfully', () => {
-        try {
-            execSync('npm run build', {
-                cwd: projectRoot,
-                stdio: 'pipe',
-                encoding: 'utf-8'
-            });
-        } catch (e) {
-            throw new Error('Build failed: ' + e.message.slice(0, 200));
-        }
-    });
-
     test('Dist directory created', () => {
         assert(fs.existsSync(path.join(projectRoot, 'dist')),
             'dist/ directory not created');

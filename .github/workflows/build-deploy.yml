@@ -18,29 +18,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+    env:
+      SITE_URL: https://agenticloops-ai.github.io
+      BASE_PATH: /agenticloops-website/
+      COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
+      PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
+
     steps:
       - name: Checkout website
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      
+
 
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Build site
-        env:
-          SITE_URL: https://agenticloops-ai.github.io
-          BASE_PATH: /agenticloops-website/
-          COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
-          PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
         run: npm run build
-      
+
       - name: Validate build
         run: npm run test
       

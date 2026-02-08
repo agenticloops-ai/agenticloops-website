@@ -9,8 +9,7 @@
     "preview": "astro preview",
     "lint": "eslint .",
     "sync": "node scripts/sync-content.js",
-    "test": "node scripts/validate.js",
-    "validate": "npm run build && node scripts/validate.js"
+    "test": "node scripts/validate.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.2",
