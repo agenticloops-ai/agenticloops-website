@@ -17,10 +17,11 @@ export default function Search() {
     const fuseRef = useRef<Fuse<SearchItem> | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const modalRef = useRef<HTMLDivElement>(null);
+    const baseUrl = import.meta.env.BASE_URL || '';
 
     // Load search index
     useEffect(() => {
-        fetch('/api/course-index.json')
+        fetch(`${baseUrl}/api/course-index.json`)
             .then(res => res.json())
             .then(data => {
                 fuseRef.current = new Fuse(data, {

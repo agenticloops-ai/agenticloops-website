@@ -37,9 +37,10 @@ function getIcon(iconName: string): LucideIcon {
 export function Topics() {
     const [modules, setModules] = useState<Module[]>([]);
     const [loading, setLoading] = useState(true);
+    const baseUrl = import.meta.env.BASE_URL || '';
 
     useEffect(() => {
-        fetch('/api/course-modules.json')
+        fetch(`${baseUrl}/api/course-modules.json`)
             .then(res => res.json())
             .then(data => {
                 setModules(data);
