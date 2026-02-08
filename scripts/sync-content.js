@@ -195,8 +195,10 @@ async function fetchFromRepo(course) {
         }
 
         console.log(`  ✓ Synced to ${courseDestDir}`);
+        return true; // Success
     } catch (error) {
         console.error(`  ✗ Failed to fetch ${course.name}:`, error.message);
+        return false; // Failure
     } finally {
         // Cleanup
         if (fs.existsSync(tempDir)) {
@@ -230,14 +232,24 @@ async function main() {
     cleanDir(destDir);
     console.log(`Cleaned ${destDir}\n`);
 
+    let hasErrors = false;
+
     if (LOCAL_CONTENT_PATH) {
         // Local development mode
         await syncFromLocal(LOCAL_CONTENT_PATH);
     } else {
         // Fetch from repos
         for (const course of COURSE_REPOS) {
-            await fetchFromRepo(course);
+            const success = await fetchFromRepo(course);
+            if (!success) {
+                hasErrors = true;
+            }
         }
+    }
+
+    if (hasErrors) {
+        console.error('\n✗ Content sync failed - some repositories could not be fetched');
+        process.exit(1);
     }
 
     console.log('\n✓ Content sync complete');
