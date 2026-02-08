@@ -38,7 +38,7 @@ export function Header() {
                     <div className="w-8 h-8 bg-black border-2 border-accent-cyan flex items-center justify-center font-mono text-base font-black text-accent-cyan -rotate-2">
                         &gt;_
                     </div>
-                    <span className="hidden md:inline text-lg font-bold tracking-tight text-text-primary">
+                    <span className="md:inline text-lg font-bold tracking-tight text-text-primary">
                         Agentic Loops
                     </span>
                 </a>
@@ -56,13 +56,14 @@ export function Header() {
                         <a
                             key={label}
                             href={href}
-                            className="py-2 px-2 text-sm font-medium text-text-secondary no-underline transition-colors hover:text-text-primary"
+                            className="py-2 px-2 text-sm font-medium text-text-secondary no-underline transition-colors hover:text-accent-cyan"
                         >
                             {label}
                         </a>
                     ))}
                 </nav>
 
+                <div className="hidden md:block w-px h-6 bg-border" />
 
                 {/* ZONE 4: SOCIALS + THEME */}
                 <div className="flex items-center gap-5 flex-shrink-0">
@@ -95,7 +96,7 @@ export function Header() {
                     <button
                         onClick={() => toggleTheme()}
                         aria-label="Toggle theme"
-                        className="bg-transparent border-none text-text-secondary cursor-pointer p-1 transition-colors hover:text-text-primary flex items-center"
+                        className="bg-transparent border-none text-text-secondary p-1 transition-colors hover:text-accent-cyan flex items-center"
                     >
                         {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
                     </button>
