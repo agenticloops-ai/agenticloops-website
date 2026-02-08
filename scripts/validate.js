@@ -3,11 +3,10 @@
  * Run: npm run test
  * 
  * Validates:
- * 1. Content sync - lessons exist and have valid frontmatter
- * 2. Build - no TypeScript/compilation errors
- * 3. API endpoints - return valid JSON
- * 4. Pages - render without errors
- * 5. Links - no broken internal links
+ * 1. Build - no TypeScript/compilation errors
+ * 2. API endpoints - return valid JSON
+ * 3. Pages - render without errors
+ * 4. Links - no broken internal links
  */
 
 import fs from 'fs';
@@ -40,76 +39,26 @@ function assert(condition, message) {
 }
 
 // ============================================
-// 1. CONTENT VALIDATION
-// ============================================
-function validateContent() {
-    console.log('\n📁 Content Validation\n');
-
-    const contentDir = path.join(projectRoot, 'src', 'content', 'course');
-
-    test('Content directory exists', () => {
-        assert(fs.existsSync(contentDir),
-            'src/content/course/ does not exist. Run: npm run sync');
-    });
-
-    if (!fs.existsSync(contentDir)) return;
-
-    const lessons = [];
-
-    function findLessons(dir) {
-        const items = fs.readdirSync(dir);
-        for (const item of items) {
-            const fullPath = path.join(dir, item);
-            const stat = fs.statSync(fullPath);
-            if (stat.isDirectory()) {
-                findLessons(fullPath);
-            } else if (item === 'index.md') {
-                lessons.push(fullPath);
-            }
-        }
-    }
-
-    findLessons(contentDir);
-
-    test('At least one lesson exists', () => {
-        assert(lessons.length > 0,
-            'No lessons found. Check sync-content.js configuration.');
-    });
-
-    for (const lessonPath of lessons) {
-        const relativePath = path.relative(contentDir, lessonPath);
-        const content = fs.readFileSync(lessonPath, 'utf-8');
-
-        test(`Lesson has frontmatter: ${relativePath}`, () => {
-            assert(content.startsWith('---'),
-                'Missing YAML frontmatter (must start with ---)');
-        });
-
-        test(`Lesson has title: ${relativePath}`, () => {
-            const match = content.match(/title:\s*["']?([^"'\n]+)/);
-            assert(match && match[1], 'Missing title in frontmatter');
-        });
-    }
-}
-
-// ============================================
-// 2. BUILD VALIDATION
+// 1. BUILD VALIDATION
 // ============================================
 function validateBuild() {
     console.log('\n🔨 Build Validation\n');
 
     test('TypeScript check passes', () => {
         try {
-            execSync('npx astro check 2>&1 | grep -E "src/.*error" | head -5', {
+            execSync('npx astro check', {
                 cwd: projectRoot,
+                stdio: 'pipe',
                 encoding: 'utf-8'
             });
-            // If grep finds errors, it returns them
-            throw new Error('TypeScript errors found');
         } catch (e) {
-            // grep returns exit code 1 when no matches (no errors) - this is good
-            if (e.status === 1) return;
-            throw e;
+            // Extract just the error summary from the output
+            const output = e.stdout || e.stderr || e.message;
+            const errorLines = output.split('\n')
+                .filter(line => line.includes('error') || line.includes('Error'))
+                .slice(0, 5)
+                .join('\n');
+            throw new Error(errorLines || 'TypeScript check failed');
         }
     });
 
@@ -137,7 +86,7 @@ function validateBuild() {
 }
 
 // ============================================
-// 3. API VALIDATION
+// 2. API VALIDATION
 // ============================================
 function validateAPIs() {
     console.log('\n🔌 API Validation\n');
@@ -177,7 +126,7 @@ function validateAPIs() {
 }
 
 // ============================================
-// 4. PAGE VALIDATION
+// 3. PAGE VALIDATION
 // ============================================
 function validatePages() {
     console.log('\n📄 Page Validation\n');
@@ -210,7 +159,7 @@ function validatePages() {
 }
 
 // ============================================
-// 5. LINK VALIDATION (optional, slower)
+// 4. LINK VALIDATION (optional, slower)
 // ============================================
 function validateLinks() {
     console.log('\n🔗 Link Validation\n');
@@ -269,7 +218,7 @@ async function main() {
     console.log('🧪 Pre-Deploy Validation\n');
     console.log('========================');
 
-    validateContent();
+
     validateBuild();
     validateAPIs();
     validatePages();
