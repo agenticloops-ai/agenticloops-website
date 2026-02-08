@@ -48,7 +48,7 @@ export function Hero() {
                         </ScrollReveal>
 
                         <ScrollReveal direction="left" delay={0.3}>
-                            <div className="flex flex-wrap gap-4 mb-12">
+                            <div className="flex flex-wrap gap-4">
                                 <a
                                     href={config.links.github}
                                     className="btn-primary"

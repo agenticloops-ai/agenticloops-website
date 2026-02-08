@@ -35,7 +35,7 @@ export function Team() {
             {/* Background Gradient Blurs */}
             <div className="gradient-blur gradient-blur-blue absolute -top-32 -right-[5%] opacity-15"></div>
             <div className="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%] opacity-15"></div>
-            {/* Section Header Accent - Alternating to Right */}1
+            {/* Section Header Accent - Alternating to Right */}
             <div
                 className="absolute top-0 right-0 w-[300px] h-1 shadow-[0_0_20px_var(--color-accent-violet)]"
                 style={{ background: 'var(--color-accent-gradient)' }}

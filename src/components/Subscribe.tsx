@@ -74,7 +74,7 @@ export function Subscribe() {
                     </div>
                 </ScrollReveal>
             </div>
-        </section >
+        </section>
     );
 }
 
