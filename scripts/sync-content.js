@@ -15,8 +15,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.join(__dirname, '..');
 const destDir = path.join(projectRoot, 'src', 'content', 'courses');
 
-// GitHub token for private repo access (set via GITHUB_TOKEN env var)
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+// GitHub token for private repo access (set via env var)
+const GITHUB_TOKEN = process.env.COURSE_CONTENT_TOKEN;
 
 // Import repo configuration
 import { COURSE_REPOS } from './repos.config.js';
