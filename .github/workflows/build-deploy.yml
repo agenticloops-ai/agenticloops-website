@@ -33,13 +33,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Sync content from external repos
-        env:
-          COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
-        run: npm run sync
-      
       - name: Build site
         env:
+          COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
           PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
         run: npm run build
       
