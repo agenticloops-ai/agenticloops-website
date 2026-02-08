@@ -41,7 +41,15 @@ LOCAL_CONTENT_PATH=/path/to/course npm run dev
 Create a `.env` file in the root directory:
 
 ```bash
-PUBLIC_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX # Google Analytics Measurement ID
+# Analytics
+PUBLIC_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
+
+# Deployment (set in CI, not needed locally)
+BASE_PATH=/agenticloops-website   # Subdirectory path for GitHub Pages
+SITE_URL=https://agenticloops-ai.github.io
+
+# Content sync (for private repos)
+COURSE_CONTENT_TOKEN=ghp_xxxx     # GitHub PAT with repo read access
 ```
 
 ### Configure Repos

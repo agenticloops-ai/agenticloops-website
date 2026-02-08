@@ -21,7 +21,7 @@ export default function Search() {
 
     // Load search index
     useEffect(() => {
-        fetch(`${baseUrl}/api/course-index.json`)
+        fetch(`${baseUrl}api/course-index.json`)
             .then(res => res.json())
             .then(data => {
                 fuseRef.current = new Fuse(data, {

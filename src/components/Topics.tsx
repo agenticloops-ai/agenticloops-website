@@ -40,7 +40,7 @@ export function Topics() {
     const baseUrl = import.meta.env.BASE_URL || '';
 
     useEffect(() => {
-        fetch(`${baseUrl}/api/course-modules.json`)
+        fetch(`${baseUrl}api/course-modules.json`)
             .then(res => res.json())
             .then(data => {
                 setModules(data);

@@ -49,9 +49,9 @@ export function Header() {
                 {/* ZONE 3: NAVIGATION */}
                 <nav className="hidden-mobile flex gap-4 items-center">
                     {[
-                        { label: 'Principles', href: `${baseUrl}/#principles` },
-                        { label: 'Team', href: `${baseUrl}/#team` },
-                        { label: 'Topics', href: `${baseUrl}/#topics` },
+                        { label: 'Principles', href: `${baseUrl}#principles` },
+                        { label: 'Team', href: `${baseUrl}#team` },
+                        { label: 'Topics', href: `${baseUrl}#topics` },
                     ].map(({ label, href }) => (
                         <a
                             key={label}
