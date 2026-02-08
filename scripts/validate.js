@@ -184,14 +184,22 @@ function validateLinks() {
 
     test(`All HTML files valid (${htmlFiles.length} files)`, () => {
         const broken = [];
+        // Base path used in Astro config (strip this from hrefs when checking files)
+        const basePath = '/agenticloops-website';
+
         for (const file of htmlFiles) {
             const content = fs.readFileSync(file, 'utf-8');
             // Check for broken href links to local files
             const hrefMatches = content.matchAll(/href="(\/[^"#]+)"/g);
             for (const match of hrefMatches) {
-                const href = match[1];
+                let href = match[1];
                 // Skip external links and anchors
                 if (href.startsWith('http') || href.startsWith('#')) continue;
+
+                // Strip base path if present (Astro adds this for GitHub Pages)
+                if (href.startsWith(basePath)) {
+                    href = href.slice(basePath.length) || '/';
+                }
 
                 // Convert /path to dist/path/index.html or dist/path
                 let targetPath = path.join(distDir, href);
@@ -200,7 +208,7 @@ function validateLinks() {
                 }
 
                 if (!fs.existsSync(targetPath) && !fs.existsSync(targetPath.replace('/index.html', '.html'))) {
-                    broken.push(`${path.relative(distDir, file)}: ${href}`);
+                    broken.push(`${path.relative(distDir, file)}: ${match[1]}`);
                 }
             }
         }
