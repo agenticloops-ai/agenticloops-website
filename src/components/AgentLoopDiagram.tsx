@@ -299,19 +299,20 @@ export function AgentLoopDiagram() {
                     width: `${boxWidth}px`,
                     zIndex: 2
                 }}>
-                    <div style={{ fontSize: '0.7rem', color: '#5b21b6', marginBottom: '0.5rem', fontWeight: 600 }}>Tools</div>
+                    <div style={{ fontSize: '0.75rem', color: '#5b21b6', marginBottom: '0.5rem', fontWeight: 700 }}>Tools</div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                         {tools.map((tool, i) => (
                             <div
                                 key={tool}
                                 className="font-mono"
                                 style={{
-                                    background: activeStep === 2 && activeTool === i ? '#8b5cf6' : 'rgba(139, 92, 246, 0.15)',
-                                    color: activeStep === 2 && activeTool === i ? 'white' : '#5b21b6',
-                                    padding: '0.4rem 0.75rem',
+                                    background: activeStep === 2 && activeTool === i ? '#7c3aed' : 'rgba(91, 33, 182, 0.2)',
+                                    color: activeStep === 2 && activeTool === i ? 'white' : '#3b0764',
+                                    padding: '0.45rem 0.75rem',
                                     borderRadius: '6px',
-                                    fontSize: '0.7rem',
-                                    fontWeight: 500,
+                                    fontSize: '0.8rem',
+                                    fontWeight: 700,
+                                    letterSpacing: '0.02em',
                                     transition: 'all 0.3s',
                                 }}
                             >

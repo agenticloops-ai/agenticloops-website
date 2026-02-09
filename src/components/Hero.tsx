@@ -1,4 +1,4 @@
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { BookOpen, ArrowRight, ChevronDown } from 'lucide-react';
 import { Github } from './BrandIcons';
 import { config } from '../config';
 import { ScrollReveal } from './ScrollReveal';
@@ -6,22 +6,22 @@ import { AgentLoopDiagram } from './AgentLoopDiagram';
 
 export function Hero() {
     return (
-        <section className="section min-h-screen flex items-center overflow-hidden relative">
+        <section className="section hero-section min-h-screen flex items-center overflow-hidden relative">
             {/* Background Gradient Blurs */}
             <div className="gradient-blur gradient-blur-blue absolute top-32 -right-[5%]"></div>
             <div className="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%]"></div>
 
             <div className="container relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-20 items-center">
+                <ScrollReveal direction="up">
+                    <div className="hero-tagline mb-16 text-center lg:text-left">
+                        <span className="hero-tagline-muted">// </span>join a community shipping <span className="hero-tagline-highlight">production-grade agents</span> — no magic, just engineering
+                    </div>
+                </ScrollReveal>
+
+                <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-20 items-center">
 
                     {/* Left: Content */}
                     <div>
-                        <ScrollReveal direction="left" delay={0.4}>
-                            <div className="code-comment mb-4">
-                                // TODO: Join growing community of engineers building AI agents
-                            </div>
-                        </ScrollReveal>
-
                         <ScrollReveal direction="left">
                             <div className="mb-10 flex flex-wrap gap-3 items-center">
                                 <span className="badge">
@@ -64,7 +64,7 @@ export function Hero() {
                                     }}
                                 >
                                     <Github size={20} />
-                                    Source Code
+                                    Explore Repos
                                     <ArrowRight size={18} />
                                 </a>
                                 <a
@@ -82,7 +82,7 @@ export function Hero() {
                                     }}
                                 >
                                     <BookOpen size={20} />
-                                    Engineering Blog
+                                    Read the Blog
                                     <ArrowRight size={18} />
                                 </a>
                             </div>
@@ -90,15 +90,15 @@ export function Hero() {
 
                     </div>
 
-                    {/* Right: Agent Loop Diagram */}
+                    {/* Right (desktop) / Below (mobile): Agent Loop Diagram */}
                     <ScrollReveal direction="right" delay={0.2}>
-                        <div className="hidden lg:flex justify-center items-center relative">
+                        <div className="flex justify-center items-center relative">
                             <div
-                                className="absolute -top-5 -right-5 w-[100px] h-[100px] border-2 border-accent-cyan opacity-30"
+                                className="hidden lg:block absolute -top-5 -right-5 w-[100px] h-[100px] border-2 border-accent-cyan opacity-30"
                                 style={{ clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)' }}
                             ></div>
                             <div
-                                className="relative p-8 border-2 border-border-accent bg-accent-cyan/[0.03]"
+                                className="relative p-4 lg:p-8 border-2 border-border-accent bg-accent-cyan/[0.03] origin-top scale-[0.75] sm:scale-[0.85] lg:scale-100"
                                 style={{
                                     clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
                                     boxShadow: 'var(--shadow-glow)'
@@ -111,7 +111,15 @@ export function Hero() {
                 </div>
             </div>
 
-
+            {/* Scroll Indicator */}
+            <a
+                href="#principles"
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted hover:text-accent-cyan transition-colors no-underline"
+                aria-label="Scroll to content"
+            >
+                <span className="text-xs font-mono tracking-widest uppercase opacity-60">scroll</span>
+                <ChevronDown size={20} className="animate-bounce-slow" />
+            </a>
         </section>
     );
 }
