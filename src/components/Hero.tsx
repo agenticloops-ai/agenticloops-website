@@ -113,7 +113,7 @@ export function Hero() {
 
             {/* Scroll Indicator */}
             <a
-                href="#principles"
+                href="#tenets"
                 className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted hover:text-accent-cyan transition-colors no-underline"
                 aria-label="Scroll to content"
             >

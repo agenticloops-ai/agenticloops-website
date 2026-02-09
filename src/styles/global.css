@@ -679,14 +679,32 @@ p {
 
 .code-block .keyword {
   color: #f59e0b;
+  font-weight: 700;
 }
 
 .code-block .string {
   color: #14b8a6;
 }
 
+.code-block .string-warn {
+  color: #fbbf24;
+}
+
+.code-block .string-require {
+  color: #34d399;
+}
+
+.code-block .string-reject {
+  color: #f87171;
+}
+
 .code-block .property {
   color: #22d3ee;
+}
+
+.code-block .comment {
+  color: #4b5563;
+  font-style: italic;
 }
 
 
