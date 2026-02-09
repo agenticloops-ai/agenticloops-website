@@ -22,8 +22,8 @@ jobs:
     permissions:
       contents: write
     env:
-      SITE_URL: https://agenticloops-ai.github.io
-      BASE_PATH: /agenticloops-website/
+      SITE_URL: https://agenticloops.ai
+      BASE_PATH: /
       COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
       PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
 
