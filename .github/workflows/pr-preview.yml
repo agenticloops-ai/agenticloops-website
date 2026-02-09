@@ -1,5 +1,5 @@
 # Deploy PR previews to a subdirectory on the gh-pages branch
-# Preview URL: https://agenticloops-ai.github.io/agenticloops-website/pr-preview/pr-<number>/
+# Preview URL: https://agenticloops.ai/pr-preview/pr-<number>/
 # Automatically posts preview link as a PR comment
 # Cleans up preview when PR is closed or merged
 
@@ -18,8 +18,8 @@ jobs:
       contents: write
       pull-requests: write
     env:
-      SITE_URL: https://agenticloops-ai.github.io
-      BASE_PATH: /agenticloops-website/pr-preview/pr-${{ github.event.number }}/
+      SITE_URL: https://agenticloops.ai
+      BASE_PATH: /pr-preview/pr-${{ github.event.number }}/
       COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
       PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
 
