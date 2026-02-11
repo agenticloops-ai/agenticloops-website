@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Clock, Factory, Microscope } from 'lucide-react';
+import { ArrowRight, Sparkles, Clock, Factory, Microscope, Server } from 'lucide-react';
 import { Github } from './BrandIcons';
 import { ScrollReveal } from './ScrollReveal';
 import { GITHUB_REPOS } from '../config/repos';
@@ -28,13 +28,24 @@ const repos = [
         icon: Microscope
     },
     {
-        name: 'agentic-ai-patterns',
+        name: 'ai-agentic-patterns',
         description: 'Design patterns for agentic AI systems. ReAct, multi-agent orchestration, memory management, and structured outputs.',
         stars: 0,
         forks: 0,
         language: 'Python',
         comingSoon: true,
+        releaseDate: 'Q2 2026',
         icon: Factory
+    },
+    {
+        name: 'ai-platform-engineering',
+        description: 'Building internal AI agentic platforms. Infrastructure, orchestration, and operational patterns for running AI agents in production.',
+        stars: 0,
+        forks: 0,
+        language: 'Python',
+        comingSoon: true,
+        releaseDate: 'Q2 2026',
+        icon: Server
     },
 ];
 
@@ -149,7 +160,7 @@ export function RepoSection() {
                                             </div>
                                         ) : (
                                             <div className="code-comment ml-auto">
-                                                RELEASING Q1 2025
+                                                RELEASING {repo.releaseDate || 'SOON'}
                                             </div>
                                         )}
                                     </div>

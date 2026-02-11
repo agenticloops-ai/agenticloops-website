@@ -21,7 +21,7 @@ export const config = {
         heroSubheadline: 'Design patterns, system architecture, and production-grade implementations for software engineers building autonomous AI systems.',
         positioningStatement: 'A home for AI Agents Engineering - practical, production-grade patterns, repos, and explanations for software engineers building real systems.',
         coreBeliefStatement: 'Building AI Agents is far more about software engineering than it is about AI.',
-        subscribeText: 'Get deep-dive engineering posts on AI agents - no hype, just engineering insights.',
+        subscribeText: 'Subscribe for early access to repos, patterns, and engineering deep-dives before they go public.',
     },
     // Social links to display in Header/Footer. IDs must match keys in SocialIcons map.
     social: [

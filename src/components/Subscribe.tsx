@@ -47,7 +47,7 @@ export function Subscribe() {
                                     }
                                 }}
                             >
-                                Subscribe <ArrowRight size={16} />
+                                Get Early Access <ArrowRight size={16} />
                             </a>
                             <a
                                 href={config.links.discussions}
@@ -69,7 +69,7 @@ export function Subscribe() {
                         </div>
 
                         <p className="text-muted mt-8 text-sm">
-                            Join engineers learning to build production AI agents
+                            Engineering-first. Production-grade. No magic.
                         </p>
                     </div>
                 </ScrollReveal>

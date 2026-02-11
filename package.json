@@ -27,7 +27,6 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "dotenv": "^17.2.3",
     "postcss": "^8.5.1",

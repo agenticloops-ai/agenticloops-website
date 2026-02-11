@@ -14,18 +14,18 @@ interface TeamMember {
 
 const team: TeamMember[] = [
     {
-        name: 'Vishal Banthia',
-        role: 'Software Engineer',
-        bio: 'Seasoned platform engineer specializing in security, DevOps, and reliability for resilient, scalable infrastructure.',
-        photo: `${baseUrl}photos/vishal.jpg`,
-        linkedin: 'https://www.linkedin.com/in/vishal-banthia-b4191396/'
-    },
-    {
         name: 'Alex Mrynskyi',
         role: 'Software Engineer',
-        bio: 'Hands-on technologist and lifelong learner. Builds distributed systems at scale, with experience in both startups and enterprise teams.',
+        bio: 'Software architect with extensive experience building large-scale data applications and distributed systems. Passionate about designing patterns that scale gracefully — turning complex data challenges into clean, resilient solutions.',
         photo: `${baseUrl}photos/alex.jpg`,
         linkedin: 'https://www.linkedin.com/in/alexmynsky/'
+    },
+    {
+        name: 'Vishal Banthia',
+        role: 'Software Engineer',
+        bio: 'Platform engineer with deep roots in infrastructure, security, and reliability. Passionate about developer experience — building the tools and platforms that handle the heavy lifting so developers can focus purely on business logic.',
+        photo: `${baseUrl}photos/vishal.jpg`,
+        linkedin: 'https://www.linkedin.com/in/vishal-banthia-b4191396/'
     },
 ];
 
