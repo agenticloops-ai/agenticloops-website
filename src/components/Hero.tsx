@@ -12,12 +12,6 @@ export function Hero() {
             <div className="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%]"></div>
 
             <div className="container relative z-10">
-                <ScrollReveal direction="up">
-                    <div className="hero-tagline mb-16 text-center lg:text-left">
-                        <span className="hero-tagline-muted">// </span>join a community shipping <span className="hero-tagline-highlight">production-grade agents</span> — no magic, just engineering
-                    </div>
-                </ScrollReveal>
-
                 <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-20 items-center">
 
                     {/* Left: Content */}

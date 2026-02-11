@@ -31,7 +31,7 @@ export function About() {
                             </p>
 
                             <p className="body-text mb-8">
-                                You can't unit test intuition. LLMs don't give you guarantees — the same input can trigger different tools, different reasoning, different outcomes. Reliable agents aren't prompted into existence. They're engineered.
+                                LLMs are powerful, but on their own they're unpredictable and fragile. Building reliable agents takes real engineering — constraints, failure handling, testing, and clear system boundaries. We treat agents as software systems, not black boxes.
                             </p>
 
                             <div className="flex flex-col gap-5">
@@ -44,7 +44,7 @@ export function About() {
                                     <span className="body-text"> — Traditional software gives you guarantees. LLMs don't. Architect for the uncertainty, don't pretend it away.</span>
                                 </div>
                                 <div>
-                                    <span className="font-display text-base text-text-primary uppercase tracking-wide font-bold">03. Trade-offs are the job</span>
+                                    <span className="font-display text-base text-text-primary uppercase tracking-wide font-bold">03. Master the trade-offs</span>
                                     <span className="body-text"> — Writing code has never been easier. Making the right architectural trade-off has never been harder. Autonomy vs control, flexibility vs predictability, speed vs safety — every decision demands deep understanding of the constraints underneath.</span>
                                 </div>
                                 <div>
