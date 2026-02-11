@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import AppIsland from '../components/AppIsland';
+import { Header, Hero, About, Team, RepoSection, Topics, Subscribe, Footer } from '../components/Islands';
 import ThemeScript from '../components/ThemeScript.astro';
 
 // We use client:load because the landing page is heavy on interactivity and animations
@@ -9,5 +9,14 @@ import ThemeScript from '../components/ThemeScript.astro';
 
 <Layout title="Agentic Loops">
   <ThemeScript />
-  <AppIsland client:load />
+  <Header client:load />
+  <main>
+    <Hero client:load />
+    <About client:visible />
+    <Team client:visible />
+    <RepoSection client:visible />
+    <Topics client:visible />
+    <Subscribe client:visible />
+  </main>
+  <Footer client:visible />
 </Layout>

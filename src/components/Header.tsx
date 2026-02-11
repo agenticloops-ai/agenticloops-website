@@ -35,9 +35,11 @@ export function Header() {
             <div className="container h-full px-6 flex items-center justify-between gap-4">
                 {/* ZONE 1: BRAND */}
                 <a href={baseUrl || '/'} className="flex items-center gap-3 no-underline text-inherit opacity-90 hover:opacity-100 transition-opacity flex-shrink-0">
-                    <div className="w-8 h-8 bg-black border-2 border-accent-cyan flex items-center justify-center font-mono text-base font-black text-accent-cyan -rotate-2">
-                        &gt;_
-                    </div>
+                    <img
+                        src={`${baseUrl}logo.png`}
+                        alt="Agentic Loops Logo"
+                        className="w-9 h-9 object-contain"
+                    />
                     <span className="md:inline text-lg font-bold tracking-tight text-text-primary">
                         Agentic Loops
                     </span>
