@@ -1,87 +1,35 @@
 # Deployment
 
-## Netlify
+Website: https://agenticloops.ai
 
-### Setup
+## Production (GitHub Pages)
 
-1. [Import project](https://app.netlify.com/start) from GitHub
-2. Settings auto-detected from `netlify.toml`
-3. Deploy on every push to `main`
+Production deploys automatically when a PR is merged to `main`. The workflow (`.github/workflows/build-deploy.yml`) runs on:
 
-### Configuration
+- **Push to `main`** — automatic deploy on every merge
+- **`repository_dispatch`** — triggered by external content repos (e.g., course content updates)
+- **`workflow_dispatch`** — manual trigger from the Actions tab
 
-`netlify.toml`:
-```toml
-[build]
-  command = "npm run build"
-  publish = "dist"
+The workflow builds the Astro site, runs validation tests, and deploys to the `gh-pages` branch using [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action). PR preview subdirectories are preserved during deployment.
 
-[build.environment]
-  NODE_VERSION = "20"
-```
+### Required secrets/variables
 
-### Environment Variables
+| Name | Type | Description |
+|------|------|-------------|
+| `COURSE_CONTENT_TOKEN` | Secret | GitHub PAT for cloning private course repos |
+| `PUBLIC_GOOGLE_ANALYTICS_ID` | Variable | Google Analytics measurement ID |
 
-You must add the following environment variables in your Netlify site settings:
+## PR Previews
 
-| Variable | Description | Example |
-| :--- | :--- | :--- |
-| `PUBLIC_GOOGLE_ANALYTICS_ID` | Google Analytics Measurement ID | `G-XXXXXXXXXX` |
+Every pull request gets a live preview via `.github/workflows/pr-preview.yml`. The workflow triggers on PR `opened`, `synchronize`, `reopened`, and `closed` events.
 
----
+- Preview URL: `https://agenticloops.ai/pr-preview/pr-<number>/`
+- A comment with the preview link is automatically posted on the PR
+- Preview is cleaned up when the PR is closed or merged
 
-## Auto-Rebuild from External Repos
+Uses [rossjrw/pr-preview-action](https://github.com/rossjrw/pr-preview-action) to deploy to a subdirectory on the `gh-pages` branch.
 
-When content in external course repos changes, the website can automatically rebuild.
-
-### Option 1: Netlify Build Hook (Recommended)
-
-1. **Create build hook** in Netlify:
-   - Site settings → Build & deploy → Build hooks
-   - Create hook, copy URL
-
-2. **Add workflow to external repo** (`.github/workflows/trigger-rebuild.yml`):
-   ```yaml
-   name: Trigger Website Rebuild
-   
-   on:
-     push:
-       branches: [main]
-   
-   jobs:
-     trigger:
-       runs-on: ubuntu-latest
-       steps:
-         - run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
-   ```
-
-3. **Add secret** to external repo:
-   - Settings → Secrets → Actions
-   - Name: `NETLIFY_BUILD_HOOK`
-   - Value: (the URL from step 1)
-
-### Option 2: GitHub Actions (GitHub Pages)
-
-Use the workflow in `.github/workflows/build-deploy.yml` with `repository_dispatch`:
-
-1. Create a [Personal Access Token](https://github.com/settings/tokens) with `repo` scope
-2. Add as `WEBSITE_REPO_TOKEN` secret in external repo
-3. Copy `docs/external-repo-trigger.yml.example` to external repo
-
----
-
-## Vercel
-
-1. Import project from GitHub
-2. Framework: Astro
-3. Build command: `npm run build`
-4. Output directory: `dist`
-
-For auto-rebuild, use Vercel's [Deploy Hooks](https://vercel.com/docs/concepts/git/deploy-hooks) similar to Netlify.
-
----
-
-## Testing Deployment
+## Testing Locally
 
 ```bash
 # Build locally

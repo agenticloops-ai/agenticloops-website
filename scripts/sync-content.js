@@ -43,6 +43,28 @@ function cleanDir(dir) {
 }
 
 /**
+ * Parse commented-out frontmatter from markdown content.
+ * Converts <!-- --- ... --- --> to standard --- ... --- frontmatter.
+ * If the content already has standard frontmatter, returns it unchanged.
+ * @param {string} content - Markdown content
+ * @returns {string} Content with uncommented frontmatter
+ */
+function parseCommentedFrontmatter(content) {
+    // Match <!-- --- ... --- --> at the start of the file (with optional leading whitespace)
+    const commentedFrontmatterRegex = /^\s*<!--\s*---\s*\n([\s\S]*?)\n\s*---\s*-->/;
+    const match = content.match(commentedFrontmatterRegex);
+
+    if (match) {
+        const frontmatterBody = match[1];
+        const rest = content.slice(match[0].length);
+        console.log(`    ↳ Converted commented frontmatter to standard frontmatter`);
+        return `---\n${frontmatterBody}\n---${rest}`;
+    }
+
+    return content;
+}
+
+/**
  * Transform markdown links that try to escape content folder to GitHub URLs
  * and convert internal lesson links to absolute website paths
  * @param {string} content - Markdown content
@@ -135,6 +157,7 @@ function copyAndRename(srcDir, destDir, repoUrl = '', branch = 'main', contentRe
             // Rename README.md to index.md for Astro
             const destPath = path.join(destDir, 'index.md');
             let content = fs.readFileSync(srcPath, 'utf-8');
+            content = parseCommentedFrontmatter(content);
             if (repoUrl) {
                 content = transformLinks(content, repoUrl, branch, contentRelPath, courseName);
             }
@@ -142,6 +165,7 @@ function copyAndRename(srcDir, destDir, repoUrl = '', branch = 'main', contentRe
         } else if (item.endsWith('.md')) {
             const destPath = path.join(destDir, item);
             let content = fs.readFileSync(srcPath, 'utf-8');
+            content = parseCommentedFrontmatter(content);
             if (repoUrl) {
                 content = transformLinks(content, repoUrl, branch, contentRelPath, courseName);
             }
@@ -206,20 +230,38 @@ async function fetchFromRepo(course) {
 }
 
 async function syncFromLocal(localPath) {
-    console.log(`Syncing from local path: ${localPath}`);
+    console.log(`Syncing from local path: ${localPath}\n`);
 
-    const items = fs.readdirSync(localPath);
+    for (const course of COURSE_REPOS) {
+        const courseName = course.name.replace(/^\d+-/, '');
+        const courseDestDir = path.join(destDir, courseName);
 
-    for (const item of items) {
-        const srcPath = path.join(localPath, item);
-        const stat = fs.statSync(srcPath);
+        console.log(`Syncing ${course.name} from local...`);
+        fs.mkdirSync(courseDestDir, { recursive: true });
 
-        if (stat.isDirectory()) {
-            const destPath = path.join(destDir, item.replace(/^\d+-/, ''));
-            fs.mkdirSync(destPath, { recursive: true });
-            copyAndRename(srcPath, destPath);
-            console.log(`  ✓ Synced ${item}`);
+        if (course.contentPath instanceof RegExp) {
+            // Find directories matching the pattern in the local path
+            const items = fs.readdirSync(localPath);
+            const moduleDirs = items.filter(item => {
+                const itemPath = path.join(localPath, item);
+                return fs.statSync(itemPath).isDirectory() && course.contentPath.test(item);
+            }).sort();
+
+            console.log(`  Found ${moduleDirs.length} module directories matching pattern`);
+
+            for (const moduleDir of moduleDirs) {
+                const srcPath = path.join(localPath, moduleDir);
+                const destPath = path.join(courseDestDir, moduleDir);
+                fs.mkdirSync(destPath, { recursive: true });
+                copyAndRename(srcPath, destPath, course.repo, course.branch, moduleDir, courseName);
+            }
+        } else {
+            // Copy content from single subdirectory
+            const srcPath = path.join(localPath, course.contentPath);
+            copyAndRename(srcPath, courseDestDir, course.repo, course.branch, '', courseName);
         }
+
+        console.log(`  ✓ Synced to ${courseDestDir}`);
     }
 }
 
