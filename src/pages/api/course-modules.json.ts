@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 export const GET: APIRoute = async () => {
     const allCourse = await getCollection('courses');
 
-    // Structure: ai-agents-engineering/01-foundations/01-simple-llm-call
+    // Structure: agentic-ai-engineering/01-foundations/01-simple-llm-call
     // parts[0] = course name, parts[1] = module, parts[2] = lesson
     const modules: Record<string, {
         title: string;

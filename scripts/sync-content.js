@@ -71,7 +71,7 @@ function parseCommentedFrontmatter(content) {
  * @param {string} repoUrl - GitHub repo URL (e.g., https://github.com/AI-Agents-Eng/py-playground.git)
  * @param {string} branch - Branch name
  * @param {string} relativePath - Current file's path relative to content root (e.g., 01-foundations/01-simple-llm-call)
- * @param {string} courseName - Course name for website URL (e.g., ai-agents-engineering)
+ * @param {string} courseName - Course name for website URL (e.g., agentic-ai-engineering)
  */
 function transformLinks(content, repoUrl, branch, relativePath, courseName) {
     // Get base GitHub URL without .git
