@@ -7,8 +7,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'lessons/**'    # Adjust to your content folder
-      - '.data/**'      # Or wherever your lessons are
+      - '01-lessons/**'    # Adjust to your content folder
+      - '02-lessons/**'    # Adjust to your content folder
 
 jobs:
   trigger:
@@ -18,6 +18,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.WEBSITE_REPO_TOKEN }}
-          repository: your-org/ai-agent-website  # <-- Change to your website repo
+          repository: agenticloops-ai/agenticloops-website
           event-type: content-update
           client-payload: '{"repo": "${{ github.repository }}", "sha": "${{ github.sha }}"}'
