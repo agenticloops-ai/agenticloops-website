@@ -8,8 +8,8 @@ const repoColorClasses = ['cyan', 'violet', 'pink', 'emerald', 'amber'] as const
 
 const repos = [
     {
-        name: 'ai-agents-engineering',
-        url: GITHUB_REPOS.aiAgentsEngineering,
+        name: 'agentic-ai-engineering',
+        url: GITHUB_REPOS.agenticAIEngineering,
         description: 'Hands-on tutorials for building AI agents from scratch. Learn LLM APIs, prompt engineering, tool calling, and the agent loop through practical examples.',
         stars: 0,
         forks: 0,
@@ -18,17 +18,18 @@ const repos = [
         icon: Sparkles
     },
     {
-        name: 'ai-agents-internals',
-        url: GITHUB_REPOS.aiAgentsInternals,
+        name: 'agentic-apps-internals',
+        url: GITHUB_REPOS.agenticAppsInternals,
         description: 'Reverse-engineering analysis of popular AI agents — system prompts, tool architectures, and implementation patterns.',
         stars: 0,
         forks: 0,
         language: 'Markdown, JSON, YAML',
-        featured: true,
+        comingSoon: true,
+        releaseDate: 'Q1 2026',
         icon: Microscope
     },
     {
-        name: 'ai-agentic-patterns',
+        name: 'agentic-ai-patterns',
         description: 'Design patterns for agentic AI systems. ReAct, multi-agent orchestration, memory management, and structured outputs.',
         stars: 0,
         forks: 0,
@@ -38,7 +39,7 @@ const repos = [
         icon: Factory
     },
     {
-        name: 'ai-platform-engineering',
+        name: 'agentic-platform-engineering',
         description: 'Building internal AI agentic platforms. Infrastructure, orchestration, and operational patterns for running AI agents in production.',
         stars: 0,
         forks: 0,

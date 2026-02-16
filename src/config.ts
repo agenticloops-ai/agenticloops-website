@@ -10,11 +10,10 @@ export const config = {
         discussions: 'https://github.com/orgs/agenticloops-ai/discussions',
         substack: 'https://agenticloopsai.substack.com',
         linkedin: 'https://www.linkedin.com/company/agenticloops-ai',
-        // discord: 'https://discord.gg/ai-agents-engineering',
         x: 'https://x.com/agenticloops_ai',
         website: 'https://agenticloops.ai',
-        // mastodon: 'https://mastodon.social/@aiagentsengineering',
-        // bluesky: 'https://bsky.app/profile/aiagentsengineering.bsky.social',
+        // mastodon: 'https://mastodon.social/@agenticloops_ai',
+        // bluesky: 'https://bsky.app/profile/agenticloops_ai.bsky.social',
     },
     content: {
         heroHeadline: 'Agentic Loops',

@@ -105,8 +105,8 @@ Edit `scripts/repos.config.js`:
 ```javascript
 export const COURSE_REPOS = [
     {
-        name: 'ai-agents-engineering',
-        repo: 'https://github.com/agenticloops-ai/ai-agents-engineering.git',
+        name: 'agentic-ai-engineering',
+        repo: 'https://github.com/agenticloops-ai/agentic-ai-engineering.git',
         branch: 'main',
         contentPath: /^\d{2}-/,  // Regex: match module dirs like 01-foundations/
     }

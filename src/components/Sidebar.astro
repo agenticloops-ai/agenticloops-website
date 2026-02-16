@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 
 const allCourse = await getCollection('courses');
 
-// Structure: courses/ai-agents-engineering/01-foundations/01-simple-llm-call
+// Structure: courses/agentic-ai-engineering/01-foundations/01-simple-llm-call
 // We need to group by module (parts[1]) and show lessons (parts[2+])
 interface ModuleData {
   lessons: CollectionEntry<'courses'>[];
@@ -17,7 +17,6 @@ allCourse.forEach((entry) => {
   // Astro 5 loader: use id instead of slug
   const id = entry.id;
   const parts = id.split('/');
-  // parts[0] = ai-agents-engineering, parts[1] = 01-foundations, parts[2] = 01-simple-llm-call
   if (parts.length >= 2) {
     const moduleName = parts[1]; // e.g., "01-foundations" or "02-advanced"
     
