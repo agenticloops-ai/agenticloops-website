@@ -79,13 +79,10 @@ function transformLinks(content, repoUrl, branch, relativePath, courseName) {
 
     // Match markdown links: [text](url) and ![alt](url)
     return content.replace(/(!?\[([^\]]*)\])\(([^)]+)\)/g, (match, prefix, _text, url) => {
+        const isImage = match.startsWith('!');
+
         // Skip absolute URLs, anchors, and mailto
         if (url.startsWith('http') || url.startsWith('#') || url.startsWith('mailto:')) {
-            return match;
-        }
-
-        // Skip images (those with !)
-        if (match.startsWith('!')) {
             return match;
         }
 
@@ -95,21 +92,36 @@ function transformLinks(content, repoUrl, branch, relativePath, courseName) {
         const pathParts = relativePath.split('/').filter(Boolean);
 
         // If going up more levels than we're deep, it escapes content - convert to GitHub URL
-        if (upLevels > pathParts.length) {
+        // For images, also catch paths that go up to the root level (>=) since those
+        // reference repo-level assets (e.g. common/badges/) that aren't synced
+        if (upLevels > pathParts.length || (isImage && upLevels >= pathParts.length)) {
             // Remove all ../ from the beginning
             let repoPath = url.replace(/^(\.\.\/)+/, '');
-
-            // Construct GitHub URL
-            const isDir = !repoPath.includes('.') || repoPath.endsWith('/');
-            const gitPath = isDir ? 'tree' : 'blob';
 
             // Handle anchor links
             const [filePath, anchor] = repoPath.split('#');
             const anchorSuffix = anchor ? `#${anchor}` : '';
 
+            if (isImage) {
+                // Use raw.githubusercontent.com so images render correctly
+                const rawBaseUrl = baseGitHubUrl.replace('github.com', 'raw.githubusercontent.com');
+                const newUrl = `${rawBaseUrl}/${branch}/${filePath}`;
+                console.log(`    ↳ External image: ${url} → ${newUrl}`);
+                return `${prefix}(${newUrl})`;
+            }
+
+            // Construct GitHub URL
+            const isDir = !repoPath.includes('.') || repoPath.endsWith('/');
+            const gitPath = isDir ? 'tree' : 'blob';
+
             const newUrl = `${baseGitHubUrl}/${gitPath}/${branch}/${filePath}${anchorSuffix}`;
             console.log(`    ↳ External link: ${url} → ${newUrl}`);
             return `${prefix}(${newUrl})`;
+        }
+
+        // Skip remaining image links (local images within content)
+        if (isImage) {
+            return match;
         }
 
         // Transform links to code files to GitHub
