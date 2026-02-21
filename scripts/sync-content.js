@@ -19,7 +19,7 @@ const destDir = path.join(projectRoot, 'src', 'content', 'courses');
 const GITHUB_TOKEN = process.env.COURSE_CONTENT_TOKEN;
 
 // Import repo configuration
-import { COURSE_REPOS } from './repos.config.js';
+import { COURSE_REPOS, PATTERNS_REPO } from './repos.config.js';
 
 // For local development without cloning (optional override)
 const LOCAL_CONTENT_PATH = process.env.LOCAL_CONTENT_PATH;
@@ -277,6 +277,72 @@ async function syncFromLocal(localPath) {
     }
 }
 
+/**
+ * Sync patterns from the agentic-ai-patterns repo.
+ * Copies the patterns/ directory structure (category folders with .md files)
+ * to src/content/patterns/ for the API endpoint to read.
+ */
+async function fetchPatterns() {
+    const tempDir = path.join(projectRoot, '.temp-clone');
+    const patternsDestDir = path.join(projectRoot, 'src', 'content', 'patterns');
+
+    console.log(`Fetching patterns from ${PATTERNS_REPO.repo}...`);
+
+    try {
+        // Clean temp dir
+        if (fs.existsSync(tempDir)) {
+            fs.rmSync(tempDir, { recursive: true });
+        }
+
+        // Clone repo (shallow clone for speed)
+        const cloneUrl = getAuthenticatedRepoUrl(PATTERNS_REPO.repo);
+        execSync(`git clone --depth 1 --branch ${PATTERNS_REPO.branch} "${cloneUrl}" "${tempDir}"`, {
+            stdio: 'pipe'
+        });
+
+        // Clean and create destination
+        cleanDir(patternsDestDir);
+
+        // Copy the patterns directory structure (category dirs with .md files)
+        const srcPath = path.join(tempDir, PATTERNS_REPO.contentPath);
+        if (!fs.existsSync(srcPath)) {
+            console.log(`  ✗ Patterns source not found: ${srcPath}`);
+            return;
+        }
+
+        copyDirRecursive(srcPath, patternsDestDir);
+        console.log(`  ✓ Synced patterns to ${patternsDestDir}`);
+    } catch (error) {
+        console.error(`  ✗ Failed to fetch patterns:`, error.message);
+    } finally {
+        if (fs.existsSync(tempDir)) {
+            fs.rmSync(tempDir, { recursive: true });
+        }
+    }
+}
+
+/**
+ * Recursively copy a directory, preserving structure.
+ * Only copies .md files and directories.
+ */
+function copyDirRecursive(src, dest) {
+    if (!fs.existsSync(src)) return;
+
+    const items = fs.readdirSync(src);
+    for (const item of items) {
+        const srcPath = path.join(src, item);
+        const destPath = path.join(dest, item);
+        const stat = fs.statSync(srcPath);
+
+        if (stat.isDirectory()) {
+            fs.mkdirSync(destPath, { recursive: true });
+            copyDirRecursive(srcPath, destPath);
+        } else if (item.endsWith('.md')) {
+            fs.copyFileSync(srcPath, destPath);
+        }
+    }
+}
+
 async function main() {
     console.log('Content Sync\n');
 
@@ -293,6 +359,9 @@ async function main() {
             await fetchFromRepo(course);
         }
     }
+
+    // Sync patterns repo
+    await fetchPatterns();
 
     console.log('\n✓ Content sync complete');
 }
