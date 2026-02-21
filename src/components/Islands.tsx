@@ -8,6 +8,8 @@ import { RepoSection as RepoSectionComponent } from './RepoSection';
 import { Topics as TopicsComponent } from './Topics';
 import { Subscribe as SubscribeComponent } from './Subscribe';
 import { Footer as FooterComponent } from './Footer';
+import { PatternsPage as PatternsPageComponent } from './PatternsPage';
+import { PatternsPreview as PatternsPreviewComponent } from './PatternsPreview';
 
 function withTheme<T extends object>(Component: React.ComponentType<T>) {
     return (props: T) => (
@@ -25,3 +27,5 @@ export const RepoSection = withTheme(RepoSectionComponent);
 export const Topics = withTheme(TopicsComponent);
 export const Subscribe = withTheme(SubscribeComponent);
 export const Footer = withTheme(FooterComponent);
+export const PatternsPageIsland = withTheme(PatternsPageComponent);
+export const PatternsPreview = withTheme(PatternsPreviewComponent);
