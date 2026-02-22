@@ -31,8 +31,8 @@ function getAuthenticatedRepoUrl(repoUrl) {
     if (!GITHUB_TOKEN) {
         return repoUrl;
     }
-    // Convert https://github.com/... to https://<token>@github.com/...
-    return repoUrl.replace('https://github.com/', `https://${GITHUB_TOKEN}@github.com/`);
+    // Convert https://github.com/... to https://x-access-token:<token>@github.com/...
+    return repoUrl.replace('https://github.com/', `https://x-access-token:${GITHUB_TOKEN}@github.com/`);
 }
 
 function cleanDir(dir) {
