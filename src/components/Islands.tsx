@@ -10,6 +10,8 @@ import { Subscribe as SubscribeComponent } from './Subscribe';
 import { Footer as FooterComponent } from './Footer';
 import { PatternsPage as PatternsPageComponent } from './PatternsPage';
 import { PatternsPreview as PatternsPreviewComponent } from './PatternsPreview';
+import { TutorialsPage as TutorialsPageComponent } from './TutorialsPage';
+import { TutorialsPreview as TutorialsPreviewComponent } from './TutorialsPreview';
 
 function withTheme<T extends object>(Component: React.ComponentType<T>) {
     return (props: T) => (
@@ -29,3 +31,5 @@ export const Subscribe = withTheme(SubscribeComponent);
 export const Footer = withTheme(FooterComponent);
 export const PatternsPageIsland = withTheme(PatternsPageComponent);
 export const PatternsPreview = withTheme(PatternsPreviewComponent);
+export const TutorialsPageIsland = withTheme(TutorialsPageComponent);
+export const TutorialsPreview = withTheme(TutorialsPreviewComponent);

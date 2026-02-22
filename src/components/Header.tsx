@@ -54,7 +54,7 @@ export function Header() {
                         { label: 'Tenets', href: `${baseUrl}#tenets` },
                         { label: 'Team', href: `${baseUrl}#team` },
                         { label: 'Patterns', href: `${baseUrl}patterns` },
-                        { label: 'Tutorials', href: `${baseUrl}#topics` },
+                        { label: 'Tutorials', href: `${baseUrl}tutorials` },
                     ].map(({ label, href }) => (
                         <a
                             key={label}

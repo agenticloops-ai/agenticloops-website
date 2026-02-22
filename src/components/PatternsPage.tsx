@@ -118,7 +118,7 @@ export function PatternsPage() {
                             </div>
 
                             <h1 className="mb-6">
-                                Design <span className="gradient-text">Patterns</span>
+                                Agentic <span className="gradient-text">Patterns</span>
                             </h1>
 
                             <p className="body-text max-w-[700px] mx-auto mb-8">

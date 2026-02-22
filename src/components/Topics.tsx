@@ -65,7 +65,7 @@ export function Topics() {
                     <div className="text-center mb-20 relative">
                         <div className="flex items-center justify-center gap-4 mb-6">
                             <div className="w-10 h-0.5 bg-accent-cyan"></div>
-                            <span className="badge">topics</span>
+                            <span className="badge">tutorials</span>
                             <div className="w-10 h-0.5 bg-accent-cyan"></div>
                         </div>
 

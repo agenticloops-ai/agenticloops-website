@@ -58,7 +58,7 @@ export function PatternsPreview() {
                             <div className="w-10 h-0.5 bg-accent-cyan"></div>
                         </div>
                         <h2 className="mb-6">
-                            Design <span className="gradient-text">Patterns</span>
+                            Agentic <span className="gradient-text">Patterns</span>
                         </h2>
                         <p className="body-text max-w-[650px] mx-auto mb-8">
                             {patterns.length > 0 ? patterns.length : 26} design patterns for AI agent engineering — with architecture diagrams, trade-offs, and relationship maps.
