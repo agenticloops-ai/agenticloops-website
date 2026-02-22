@@ -24,10 +24,16 @@ jobs:
     env:
       SITE_URL: https://agenticloops.ai
       BASE_PATH: /
-      COURSE_CONTENT_TOKEN: ${{ secrets.COURSE_CONTENT_TOKEN }}
       PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
 
     steps:
+      - name: Generate app token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.AGENTIC_LOOPS_GITHUB_APP_ID }}
+          private-key: ${{ secrets.AGENTIC_LOOPS_GITHUB_APP_PRIVATE_KEY }}
+
       - name: Checkout website
         uses: actions/checkout@v4
 
@@ -42,6 +48,8 @@ jobs:
 
       - name: Build site
         run: npm run build
+        env:
+          COURSE_CONTENT_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Validate build
         run: npm run test
@@ -52,3 +60,4 @@ jobs:
           branch: gh-pages
           folder: dist
           clean-exclude: pr-preview
+          token: ${{ steps.app-token.outputs.token }}
