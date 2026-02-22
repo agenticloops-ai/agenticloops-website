@@ -23,7 +23,7 @@ const GITHUB_TOKEN = process.env.COURSE_CONTENT_TOKEN;
 
 function getAuthenticatedRepoUrl(repoUrl) {
     if (!GITHUB_TOKEN) return repoUrl;
-    return repoUrl.replace('https://github.com/', `https://${GITHUB_TOKEN}@github.com/`);
+    return repoUrl.replace('https://github.com/', `https://x-access-token:${GITHUB_TOKEN}@github.com/`);
 }
 
 async function main() {
