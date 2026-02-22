@@ -6,23 +6,20 @@
 export const GITHUB_REPOS = {
     agenticAIEngineering: 'https://github.com/agenticloops-ai/agentic-ai-engineering',
     agenticAppsInternals: 'https://github.com/agenticloops-ai/agentic-apps-internals',
+    agenticAIPatterns: 'https://github.com/agenticloops-ai/agentic-ai-patterns',
 } as const;
 
-// Default repo for course content
-export const COURSE_REPO = GITHUB_REPOS.agenticAIEngineering;
-
 /**
- * Build GitHub URL for a lesson/course slug
+ * Build GitHub URL for a slug within a given repo
+ * @param repoUrl - GitHub repo URL (e.g., GITHUB_REPOS.agenticAIEngineering)
  * @param slug - Slug like agentic-ai-engineering/01-foundations/01-simple-llm-call
  * @returns GitHub tree URL for the content
  */
-export function getGitHubUrl(slug: string): string {
-    // Convert slug like agentic-ai-engineering/01-foundations/01-simple-llm-call
-    // to 01-foundations/01-simple-llm-call (modules are in repo root)
+export function getGitHubUrl(repoUrl: string, slug: string): string {
     const parts = slug.split('/');
     if (parts.length >= 2) {
-        const lessonPath = parts.slice(1).join('/');
-        return `${COURSE_REPO}/tree/main/${lessonPath}`;
+        const path = parts.slice(1).join('/');
+        return `${repoUrl}/tree/main/${path}`;
     }
-    return `${COURSE_REPO}/tree/main`;
+    return `${repoUrl}/tree/main`;
 }

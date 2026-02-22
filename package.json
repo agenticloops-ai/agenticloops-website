@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/sync-content.js && astro dev",
+    "dev": "node scripts/sync-content.js && node scripts/sync-patterns.js && astro dev",
     "start": "astro dev",
-    "build": "node scripts/sync-content.js && astro check && astro build",
+    "build": "node scripts/sync-content.js && node scripts/sync-patterns.js && astro check && astro build",
     "preview": "astro preview",
     "lint": "eslint .",
     "sync": "node scripts/sync-content.js",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^25.3.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "autoprefixer": "^10.4.20",

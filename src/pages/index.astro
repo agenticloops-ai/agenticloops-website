@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Header, Hero, About, Team, RepoSection, Topics, Subscribe, Footer } from '../components/Islands';
+import { Header, Hero, About, Team, RepoSection, PatternsPreview, TutorialsPreview, Subscribe, Footer } from '../components/Islands';
 import ThemeScript from '../components/ThemeScript.astro';
 
 // We use client:load because the landing page is heavy on interactivity and animations
@@ -14,8 +14,9 @@ import ThemeScript from '../components/ThemeScript.astro';
     <Hero client:load />
     <About client:visible />
     <Team client:visible />
+    <PatternsPreview client:visible />
+    <TutorialsPreview client:visible />
     <RepoSection client:visible />
-    <Topics client:visible />
     <Subscribe client:visible />
   </main>
   <Footer client:visible />

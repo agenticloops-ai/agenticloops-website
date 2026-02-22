@@ -53,7 +53,8 @@ export function Header() {
                     {[
                         { label: 'Tenets', href: `${baseUrl}#tenets` },
                         { label: 'Team', href: `${baseUrl}#team` },
-                        { label: 'Topics', href: `${baseUrl}#topics` },
+                        { label: 'Patterns', href: `${baseUrl}patterns` },
+                        { label: 'Tutorials', href: `${baseUrl}tutorials` },
                     ].map(({ label, href }) => (
                         <a
                             key={label}
@@ -90,8 +91,6 @@ export function Header() {
                             );
                         })}
                     </div>
-
-                    <div className="hidden md:block w-px h-6 bg-border" />
 
                     <Search />
 

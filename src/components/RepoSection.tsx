@@ -30,6 +30,7 @@ const repos = [
     },
     {
         name: 'agentic-ai-patterns',
+        url: GITHUB_REPOS.agenticAIPatterns,
         description: 'Design patterns for agentic AI systems. ReAct, multi-agent orchestration, memory management, and structured outputs.',
         stars: 0,
         forks: 0,
