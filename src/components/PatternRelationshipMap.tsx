@@ -398,6 +398,14 @@ export function PatternRelationshipMap({ onSelectPattern }: PatternRelationshipM
                                 onSelectPattern?.(node.slug);
                             }}
                         >
+                            {/* Invisible hit area — larger than the dot for easier hover */}
+                            <circle
+                                cx={node.x}
+                                cy={node.y}
+                                r={18}
+                                fill="transparent"
+                            />
+
                             {isHovered && (
                                 <circle
                                     cx={node.x} cy={node.y} r={16}
@@ -405,6 +413,18 @@ export function PatternRelationshipMap({ onSelectPattern }: PatternRelationshipM
                                     filter="url(#prm-glow)"
                                 />
                             )}
+
+                            {/* Subtle hover ring — visible on hover, invisible otherwise */}
+                            <circle
+                                cx={node.x}
+                                cy={node.y}
+                                r={12}
+                                fill="transparent"
+                                stroke={col}
+                                strokeWidth={isHovered ? 1 : 0}
+                                strokeOpacity={isHovered ? 0.25 : 0}
+                                style={{ transition: 'all 0.25s' }}
+                            />
 
                             <circle
                                 cx={node.x}

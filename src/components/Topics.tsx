@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-import { getGitHubUrl } from '../config/repos';
+import { getGitHubUrl, GITHUB_REPOS } from '../config/repos';
 import { Github } from './BrandIcons';
 
 // Color palette class names (must match CSS --palette-* order)
@@ -76,6 +76,17 @@ export function Topics() {
                         <p className="body-text max-w-[700px] mx-auto">
                             A comprehensive curriculum for building production-ready AI agents
                         </p>
+
+                        <a
+                            href={GITHUB_REPOS.agenticAIEngineering}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 mt-4 px-4 py-2 text-sm font-mono font-bold uppercase tracking-wider text-text-secondary no-underline border border-border rounded transition-all hover:text-accent-cyan hover:border-accent-cyan"
+                        >
+                            <Github size={16} />
+                            View on GitHub
+                            <Icons.ArrowUpRight size={14} className="opacity-60" />
+                        </a>
                     </div>
                 </ScrollReveal>
 
@@ -141,7 +152,7 @@ export function Topics() {
                                                 delay={i * 0.03}
                                             >
                                                 <a
-                                                    href={getGitHubUrl(lesson.slug)}
+                                                    href={getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, lesson.slug)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     onClick={() => {

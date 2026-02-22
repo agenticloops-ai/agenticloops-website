@@ -1,12 +1,11 @@
 /**
  * Patterns catalog configuration
- * Single source of truth for the agentic-ai-patterns GitHub repo
  */
 
-export const PATTERNS_REPO = 'https://github.com/agenticloops-ai/agentic-ai-patterns';
+import { GITHUB_REPOS } from './repos';
 
 export function getPatternGitHubUrl(category: string, filename: string): string {
-    return `${PATTERNS_REPO}/blob/main/patterns/${category}/${filename}`;
+    return `${GITHUB_REPOS.agenticAIPatterns}/blob/main/patterns/${category}/${filename}`;
 }
 
 export interface PatternData {

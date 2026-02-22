@@ -4,7 +4,7 @@ import { join } from 'path';
 import type { PatternData } from '../../config/patterns';
 import { getPatternGitHubUrl } from '../../config/patterns';
 
-const PATTERNS_DIR = join(process.cwd(), '..', 'ai-agents-patterns', 'patterns');
+const PATTERNS_DIR = join(process.cwd(), '.patterns-clone', 'patterns');
 
 const CATEGORY_META: Record<string, { emoji: string; label: string; order: number }> = {
     reasoning: { emoji: '\u{1F9E0}', label: 'Reasoning', order: 1 },

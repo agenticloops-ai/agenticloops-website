@@ -5,7 +5,8 @@ import {
     Workflow, LayoutGrid, Map, Landmark, CircleCheck, FileEdit
 } from 'lucide-react';
 import type { PatternData } from '../config/patterns';
-import { PATTERN_CATEGORIES, COMPLEXITY_LEVELS, PATTERNS_REPO } from '../config/patterns';
+import { PATTERN_CATEGORIES, COMPLEXITY_LEVELS } from '../config/patterns';
+import { GITHUB_REPOS } from '../config/repos';
 import { ScrollReveal } from './ScrollReveal';
 import { PatternPreview } from './PatternPreview';
 import { DecisionFlowchart } from './DecisionFlowchart';
@@ -125,7 +126,7 @@ export function PatternsPage() {
                             </p>
 
                             <a
-                                href={PATTERNS_REPO}
+                                href={GITHUB_REPOS.agenticAIPatterns}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn-secondary inline-flex items-center gap-2"
@@ -162,10 +163,10 @@ export function PatternsPage() {
 
             {/* Decision Flowchart View */}
             {viewMode === 'flowchart' && (
-                <section className="section">
+                <section className="section" style={{ paddingTop: '2rem' }}>
                     <div className="container">
                         <ScrollReveal>
-                            <div className="text-center mb-10">
+                            <div className="text-center mb-8">
                                 <h2 className="text-2xl font-bold mb-3">
                                     Find Your <span className="gradient-text">Pattern</span>
                                 </h2>
@@ -181,10 +182,10 @@ export function PatternsPage() {
 
             {/* Relationship Map View */}
             {viewMode === 'map' && (
-                <section className="section" style={{ paddingLeft: 0, paddingRight: 0 }}>
+                <section className="section" style={{ paddingTop: '2rem', paddingLeft: 0, paddingRight: 0 }}>
                     <div className="container">
                         <ScrollReveal>
-                            <div className="text-center mb-10">
+                            <div className="text-center mb-6">
                                 <h2 className="text-2xl font-bold mb-3">
                                     Pattern <span className="gradient-text">Relationships</span>
                                 </h2>
@@ -279,14 +280,6 @@ export function PatternsPage() {
                                 )}
                             </div>
                         )}
-
-                        {/* Results count */}
-                        <div className="pp-results-meta">
-                            <span className="code-comment">
-                                {filteredPatterns.length} pattern{filteredPatterns.length !== 1 ? 's' : ''}
-                                {hasActiveFilters ? ' (filtered)' : ''}
-                            </span>
-                        </div>
 
                         {/* Pattern Grid by Category - MODULE style headers like Topics */}
                         {loading ? (
@@ -558,12 +551,8 @@ export function PatternsPage() {
 
                 .pp-results-meta { margin-bottom: 2rem; }
 
-                /* Card intent clamp */
+                /* Card intent — no clamp, show full text */
                 .pp-intent-clamp {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
                 }
 
                 /* Card badges */

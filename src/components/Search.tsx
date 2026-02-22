@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Fuse from 'fuse.js';
-import { getGitHubUrl } from '../config/repos';
+import { getGitHubUrl, GITHUB_REPOS } from '../config/repos';
 
 interface SearchItem {
     title: string;
@@ -69,7 +69,7 @@ export default function Search() {
             e.preventDefault();
             setSelectedIndex(i => Math.max(i - 1, 0));
         } else if (e.key === 'Enter' && results[selectedIndex]) {
-            window.open(getGitHubUrl(results[selectedIndex].slug), '_blank');
+            window.open(getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, results[selectedIndex].slug), '_blank');
         }
     };
 
@@ -135,7 +135,7 @@ export default function Search() {
                                     {results.map((result, index) => (
                                         <li key={result.slug}>
                                             <a
-                                                href={getGitHubUrl(result.slug)}
+                                                href={getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, result.slug)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className={`search-result ${index === selectedIndex ? 'selected' : ''}`}

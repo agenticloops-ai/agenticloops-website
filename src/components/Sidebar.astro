@@ -44,8 +44,8 @@ const formatName = (name: string) => {
 const currentSlug = Astro.params.slug;
 
 // Import from shared config (inline for Astro compatibility)
-import { COURSE_REPO, getGitHubUrl as getGitHubUrlBase } from '../config/repos';
-const getGitHubUrl = (slug: string | undefined) => slug ? getGitHubUrlBase(slug) : `${COURSE_REPO}/tree/main`;
+import { GITHUB_REPOS, getGitHubUrl as getGitHubUrlBase } from '../config/repos';
+const getGitHubUrl = (slug: string | undefined) => slug ? getGitHubUrlBase(GITHUB_REPOS.agenticAIEngineering, slug) : `${GITHUB_REPOS.agenticAIEngineering}/tree/main`;
 
 const githubUrl = getGitHubUrl(currentSlug);
 ---
