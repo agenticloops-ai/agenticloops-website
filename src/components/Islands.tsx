@@ -8,6 +8,12 @@ import { RepoSection as RepoSectionComponent } from './RepoSection';
 import { Topics as TopicsComponent } from './Topics';
 import { Subscribe as SubscribeComponent } from './Subscribe';
 import { Footer as FooterComponent } from './Footer';
+import { DimensionGrid as DimensionGridComponent } from './learn/DimensionGrid';
+import { ArchetypeGallery as ArchetypeGalleryComponent } from './learn/ArchetypeGallery';
+import { RadarChart as RadarChartComponent } from './learn/RadarChart';
+import { LevelLadder as LevelLadderComponent } from './learn/LevelLadder';
+import { ArchetypeCard as ArchetypeCardComponent } from './learn/ArchetypeCard';
+import { DimensionBar as DimensionBarComponent } from './learn/DimensionBar';
 
 function withTheme<T extends object>(Component: React.ComponentType<T>) {
     return (props: T) => (
@@ -25,3 +31,9 @@ export const RepoSection = withTheme(RepoSectionComponent);
 export const Topics = withTheme(TopicsComponent);
 export const Subscribe = withTheme(SubscribeComponent);
 export const Footer = withTheme(FooterComponent);
+export const DimensionGrid = withTheme(DimensionGridComponent);
+export const ArchetypeGallery = withTheme(ArchetypeGalleryComponent);
+export const RadarChart = withTheme(RadarChartComponent);
+export const LevelLadder = withTheme(LevelLadderComponent);
+export const ArchetypeCard = withTheme(ArchetypeCardComponent);
+export const DimensionBar = withTheme(DimensionBarComponent);

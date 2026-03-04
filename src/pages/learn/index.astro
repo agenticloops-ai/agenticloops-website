@@ -1,0 +1,105 @@
+---
+import LearnLayout from '../../layouts/LearnLayout.astro';
+import { Header, Footer, DimensionGrid, ArchetypeGallery } from '../../components/Islands';
+const baseUrl = import.meta.env.BASE_URL || '';
+---
+
+<LearnLayout title="Learn | Agentic Loops">
+	<Header client:load slot="header" />
+
+	<!-- Hero -->
+	<section class="section relative overflow-hidden">
+		<div class="gradient-blur gradient-blur-blue absolute -top-32 -right-[5%] opacity-15"></div>
+		<div class="container text-center">
+			<div class="flex items-center justify-center gap-4 mb-6">
+				<div class="w-10 h-0.5 bg-accent-cyan"></div>
+				<span class="badge">learning path</span>
+				<div class="w-10 h-0.5 bg-accent-cyan"></div>
+			</div>
+
+			<h1 class="mb-6">
+				Build production-grade <span class="gradient-text">agentic apps</span>
+			</h1>
+
+			<p class="hero-tagline max-w-[700px] mx-auto mb-12">
+				Find your gaps. Fill them. Go from "it works in a demo" to "it runs in production."
+			</p>
+
+			<!-- Three CTA cards -->
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto mb-20">
+				<a href={`${baseUrl}learn/dimensions`} class="card card-color-cyan p-6 no-underline text-inherit block group">
+					<div class="corner-accent"></div>
+					<h3 class="card-title mb-2 text-lg">Browse Dimensions</h3>
+					<p class="text-sm text-text-secondary m-0">
+						Explore 8 capability dimensions of agentic AI engineering
+					</p>
+				</a>
+
+				<a href={`${baseUrl}learn/archetypes`} class="card card-color-violet p-6 no-underline text-inherit block group">
+					<div class="corner-accent"></div>
+					<h3 class="card-title mb-2 text-lg">Pick a Goal</h3>
+					<p class="text-sm text-text-secondary m-0">
+						Choose an archetype and see what skills you need
+					</p>
+				</a>
+
+				<div class="card p-6 relative" style="opacity: 0.6;">
+					<div class="corner-accent"></div>
+					<div class="absolute top-3 right-3">
+						<span class="coming-soon-badge">Coming Soon</span>
+					</div>
+					<h3 class="card-title mb-2 text-lg">Assess My Skills</h3>
+					<p class="text-sm text-text-secondary m-0">
+						Find your gaps in 2 minutes with a quick self-assessment
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Dimensions Grid -->
+	<section class="section section-alt relative overflow-hidden">
+		<div class="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%] opacity-15"></div>
+		<div class="container">
+			<div class="text-center mb-16">
+				<div class="flex items-center justify-center gap-4 mb-6">
+					<div class="w-10 h-0.5 bg-accent-cyan"></div>
+					<span class="badge">dimensions</span>
+					<div class="w-10 h-0.5 bg-accent-cyan"></div>
+				</div>
+				<h2 class="mb-4">
+					Eight <span class="gradient-text">Capability Dimensions</span>
+				</h2>
+				<p class="body-text max-w-[600px] mx-auto">
+					Each dimension represents a distinct axis of competence for building production agentic systems.
+				</p>
+			</div>
+
+			<DimensionGrid client:visible />
+		</div>
+	</section>
+
+	<!-- Archetypes -->
+	<section class="section relative overflow-hidden">
+		<div class="gradient-blur gradient-blur-blue absolute -top-32 -left-[5%] opacity-15"></div>
+		<div class="container">
+			<div class="text-center mb-16">
+				<div class="flex items-center justify-center gap-4 mb-6">
+					<div class="w-10 h-0.5 bg-accent-cyan"></div>
+					<span class="badge">archetypes</span>
+					<div class="w-10 h-0.5 bg-accent-cyan"></div>
+				</div>
+				<h2 class="mb-4">
+					What Are You <span class="gradient-text">Building?</span>
+				</h2>
+				<p class="body-text max-w-[600px] mx-auto">
+					Pick an archetype to see which dimensions matter most for your goal.
+				</p>
+			</div>
+
+			<ArchetypeGallery client:visible />
+		</div>
+	</section>
+
+	<Footer client:load slot="footer" />
+</LearnLayout>

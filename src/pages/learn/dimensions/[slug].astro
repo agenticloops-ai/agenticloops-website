@@ -1,0 +1,80 @@
+---
+import LearnLayout from '../../../layouts/LearnLayout.astro';
+import { Header, Footer, LevelLadder } from '../../../components/Islands';
+import dimensions from '../../../data/dimensions.json';
+import contentCatalog from '../../../data/content-catalog.json';
+
+export function getStaticPaths() {
+	return dimensions.map(dim => ({
+		params: { slug: dim.id },
+		props: { dimension: dim },
+	}));
+}
+
+const { dimension } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL || '';
+
+const colorClasses = ['cyan', 'violet', 'pink', 'emerald', 'amber', 'rose', 'sky', 'orange'] as const;
+const dimIndex = dimensions.findIndex(d => d.id === dimension.id);
+const colorClass = colorClasses[dimIndex % colorClasses.length];
+
+const dimensionContent = contentCatalog.filter(item =>
+	item.dimensions.some(d => d.dimension === dimension.id)
+);
+---
+
+<LearnLayout
+	title={`${dimension.name} | Learn | Agentic Loops`}
+	breadcrumbs={[
+		{ label: 'Dimensions', href: `${baseUrl}learn/dimensions` },
+		{ label: dimension.name },
+	]}
+>
+	<Header client:load slot="header" />
+
+	<section class="section relative overflow-hidden">
+		<div class="gradient-blur gradient-blur-blue absolute -top-32 -right-[5%] opacity-15"></div>
+		<div class="container max-w-[800px]">
+			<!-- Dimension header -->
+			<div class="mb-12">
+				<div class="flex items-center gap-3 mb-4">
+					<div
+						class="label py-1 px-3 border-2"
+						style={`color: var(--palette-${colorClass}); border-color: var(--palette-${colorClass});`}
+					>
+						Dimension
+					</div>
+				</div>
+
+				<h1 class="mb-4" style={`color: var(--palette-${colorClass});`}>
+					{dimension.name}
+				</h1>
+
+				<p class="hero-tagline mb-4">
+					"{dimension.coreQuestion}"
+				</p>
+
+				<p class="body-text">
+					{dimension.description}
+				</p>
+			</div>
+
+			<!-- Level Ladder -->
+			<div class="mb-8">
+				<h2 class="mb-8">
+					Level <span class="gradient-text">Progression</span>
+				</h2>
+
+				<LevelLadder
+					client:load
+					levels={dimension.levels}
+					contentItems={dimensionContent}
+					dimensionId={dimension.id}
+					colorClass={colorClass}
+				/>
+			</div>
+		</div>
+	</section>
+
+	<Footer client:load slot="footer" />
+</LearnLayout>
