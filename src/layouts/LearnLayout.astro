@@ -1,0 +1,48 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+	title: string;
+	breadcrumbs?: { label: string; href?: string }[];
+}
+
+const { title, breadcrumbs = [] } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL || '';
+
+const defaultBreadcrumbs = [
+	{ label: 'Learn', href: `${baseUrl}learn` },
+	...breadcrumbs,
+];
+---
+
+<Layout title={title}>
+	<slot name="header" />
+	<div
+		class="sticky top-[60px] z-50 border-b"
+		style="background: var(--header-bg); backdrop-filter: blur(12px); border-color: var(--color-border);"
+	>
+		<div class="container px-6 py-3 flex items-center gap-2 text-sm font-mono">
+			{defaultBreadcrumbs.map((crumb, i) => (
+				<>
+					{i > 0 && (
+						<span class="text-text-muted opacity-50">/</span>
+					)}
+					{crumb.href ? (
+						<a
+							href={crumb.href}
+							class="text-text-secondary no-underline hover:text-accent-cyan transition-colors"
+						>
+							{crumb.label}
+						</a>
+					) : (
+						<span class="text-accent-cyan">{crumb.label}</span>
+					)}
+				</>
+			))}
+		</div>
+	</div>
+	<main>
+		<slot />
+	</main>
+	<slot name="footer" />
+</Layout>

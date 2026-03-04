@@ -31,6 +31,9 @@
   --palette-cyan: #06b6d4;
   --palette-emerald: #10b981;
   --palette-amber: #f59e0b;
+  --palette-rose: #f43f5e;
+  --palette-sky: #0ea5e9;
+  --palette-orange: #f97316;
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
@@ -387,6 +390,21 @@ p {
 
 .card-color-amber {
   --card-color: var(--palette-amber);
+  border-left: 4px solid var(--card-color);
+}
+
+.card-color-rose {
+  --card-color: var(--palette-rose);
+  border-left: 4px solid var(--card-color);
+}
+
+.card-color-sky {
+  --card-color: var(--palette-sky);
+  border-left: 4px solid var(--card-color);
+}
+
+.card-color-orange {
+  --card-color: var(--palette-orange);
   border-left: 4px solid var(--card-color);
 }
 

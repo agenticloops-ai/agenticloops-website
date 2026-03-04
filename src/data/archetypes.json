@@ -1,0 +1,70 @@
+[
+  {
+    "id": "coding-assistant",
+    "name": "Coding Assistant",
+    "description": "An AI-powered tool that helps developers write, debug, and understand code",
+    "icon": "code",
+    "examples": ["Claude Code", "GitHub Copilot", "Cursor"],
+    "targetProfile": {
+      "fundamentals": 5,
+      "patterns": 4,
+      "tooling": 5,
+      "observability": 3,
+      "resilience": 4,
+      "evaluation": 3,
+      "security": 5,
+      "scale": 2
+    }
+  },
+  {
+    "id": "customer-support",
+    "name": "Customer Support Agent",
+    "description": "An agent that handles customer inquiries, routes to specialists, and resolves issues",
+    "icon": "headset",
+    "examples": ["Intercom AI", "Zendesk AI agents"],
+    "targetProfile": {
+      "fundamentals": 4,
+      "patterns": 3,
+      "tooling": 4,
+      "observability": 5,
+      "resilience": 5,
+      "evaluation": 5,
+      "security": 5,
+      "scale": 5
+    }
+  },
+  {
+    "id": "research-pipeline",
+    "name": "Research Pipeline",
+    "description": "An autonomous system that researches topics, synthesizes information, and produces reports",
+    "icon": "search",
+    "examples": ["Deep Research", "Perplexity", "GPT Researcher"],
+    "targetProfile": {
+      "fundamentals": 4,
+      "patterns": 5,
+      "tooling": 5,
+      "observability": 3,
+      "resilience": 4,
+      "evaluation": 4,
+      "security": 2,
+      "scale": 4
+    }
+  },
+  {
+    "id": "internal-automator",
+    "name": "Internal Tool Automator",
+    "description": "An agent that automates internal workflows, connects tools, and handles routine tasks",
+    "icon": "bot",
+    "examples": ["Slack bots", "CI/CD agents", "Data pipeline agents"],
+    "targetProfile": {
+      "fundamentals": 3,
+      "patterns": 2,
+      "tooling": 5,
+      "observability": 4,
+      "resilience": 3,
+      "evaluation": 2,
+      "security": 3,
+      "scale": 3
+    }
+  }
+]
