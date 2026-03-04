@@ -33,17 +33,16 @@ const dimensionContent = contentCatalog.filter(item =>
 	<Header client:load slot="header" />
 
 	<section class="section relative overflow-hidden">
-		<div class="gradient-blur gradient-blur-blue absolute -top-32 -right-[5%] opacity-15"></div>
 		<div class="container max-w-[800px]">
 			<!-- Dimension header -->
 			<div class="mb-12">
 				<div class="flex items-center gap-3 mb-4">
-					<div
-						class="label py-1 px-3 border-2"
-						style={`color: var(--palette-${colorClass}); border-color: var(--palette-${colorClass});`}
+					<span
+						class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full border"
+						style={`color: var(--palette-${colorClass}); border-color: var(--palette-${colorClass}); background: color-mix(in srgb, var(--palette-${colorClass}) 10%, transparent);`}
 					>
 						Dimension
-					</div>
+					</span>
 				</div>
 
 				<h1 class="mb-4" style={`color: var(--palette-${colorClass});`}>
@@ -62,7 +61,7 @@ const dimensionContent = contentCatalog.filter(item =>
 			<!-- Level Ladder -->
 			<div class="mb-8">
 				<h2 class="mb-8">
-					Level <span class="gradient-text">Progression</span>
+					Level Progression
 				</h2>
 
 				<LevelLadder

@@ -88,7 +88,7 @@ export function RadarChart({
                 textAnchor={textAnchor}
                 dy={dy}
                 fontSize={11}
-                fontFamily="'Azeret Mono', monospace"
+                fontFamily="'JetBrains Mono', monospace"
                 fill="var(--color-text-secondary)"
               >
                 {dim.name}

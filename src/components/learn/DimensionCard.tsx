@@ -29,17 +29,15 @@ export function DimensionCard({ dimension, colorClass, contentCount }: Dimension
   return (
     <a
       href={`${baseUrl}learn/dimensions/${dimension.id}`}
-      className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:translate-x-1.5 group flex flex-col`}
+      className={`card card-color-${colorClass} block p-6 h-full no-underline text-inherit group flex flex-col`}
     >
-      <div className="corner-accent corner-accent-lg"></div>
-
       <div className="icon-box icon-box-outline mb-4">
-        <Icon size={22} strokeWidth={2.5} />
+        <Icon size={20} />
       </div>
 
       <h4 className="card-title mb-2 flex items-center gap-2">
         {dimension.name}
-        <Icons.ChevronRight size={16} className="opacity-50" />
+        <Icons.ChevronRight size={14} className="opacity-40" />
       </h4>
 
       <p className="text-sm text-text-secondary leading-relaxed mb-3 italic">

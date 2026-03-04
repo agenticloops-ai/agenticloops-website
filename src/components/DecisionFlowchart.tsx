@@ -108,7 +108,7 @@ export function DecisionFlowchart({ onSelectPattern }: DecisionFlowchartProps) {
                             x={cx} y={cy - 7}
                             fill={isHovered ? '#06b6d4' : 'var(--color-text-primary)'}
                             fontSize="11"
-                            fontFamily="'Rajdhani', sans-serif"
+                            fontFamily="'Inter', sans-serif"
                             fontWeight="700"
                             textAnchor="middle"
                             dominantBaseline="central"
@@ -118,7 +118,7 @@ export function DecisionFlowchart({ onSelectPattern }: DecisionFlowchartProps) {
                             x={cx} y={cy + 9}
                             fill={isHovered ? '#06b6d4' : 'var(--color-text-primary)'}
                             fontSize="11"
-                            fontFamily="'Rajdhani', sans-serif"
+                            fontFamily="'Inter', sans-serif"
                             fontWeight="700"
                             textAnchor="middle"
                             dominantBaseline="central"
@@ -130,7 +130,7 @@ export function DecisionFlowchart({ onSelectPattern }: DecisionFlowchartProps) {
                         x={cx} y={cy}
                         fill={isHovered ? '#06b6d4' : 'var(--color-text-primary)'}
                         fontSize="11"
-                        fontFamily="'Rajdhani', sans-serif"
+                        fontFamily="'Inter', sans-serif"
                         fontWeight="700"
                         textAnchor="middle"
                         dominantBaseline="central"
@@ -194,7 +194,7 @@ export function DecisionFlowchart({ onSelectPattern }: DecisionFlowchartProps) {
                     x={x + 18} y={y + rh / 2}
                     fill={colors.hex}
                     fontSize="10.5"
-                    fontFamily="'Rajdhani', sans-serif"
+                    fontFamily="'Inter', sans-serif"
                     fontWeight="700"
                     dominantBaseline="central"
                     style={{ pointerEvents: 'none', transition: 'fill 0.2s' }}
@@ -272,7 +272,7 @@ export function DecisionFlowchart({ onSelectPattern }: DecisionFlowchartProps) {
                                         y={(i - 1) * stepHeight + diamondH / 2 + diamondH / 2 + stepGap / 2}
                                         fill="#06b6d4"
                                         fontSize="8"
-                                        fontFamily="'Azeret Mono', monospace"
+                                        fontFamily="'JetBrains Mono', monospace"
                                         fontWeight="700"
                                         textAnchor="middle"
                                         dominantBaseline="central"
@@ -313,7 +313,7 @@ export function DecisionFlowchart({ onSelectPattern }: DecisionFlowchartProps) {
                                             y={rightCornerY}
                                             fill="#10b981"
                                             fontSize="8"
-                                            fontFamily="'Azeret Mono', monospace"
+                                            fontFamily="'JetBrains Mono', monospace"
                                             fontWeight="700"
                                             textAnchor="middle"
                                             dominantBaseline="central"
@@ -364,7 +364,7 @@ export function DecisionFlowchart({ onSelectPattern }: DecisionFlowchartProps) {
                                                 y={noAnswerCenterY}
                                                 fill="#06b6d4"
                                                 fontSize="8"
-                                                fontFamily="'Azeret Mono', monospace"
+                                                fontFamily="'JetBrains Mono', monospace"
                                                 fontWeight="700"
                                                 textAnchor="middle"
                                                 dominantBaseline="central"

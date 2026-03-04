@@ -258,7 +258,7 @@ export function PatternRelationshipMap({ onSelectPattern }: PatternRelationshipM
                             y={midY + 0.5}
                             fill={col}
                             fontSize="6.5"
-                            fontFamily="'Azeret Mono', monospace"
+                            fontFamily="'JetBrains Mono', monospace"
                             fontWeight="600"
                             textAnchor="middle"
                             dominantBaseline="central"
@@ -336,7 +336,7 @@ export function PatternRelationshipMap({ onSelectPattern }: PatternRelationshipM
                             y={labelY}
                             fill={col}
                             fontSize="9.5"
-                            fontFamily="'Rajdhani', sans-serif"
+                            fontFamily="'Inter', sans-serif"
                             fontWeight="700"
                             textAnchor="middle"
                             opacity={isActiveGroup ? 0.8 : 0.4}
@@ -451,7 +451,7 @@ export function PatternRelationshipMap({ onSelectPattern }: PatternRelationshipM
                                 y={node.y + (NODE_R + 11)}
                                 fill={isHovered ? col : (hl ? 'var(--color-text-primary)' : `${col}77`)}
                                 fontSize={isHovered ? '9' : '8'}
-                                fontFamily="'Rajdhani', sans-serif"
+                                fontFamily="'Inter', sans-serif"
                                 fontWeight={isHovered ? '700' : '600'}
                                 textAnchor="middle"
                                 dominantBaseline="central"

@@ -92,16 +92,16 @@ export function TutorialsPage() {
                     <ScrollReveal>
                         <div className="text-center mb-8">
                             <div className="flex items-center justify-center gap-4 mb-6">
-                                <div className="w-10 h-0.5 bg-accent-cyan"></div>
+                                <div className="w-10 h-0.5 bg-accent-primary"></div>
                                 <span className="badge">
                                     <span className="badge-dot"></span>
                                     {totalLessons} lessons
                                 </span>
-                                <div className="w-10 h-0.5 bg-accent-cyan"></div>
+                                <div className="w-10 h-0.5 bg-accent-primary"></div>
                             </div>
 
                             <h1 className="mb-6">
-                                Agentic <span className="gradient-text">Tutorials</span>
+                                Agentic Tutorials
                             </h1>
 
                             <p className="body-text max-w-[700px] mx-auto mb-8">
@@ -281,9 +281,9 @@ export function TutorialsPage() {
                                                                 });
                                                             }
                                                         }}
-                                                        className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:translate-x-1.5 group flex flex-col`}
+                                                        className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:-translate-y-0.5 group flex flex-col`}
                                                     >
-                                                        <div className="corner-accent corner-accent-lg"></div>
+
 
                                                         {lesson.status === 'coming-soon' && (
                                                             <div
@@ -355,7 +355,7 @@ export function TutorialsPage() {
                     background: var(--color-bg-card-solid);
                     border: 1.5px solid var(--color-border);
                     transition: border-color 0.2s;
-                    clip-path: var(--clip-corner-sm);
+                    border-radius: 6px;
                 }
                 .tp-search-bar:focus-within {
                     border-color: var(--color-accent-cyan);
@@ -367,7 +367,7 @@ export function TutorialsPage() {
                     background: transparent;
                     border: none;
                     outline: none;
-                    font-family: 'Rajdhani', sans-serif;
+                    font-family: 'Inter', sans-serif;
                     font-size: 1rem;
                     font-weight: 600;
                     color: var(--color-text-primary);
@@ -385,16 +385,16 @@ export function TutorialsPage() {
                 .tp-filter-toggle {
                     display: flex; align-items: center; gap: 0.4rem;
                     padding: 0.6rem 1rem;
-                    font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700;
+                    font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 700;
                     text-transform: uppercase; letter-spacing: 0.06em;
                     background: var(--color-bg-card-solid); border: 1.5px solid var(--color-border);
                     color: var(--color-text-secondary); cursor: pointer; transition: all 0.2s;
-                    clip-path: var(--clip-corner-sm); flex-shrink: 0;
+                    border-radius: 6px; flex-shrink: 0;
                 }
                 .tp-filter-toggle:hover { border-color: var(--color-accent-cyan); color: var(--color-accent-cyan); }
                 .tp-filter-toggle.has-filters { border-color: var(--color-accent-cyan); color: var(--color-accent-cyan); }
                 .tp-filter-count {
-                    font-family: 'Azeret Mono', monospace; font-size: 0.6rem;
+                    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
                     background: var(--color-accent-cyan); color: #000;
                     padding: 0.1rem 0.35rem; font-weight: 700;
                 }
@@ -403,7 +403,7 @@ export function TutorialsPage() {
                 .tp-filter-panel {
                     padding: 1rem 1.25rem; margin-bottom: 1rem;
                     background: var(--color-bg-card-solid); border: 1.5px solid var(--color-border);
-                    clip-path: var(--clip-corner-sm);
+                    border-radius: 6px;
                     animation: tpSlideUp 0.2s ease-out;
                 }
                 @keyframes tpSlideUp {
@@ -413,23 +413,23 @@ export function TutorialsPage() {
                 .tp-filter-group { margin-bottom: 0.75rem; }
                 .tp-filter-group:last-of-type { margin-bottom: 0; }
                 .tp-filter-label {
-                    display: block; font-family: 'Azeret Mono', monospace;
+                    display: block; font-family: 'JetBrains Mono', monospace;
                     font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em;
                     color: var(--color-text-muted); margin-bottom: 0.5rem;
                 }
                 .tp-filter-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
                 .tp-chip {
                     padding: 0.3rem 0.65rem;
-                    font-family: 'Azeret Mono', monospace; font-size: 0.65rem; font-weight: 600;
+                    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600;
                     background: transparent; border: 1px solid var(--color-border);
                     color: var(--color-text-secondary); cursor: pointer;
-                    transition: all 0.15s; clip-path: var(--clip-corner-sm);
+                    transition: all 0.15s; border-radius: 6px;
                 }
                 .tp-chip:hover { border-color: var(--color-accent-cyan); color: var(--color-accent-cyan); }
                 .tp-chip.active { border-color: var(--color-accent-cyan); color: var(--color-accent-cyan); background: rgba(6,182,212,0.1); }
                 .tp-clear-filters {
                     display: inline-flex; align-items: center; gap: 0.3rem;
-                    margin-top: 0.75rem; font-family: 'Azeret Mono', monospace;
+                    margin-top: 0.75rem; font-family: 'JetBrains Mono', monospace;
                     font-size: 0.6rem; color: var(--color-text-muted);
                     background: none; border: none; cursor: pointer; padding: 0;
                     transition: color 0.2s;

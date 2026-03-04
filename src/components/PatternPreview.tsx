@@ -264,7 +264,7 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(6,182,212,0.1);
                     overflow: hidden;
                     animation: ppSlideUp 0.3s cubic-bezier(0.4,0,0.2,1);
-                    clip-path: var(--clip-corner-md);
+                    border-radius: 12px;
                     margin-bottom: 4vh;
                 }
                 .pp-header {
@@ -291,11 +291,11 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     padding: 0.2rem 0.6rem;
                     font-size: 0.65rem;
                     font-weight: 700;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     letter-spacing: 0.08em;
                     text-transform: uppercase;
                     border: 1px solid;
-                    clip-path: var(--clip-corner-sm);
+                    border-radius: 6px;
                 }
                 .pp-complexity-badge {
                     color: var(--color-text-muted);
@@ -330,11 +330,11 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                 .pp-number {
                     color: var(--color-accent-cyan);
                     margin-right: 0.5rem;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.9rem;
                 }
                 .pp-aka {
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.7rem;
                     color: var(--color-text-muted);
                     margin: 0.5rem 0 0;
@@ -363,7 +363,7 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     color: var(--color-accent-cyan);
                 }
                 .pp-section-header h3 {
-                    font-family: 'Rajdhani', sans-serif;
+                    font-family: 'Inter', sans-serif;
                     font-size: 0.85rem;
                     font-weight: 700;
                     text-transform: uppercase;
@@ -416,7 +416,7 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     display: flex;
                     align-items: center;
                     gap: 0.35rem;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.7rem;
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
@@ -453,7 +453,7 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                 }
                 .pp-tradeoffs-table th {
                     text-align: left;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.65rem;
                     text-transform: uppercase;
                     letter-spacing: 0.1em;
@@ -489,7 +489,7 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                 }
                 .pp-usecase:last-child { border-bottom: none; }
                 .pp-uc-domain {
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.65rem;
                     font-weight: 700;
                     text-transform: uppercase;
@@ -518,7 +518,7 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     border: 1px solid var(--color-border);
                     cursor: pointer;
                     transition: all 0.2s;
-                    clip-path: var(--clip-corner-sm);
+                    border-radius: 6px;
                     font-family: inherit;
                 }
                 .pp-relation-item:hover {
@@ -526,14 +526,14 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     background: rgba(6,182,212,0.08);
                 }
                 .pp-rel-type {
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.6rem;
                     text-transform: uppercase;
                     letter-spacing: 0.05em;
                     color: var(--color-text-muted);
                 }
                 .pp-rel-name {
-                    font-family: 'Rajdhani', sans-serif;
+                    font-family: 'Inter', sans-serif;
                     font-size: 0.85rem;
                     font-weight: 700;
                     color: var(--color-text-primary);
@@ -559,12 +559,12 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     gap: 0.75rem;
                 }
                 .pp-status-badge {
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.65rem;
                     color: var(--color-text-muted);
                 }
                 .pp-date {
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.6rem;
                     color: var(--color-text-muted);
                     opacity: 0.7;
@@ -573,7 +573,7 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     display: inline-flex;
                     align-items: center;
                     gap: 0.4rem;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.7rem;
                     font-weight: 700;
                     text-transform: uppercase;
@@ -583,7 +583,7 @@ export function PatternPreview({ pattern, onClose, onNavigateToPattern }: Patter
                     transition: all 0.2s;
                     padding: 0.35rem 0.75rem;
                     border: 1px solid var(--color-accent-cyan);
-                    clip-path: var(--clip-corner-sm);
+                    border-radius: 6px;
                 }
                 .pp-github-link:hover {
                     background: var(--color-accent-cyan);

@@ -164,10 +164,9 @@ export function Topics() {
                                                             });
                                                         }
                                                     }}
-                                                    className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:translate-x-1.5 group flex flex-col`}
+                                                    className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:-translate-y-0.5 group flex flex-col`}
                                                 >
-                                                    <div className="corner-accent corner-accent-lg"></div>
-
+                                                    
                                                     {/* Coming Soon Badge - Top Right */}
                                                     {lesson.status === 'coming-soon' && (
                                                         <div

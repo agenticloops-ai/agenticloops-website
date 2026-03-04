@@ -34,18 +34,16 @@ export function ArchetypeCard({ archetype, dimensions }: ArchetypeCardProps) {
   return (
     <a
       href={`${baseUrl}learn/archetypes/${archetype.id}`}
-      className="card block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:translate-x-1.5 group flex flex-col"
+      className="card block p-6 h-full no-underline text-inherit group flex flex-col"
     >
-      <div className="corner-accent corner-accent-lg"></div>
-
       <div className="flex items-start gap-4 mb-4">
         <div className="icon-box flex-shrink-0">
-          <Icon size={22} strokeWidth={2.5} />
+          <Icon size={20} />
         </div>
         <div>
           <h4 className="card-title mb-1 flex items-center gap-2">
             {archetype.name}
-            <Icons.ChevronRight size={16} className="opacity-50" />
+            <Icons.ChevronRight size={14} className="opacity-40" />
           </h4>
           <p className="text-sm text-text-secondary leading-relaxed m-0">
             {archetype.description}
@@ -64,7 +62,7 @@ export function ArchetypeCard({ archetype, dimensions }: ArchetypeCardProps) {
       </div>
 
       {/* Examples */}
-      <div className="mt-auto pt-3 flex flex-wrap gap-2">
+      <div className="mt-auto pt-3 flex flex-wrap gap-1.5">
         {archetype.examples.map(example => (
           <span
             key={example}

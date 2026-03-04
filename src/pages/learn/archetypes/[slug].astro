@@ -25,7 +25,6 @@ function getTypeLabel(type: string): string {
 	return (typeLabels as any)[type] || type;
 }
 
-// Get recommended content: items that match the archetype's target dimensions
 const recommendedContent = contentCatalog
 	.filter(item => {
 		return item.dimensions.some(d => {
@@ -50,14 +49,13 @@ const recommendedContent = contentCatalog
 	<Header client:load slot="header" />
 
 	<section class="section relative overflow-hidden">
-		<div class="gradient-blur gradient-blur-blue absolute -top-32 -right-[5%] opacity-15"></div>
 		<div class="container max-w-[900px]">
 			<!-- Header -->
 			<div class="mb-12">
 				<div class="flex items-center gap-3 mb-4">
-					<div class="label py-1 px-3 border-2 border-accent-cyan text-accent-cyan">
+					<span class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full border" style="color: var(--color-accent-primary); border-color: var(--color-accent-primary); background: rgba(59, 130, 246, 0.1);">
 						Archetype
-					</div>
+					</span>
 				</div>
 
 				<h1 class="mb-4">{archetype.name}</h1>
@@ -106,7 +104,7 @@ const recommendedContent = contentCatalog
 			<!-- Recommended Content -->
 			<div>
 				<h2 class="mb-6">
-					Recommended <span class="gradient-text">Content</span>
+					Recommended Content
 				</h2>
 				<p class="body-text mb-8">
 					Content items mapped to this archetype's target profile, ordered by progression level.
@@ -115,11 +113,9 @@ const recommendedContent = contentCatalog
 				<div class="space-y-2">
 					{recommendedContent.map((item) => (
 						<div
-							class={`flex items-center gap-3 py-3 px-4 border border-border rounded transition-colors ${item.status === 'coming-soon' ? 'opacity-50' : 'hover:border-accent-cyan/30'}`}
+							class={`flex items-center gap-3 py-3 px-4 border border-border rounded-lg transition-colors ${item.status === 'coming-soon' ? 'opacity-50' : 'hover:border-border-hover'}`}
 						>
-							<span
-								class="inline-flex items-center px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider border rounded text-accent-cyan border-accent-cyan bg-accent-cyan/10"
-							>
+							<span class="inline-flex items-center px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider border rounded text-text-muted border-border">
 								{getTypeLabel(item.type)}
 							</span>
 
@@ -130,7 +126,7 @@ const recommendedContent = contentCatalog
 									href={item.url}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="flex-1 text-sm text-text-primary no-underline hover:text-accent-cyan transition-colors"
+									class="flex-1 text-sm text-text-primary no-underline hover:text-accent-primary transition-colors"
 								>
 									{item.title}
 								</a>

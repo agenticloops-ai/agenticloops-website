@@ -30,12 +30,12 @@ const defaultBreadcrumbs = [
 					{crumb.href ? (
 						<a
 							href={crumb.href}
-							class="text-text-secondary no-underline hover:text-accent-cyan transition-colors"
+							class="text-text-secondary no-underline hover:text-text-primary transition-colors"
 						>
 							{crumb.label}
 						</a>
 					) : (
-						<span class="text-accent-cyan">{crumb.label}</span>
+						<span class="text-text-primary font-medium">{crumb.label}</span>
 					)}
 				</>
 			))}
