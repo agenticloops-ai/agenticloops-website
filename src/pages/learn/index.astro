@@ -1,6 +1,7 @@
 ---
 import LearnLayout from '../../layouts/LearnLayout.astro';
 import { Header, Footer, DimensionGrid, ArchetypeGallery } from '../../components/Islands';
+const baseUrl = import.meta.env.BASE_URL || '';
 ---
 
 <LearnLayout title="Learn | Agentic Loops">
@@ -26,7 +27,7 @@ import { Header, Footer, DimensionGrid, ArchetypeGallery } from '../../component
 
 			<!-- Three CTA cards -->
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto mb-20">
-				<a href="learn/dimensions" class="card card-color-cyan p-6 no-underline text-inherit block group">
+				<a href={`${baseUrl}learn/dimensions`} class="card card-color-cyan p-6 no-underline text-inherit block group">
 					<div class="corner-accent"></div>
 					<h3 class="card-title mb-2 text-lg">Browse Dimensions</h3>
 					<p class="text-sm text-text-secondary m-0">
@@ -34,7 +35,7 @@ import { Header, Footer, DimensionGrid, ArchetypeGallery } from '../../component
 					</p>
 				</a>
 
-				<a href="learn/archetypes" class="card card-color-violet p-6 no-underline text-inherit block group">
+				<a href={`${baseUrl}learn/archetypes`} class="card card-color-violet p-6 no-underline text-inherit block group">
 					<div class="corner-accent"></div>
 					<h3 class="card-title mb-2 text-lg">Pick a Goal</h3>
 					<p class="text-sm text-text-secondary m-0">
