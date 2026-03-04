@@ -14,6 +14,10 @@ import { RadarChart as RadarChartComponent } from './learn/RadarChart';
 import { LevelLadder as LevelLadderComponent } from './learn/LevelLadder';
 import { ArchetypeCard as ArchetypeCardComponent } from './learn/ArchetypeCard';
 import { DimensionBar as DimensionBarComponent } from './learn/DimensionBar';
+import { PatternsPage as PatternsPageComponent } from './PatternsPage';
+import { PatternsPreview as PatternsPreviewComponent } from './PatternsPreview';
+import { TutorialsPage as TutorialsPageComponent } from './TutorialsPage';
+import { TutorialsPreview as TutorialsPreviewComponent } from './TutorialsPreview';
 
 function withTheme<T extends object>(Component: React.ComponentType<T>) {
     return (props: T) => (
@@ -37,3 +41,7 @@ export const RadarChart = withTheme(RadarChartComponent);
 export const LevelLadder = withTheme(LevelLadderComponent);
 export const ArchetypeCard = withTheme(ArchetypeCardComponent);
 export const DimensionBar = withTheme(DimensionBarComponent);
+export const PatternsPageIsland = withTheme(PatternsPageComponent);
+export const PatternsPreview = withTheme(PatternsPreviewComponent);
+export const TutorialsPageIsland = withTheme(TutorialsPageComponent);
+export const TutorialsPreview = withTheme(TutorialsPreviewComponent);
