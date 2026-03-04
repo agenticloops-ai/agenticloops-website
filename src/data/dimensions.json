@@ -1,0 +1,322 @@
+[
+  {
+    "id": "fundamentals",
+    "name": "Fundamentals",
+    "coreQuestion": "Do I understand how LLMs actually work as software components?",
+    "description": "LLM API mechanics, token economics, prompt engineering, tool use, the agentic loop, structured output, context windows",
+    "icon": "blocks",
+    "color": "cyan",
+    "levels": [
+      {
+        "level": 1,
+        "name": "First API Call",
+        "description": "You can make an LLM API call and get a response",
+        "checkpoint": "Build a script that sends a prompt and prints the response"
+      },
+      {
+        "level": 2,
+        "name": "Prompt Engineering",
+        "description": "You can use system messages, few-shot examples, and structured output",
+        "checkpoint": "Build a prompt that reliably extracts structured data from free text"
+      },
+      {
+        "level": 3,
+        "name": "Tool Use",
+        "description": "You can define tools, handle tool calls, and manage the tool use loop",
+        "checkpoint": "Build an agent with 3+ tools that chains calls to solve a multi-step problem"
+      },
+      {
+        "level": 4,
+        "name": "Agentic Loop",
+        "description": "You can build an autonomous agent that decides when to use tools vs. respond",
+        "checkpoint": "Build an agent that autonomously completes a task requiring multiple tool calls"
+      },
+      {
+        "level": 5,
+        "name": "Production Fundamentals",
+        "description": "You understand token economics, context window management, and model selection",
+        "checkpoint": "Complete the Codebase Navigator capstone project"
+      }
+    ]
+  },
+  {
+    "id": "patterns",
+    "name": "Patterns & Architecture",
+    "coreQuestion": "Can I choose the right architecture for my problem?",
+    "description": "ReAct, prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer, human-in-the-loop, memory patterns, multi-agent systems",
+    "icon": "network",
+    "color": "violet",
+    "levels": [
+      {
+        "level": 1,
+        "name": "Prompt Chaining",
+        "description": "You can break a task into sequential LLM calls with validation gates",
+        "checkpoint": "Build a multi-step pipeline with at least 3 chained prompts"
+      },
+      {
+        "level": 2,
+        "name": "Routing & Parallelization",
+        "description": "You can classify inputs and route to specialized handlers, running tasks in parallel",
+        "checkpoint": "Build a system that routes different query types to different handlers"
+      },
+      {
+        "level": 3,
+        "name": "Orchestration",
+        "description": "You can build orchestrator-worker patterns and evaluator-optimizer loops",
+        "checkpoint": "Build a content pipeline with an orchestrator delegating to specialized workers"
+      },
+      {
+        "level": 4,
+        "name": "Human-in-the-Loop",
+        "description": "You can integrate approval workflows and human feedback into agent loops",
+        "checkpoint": "Add approval gates and feedback incorporation to an existing agent"
+      },
+      {
+        "level": 5,
+        "name": "Multi-Agent Systems",
+        "description": "You can design and coordinate multiple agents working together on complex tasks",
+        "checkpoint": "Complete the multi-agent capstone project"
+      }
+    ]
+  },
+  {
+    "id": "tooling",
+    "name": "Tooling & Integration",
+    "coreQuestion": "Can I connect my agent to the real world effectively?",
+    "description": "Tool design, MCP, function calling, API integration, RAG, vector databases, external service integration, framework selection",
+    "icon": "wrench",
+    "color": "pink",
+    "levels": [
+      {
+        "level": 1,
+        "name": "Basic Tool Use",
+        "description": "You can define tools and handle function calling with an LLM",
+        "checkpoint": "Build an agent with 3+ custom tools"
+      },
+      {
+        "level": 2,
+        "name": "Framework Familiarity",
+        "description": "You understand the trade-offs between frameworks (LangChain, CrewAI, raw SDK)",
+        "checkpoint": "Build the same agent with two different approaches and compare"
+      },
+      {
+        "level": 3,
+        "name": "MCP & RAG",
+        "description": "You can use Model Context Protocol and implement retrieval-augmented generation",
+        "checkpoint": "Build an MCP server and a RAG pipeline with vector search"
+      },
+      {
+        "level": 4,
+        "name": "Complex Integrations",
+        "description": "You can integrate with databases, APIs, file systems, and external services reliably",
+        "checkpoint": "Build an agent that orchestrates 5+ external service integrations"
+      },
+      {
+        "level": 5,
+        "name": "Tool Architecture",
+        "description": "You can design tool ecosystems with versioning, discovery, and composition",
+        "checkpoint": "Design and implement a composable tool architecture for a production system"
+      }
+    ]
+  },
+  {
+    "id": "observability",
+    "name": "Observability",
+    "coreQuestion": "Can I see what my agent is doing and why?",
+    "description": "Tracing LLM calls, token usage monitoring, decision logging, conversation replay, latency tracking, cost dashboards, debugging non-deterministic behavior",
+    "icon": "eye",
+    "color": "emerald",
+    "levels": [
+      {
+        "level": 1,
+        "name": "Console Logging",
+        "description": "You add print statements to debug your agent",
+        "checkpoint": "Add structured logging to an existing agent"
+      },
+      {
+        "level": 2,
+        "name": "Trace Awareness",
+        "description": "You can trace a full conversation including tool calls and decisions",
+        "checkpoint": "Instrument an agent with tracing that captures the full decision tree"
+      },
+      {
+        "level": 3,
+        "name": "Cost Consciousness",
+        "description": "You track token usage per conversation, per tool, per model",
+        "checkpoint": "Build a cost dashboard that tracks token usage across your agent fleet"
+      },
+      {
+        "level": 4,
+        "name": "Anomaly Detection",
+        "description": "You have alerts for response quality degradation, cost spikes, and latency changes",
+        "checkpoint": "Set up monitoring and alerting for an agentic system"
+      },
+      {
+        "level": 5,
+        "name": "Full Observability",
+        "description": "You can replay any conversation, understand any decision, explain any failure",
+        "checkpoint": "Instrument an existing agent with full observability and demonstrate failure analysis"
+      }
+    ]
+  },
+  {
+    "id": "resilience",
+    "name": "Resilience & Reliability",
+    "coreQuestion": "Does my agent handle failure gracefully?",
+    "description": "Retry strategies, fallback models, graceful degradation, rate limiting, timeout handling, error recovery, circuit breakers, handling malformed tool outputs",
+    "icon": "shield-check",
+    "color": "amber",
+    "levels": [
+      {
+        "level": 1,
+        "name": "Basic Error Handling",
+        "description": "You wrap LLM calls in try/catch and return friendly error messages",
+        "checkpoint": "Add basic error handling to all LLM calls in an existing agent"
+      },
+      {
+        "level": 2,
+        "name": "Retry Strategies",
+        "description": "You implement exponential backoff, retry with feedback, and fallback approaches",
+        "checkpoint": "Implement retry with feedback pattern for tool call failures"
+      },
+      {
+        "level": 3,
+        "name": "Graceful Degradation",
+        "description": "Your agent continues operating with reduced capability when components fail",
+        "checkpoint": "Build an agent that gracefully degrades when its primary model is unavailable"
+      },
+      {
+        "level": 4,
+        "name": "Circuit Breakers",
+        "description": "You have circuit breakers, rate limiting, and dynamic re-planning around failures",
+        "checkpoint": "Implement circuit breakers and dynamic re-planning for a multi-tool agent"
+      },
+      {
+        "level": 5,
+        "name": "Production Resilience",
+        "description": "Your system handles cascading failures, maintains SLAs, and self-heals",
+        "checkpoint": "Design and implement a resilience strategy for a production agentic system"
+      }
+    ]
+  },
+  {
+    "id": "evaluation",
+    "name": "Evaluation & Testing",
+    "coreQuestion": "How do I know my agent actually works?",
+    "description": "Unit testing agents, LLM-as-judge evals, golden datasets, regression testing, red teaming, benchmarking, A/B testing prompts, drift detection",
+    "icon": "test-tubes",
+    "color": "rose",
+    "levels": [
+      {
+        "level": 1,
+        "name": "Unit Testing",
+        "description": "You can write unit tests for deterministic parts of your agent",
+        "checkpoint": "Write unit tests for tool definitions and response parsing"
+      },
+      {
+        "level": 2,
+        "name": "Eval Frameworks",
+        "description": "You can build evaluation suites with golden datasets and LLM-as-judge",
+        "checkpoint": "Create an eval suite with 20+ test cases and automated scoring"
+      },
+      {
+        "level": 3,
+        "name": "Red Teaming",
+        "description": "You can systematically test your agent for failure modes and adversarial inputs",
+        "checkpoint": "Red team an existing agent and document 10+ failure modes"
+      },
+      {
+        "level": 4,
+        "name": "Benchmarking",
+        "description": "You can benchmark agent performance and compare across model/prompt variations",
+        "checkpoint": "Build a benchmark suite that compares agent performance across 3+ configurations"
+      },
+      {
+        "level": 5,
+        "name": "Continuous Evaluation",
+        "description": "You have automated regression testing, drift detection, and quality monitoring",
+        "checkpoint": "Implement continuous evaluation pipeline with drift detection"
+      }
+    ]
+  },
+  {
+    "id": "security",
+    "name": "Security & Governance",
+    "coreQuestion": "Is my agent safe to put in front of users?",
+    "description": "Prompt injection defense, input/output guardrails, sandboxed execution, PII handling, approval workflows, audit trails, compliance, access control for tools",
+    "icon": "lock",
+    "color": "sky",
+    "levels": [
+      {
+        "level": 1,
+        "name": "Awareness",
+        "description": "You understand common attack vectors like prompt injection and data leakage",
+        "checkpoint": "Identify 5+ security vulnerabilities in a sample agent"
+      },
+      {
+        "level": 2,
+        "name": "Input/Output Guardrails",
+        "description": "You can implement basic input validation and output filtering",
+        "checkpoint": "Add guardrails that prevent prompt injection and PII leakage"
+      },
+      {
+        "level": 3,
+        "name": "Sandboxed Execution",
+        "description": "You can run agent actions in sandboxed environments with limited permissions",
+        "checkpoint": "Implement sandboxed code execution for an agent"
+      },
+      {
+        "level": 4,
+        "name": "Audit & Compliance",
+        "description": "You have audit trails, approval workflows, and compliance controls",
+        "checkpoint": "Implement audit logging and approval workflows for sensitive actions"
+      },
+      {
+        "level": 5,
+        "name": "Security Architecture",
+        "description": "You can design defense-in-depth security for production agentic systems",
+        "checkpoint": "Design and implement a comprehensive security architecture"
+      }
+    ]
+  },
+  {
+    "id": "scale",
+    "name": "Scale & Cost",
+    "coreQuestion": "Can my agent handle production load without bankrupting me?",
+    "description": "Token budgets, prompt caching, model routing, batching, async processing, deployment strategies, horizontal scaling, cost optimization",
+    "icon": "trending-up",
+    "color": "orange",
+    "levels": [
+      {
+        "level": 1,
+        "name": "Cost Awareness",
+        "description": "You understand token pricing and can estimate costs for your use case",
+        "checkpoint": "Calculate the per-conversation cost of your agent across different models"
+      },
+      {
+        "level": 2,
+        "name": "Twelve-Factor Agents",
+        "description": "You can deploy agents following twelve-factor principles",
+        "checkpoint": "Deploy an agent following twelve-factor principles"
+      },
+      {
+        "level": 3,
+        "name": "Cost Optimization",
+        "description": "You use prompt caching, model routing, and batching to reduce costs",
+        "checkpoint": "Reduce your agent's per-conversation cost by 50% through optimization"
+      },
+      {
+        "level": 4,
+        "name": "Deployment Strategies",
+        "description": "You can deploy agents with blue-green deployments, canary releases, and rollbacks",
+        "checkpoint": "Implement a deployment pipeline with canary releases for an agentic system"
+      },
+      {
+        "level": 5,
+        "name": "Production Scale",
+        "description": "You can horizontally scale agents, manage token budgets, and optimize for high throughput",
+        "checkpoint": "Design and implement a scaling strategy for a high-volume agentic system"
+      }
+    ]
+  }
+]

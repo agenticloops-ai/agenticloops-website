@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-import { getGitHubUrl } from '../config/repos';
+import { getGitHubUrl, GITHUB_REPOS } from '../config/repos';
 import { Github } from './BrandIcons';
 
 // Color palette class names (must match CSS --palette-* order)
@@ -65,7 +65,7 @@ export function Topics() {
                     <div className="text-center mb-20 relative">
                         <div className="flex items-center justify-center gap-4 mb-6">
                             <div className="w-10 h-0.5 bg-accent-cyan"></div>
-                            <span className="badge">topics</span>
+                            <span className="badge">tutorials</span>
                             <div className="w-10 h-0.5 bg-accent-cyan"></div>
                         </div>
 
@@ -76,6 +76,17 @@ export function Topics() {
                         <p className="body-text max-w-[700px] mx-auto">
                             A comprehensive curriculum for building production-ready AI agents
                         </p>
+
+                        <a
+                            href={GITHUB_REPOS.agenticAIEngineering}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 mt-4 px-4 py-2 text-sm font-mono font-bold uppercase tracking-wider text-text-secondary no-underline border border-border rounded transition-all hover:text-accent-cyan hover:border-accent-cyan"
+                        >
+                            <Github size={16} />
+                            View on GitHub
+                            <Icons.ArrowUpRight size={14} className="opacity-60" />
+                        </a>
                     </div>
                 </ScrollReveal>
 
@@ -141,7 +152,7 @@ export function Topics() {
                                                 delay={i * 0.03}
                                             >
                                                 <a
-                                                    href={getGitHubUrl(lesson.slug)}
+                                                    href={getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, lesson.slug)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     onClick={() => {
@@ -153,10 +164,9 @@ export function Topics() {
                                                             });
                                                         }
                                                     }}
-                                                    className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:translate-x-1.5 group flex flex-col`}
+                                                    className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:-translate-y-0.5 group flex flex-col`}
                                                 >
-                                                    <div className="corner-accent corner-accent-lg"></div>
-
+                                                    
                                                     {/* Coming Soon Badge - Top Right */}
                                                     {lesson.status === 'coming-soon' && (
                                                         <div

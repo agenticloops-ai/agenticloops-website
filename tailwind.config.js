@@ -8,11 +8,9 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                mono: ['Azeret Mono', 'JetBrains Mono', 'monospace'],
-                display: ['Rajdhani', 'sans-serif'],
+                mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
             },
             colors: {
-                // Map to CSS variables for theme support
                 bg: {
                     primary: 'var(--color-bg-primary)',
                     secondary: 'var(--color-bg-secondary)',
@@ -33,11 +31,8 @@ export default {
                     cyan: 'var(--color-accent-cyan)',
                     teal: 'var(--color-accent-teal)',
                     amber: 'var(--color-accent-amber)',
+                    primary: 'var(--color-accent-primary)',
                 },
-            },
-            letterSpacing: {
-                wider: '0.1em',
-                widest: '0.15em',
             },
         },
     },

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Fuse from 'fuse.js';
-import { getGitHubUrl } from '../config/repos';
+import { getGitHubUrl, GITHUB_REPOS } from '../config/repos';
 
 interface SearchItem {
     title: string;
@@ -69,7 +69,7 @@ export default function Search() {
             e.preventDefault();
             setSelectedIndex(i => Math.max(i - 1, 0));
         } else if (e.key === 'Enter' && results[selectedIndex]) {
-            window.open(getGitHubUrl(results[selectedIndex].slug), '_blank');
+            window.open(getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, results[selectedIndex].slug), '_blank');
         }
     };
 
@@ -135,7 +135,7 @@ export default function Search() {
                                     {results.map((result, index) => (
                                         <li key={result.slug}>
                                             <a
-                                                href={getGitHubUrl(result.slug)}
+                                                href={getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, result.slug)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className={`search-result ${index === selectedIndex ? 'selected' : ''}`}
@@ -310,7 +310,7 @@ export default function Search() {
                     border: none;
                     outline: none;
                     font-size: 1.125rem;
-                    font-family: 'Rajdhani', sans-serif;
+                    font-family: 'Inter', sans-serif;
                     font-weight: 600;
                     color: var(--color-text-primary);
                     letter-spacing: 0.01em;
@@ -329,7 +329,7 @@ export default function Search() {
                     border-radius: 0;
                     cursor: pointer;
                     font-size: 0.75rem;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     transition: all 0.2s;
                     display: flex;
                     align-items: center;
@@ -390,7 +390,7 @@ export default function Search() {
                     color: var(--color-accent-cyan);
                     opacity: 0;
                     transition: opacity 0.15s;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-size: 0.875rem;
                 }
 
@@ -428,7 +428,7 @@ export default function Search() {
 
                 .result-title {
                     font-weight: 700;
-                    font-family: 'Rajdhani', sans-serif;
+                    font-family: 'Inter', sans-serif;
                     font-size: 1rem;
                     color: var(--color-text-primary);
                     margin-bottom: 0.25rem;
@@ -437,7 +437,7 @@ export default function Search() {
 
                 .result-description {
                     font-size: 0.8125rem;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     color: var(--color-text-muted);
                     white-space: nowrap;
                     overflow: hidden;
@@ -462,7 +462,7 @@ export default function Search() {
                     padding: 2.5rem;
                     text-align: center;
                     color: var(--color-text-muted);
-                    font-family: 'Rajdhani', sans-serif;
+                    font-family: 'Inter', sans-serif;
                 }
 
                 .search-no-results .hint {
@@ -477,7 +477,7 @@ export default function Search() {
                     gap: 1.5rem;
                     margin-top: 1.5rem;
                     font-size: 0.75rem;
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                 }
 
                 .keyboard-hints kbd {
@@ -487,7 +487,7 @@ export default function Search() {
                     border-radius: 0;
                     margin: 0 0.15rem;
                     color: var(--color-accent-cyan);
-                    font-family: 'Azeret Mono', monospace;
+                    font-family: 'JetBrains Mono', monospace;
                     font-weight: 600;
                     box-shadow: 0 0 8px rgba(56, 189, 248, 0.1);
                 }
