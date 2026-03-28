@@ -1,0 +1,245 @@
+---
+import Layout from './Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import { Header, Footer } from '../components/Islands';
+
+interface Props {
+  title: string;
+  headings: { depth: number; slug: string; text: string }[];
+  githubUrl?: string;
+  prevLesson?: { slug: string; title: string } | null;
+  nextLesson?: { slug: string; title: string } | null;
+}
+
+const { title, headings, githubUrl, prevLesson, nextLesson } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL || '';
+---
+
+<Layout title={`${title} | Agentic Loops`}>
+  <Header client:load />
+
+  <div class="tutorial-layout">
+    <!-- Sidebar -->
+    <aside class="tutorial-sidebar">
+      <Sidebar />
+    </aside>
+
+    <!-- Mobile sidebar toggle -->
+    <details class="mobile-sidebar-toggle">
+      <summary class="mobile-sidebar-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+        Lessons
+      </summary>
+      <div class="mobile-sidebar-content">
+        <Sidebar />
+      </div>
+    </details>
+
+    <!-- Main content -->
+    <main class="tutorial-content">
+      <article class="prose">
+        <slot />
+      </article>
+
+      <!-- Prev/Next navigation -->
+      {(prevLesson || nextLesson) && (
+        <nav class="prev-next">
+          {prevLesson ? (
+            <a href={`${baseUrl}courses/${prevLesson.slug}`} class="prev-next-link prev">
+              <span class="prev-next-label">Previous</span>
+              <span class="prev-next-title">&larr; {prevLesson.title}</span>
+            </a>
+          ) : <div />}
+          {nextLesson ? (
+            <a href={`${baseUrl}courses/${nextLesson.slug}`} class="prev-next-link next">
+              <span class="prev-next-label">Next</span>
+              <span class="prev-next-title">{nextLesson.title} &rarr;</span>
+            </a>
+          ) : <div />}
+        </nav>
+      )}
+
+      <!-- GitHub link -->
+      {githubUrl && (
+        <div class="github-footer">
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+          </a>
+        </div>
+      )}
+    </main>
+
+    <!-- Table of Contents -->
+    {headings.length > 0 && (
+      <aside class="tutorial-toc">
+        <TableOfContents headings={headings} />
+      </aside>
+    )}
+  </div>
+
+  <Footer client:load />
+</Layout>
+
+<style>
+  .tutorial-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr 200px;
+    min-height: calc(100vh - 60px);
+    padding-top: 60px;
+  }
+
+  .tutorial-sidebar {
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    border-right: 1px solid var(--color-border);
+    background: var(--color-bg-secondary);
+  }
+
+  .tutorial-content {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 2.5rem 4rem;
+  }
+
+  .tutorial-toc {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding: 1.5rem 1rem 1.5rem 0;
+    border-left: 1px solid var(--color-border);
+    padding-left: 1rem;
+  }
+
+  .mobile-sidebar-toggle {
+    display: none;
+  }
+
+  /* Prev/Next */
+  .prev-next {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prev-next-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .prev-next-link:hover {
+    border-color: var(--color-accent-primary);
+    background: var(--color-bg-secondary);
+  }
+
+  .prev-next-link.next {
+    text-align: right;
+  }
+
+  .prev-next-label {
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .prev-next-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-accent-primary);
+  }
+
+  /* GitHub footer */
+  .github-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .github-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .github-footer a:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* Mobile sidebar */
+  .mobile-sidebar-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .mobile-sidebar-btn::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-sidebar-content {
+    max-height: 60vh;
+    overflow-y: auto;
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Tablet: hide ToC */
+  @media (max-width: 1100px) {
+    .tutorial-layout {
+      grid-template-columns: 260px 1fr;
+    }
+    .tutorial-toc {
+      display: none;
+    }
+  }
+
+  /* Mobile: hide sidebar, show toggle */
+  @media (max-width: 768px) {
+    .tutorial-layout {
+      grid-template-columns: 1fr;
+    }
+    .tutorial-sidebar {
+      display: none;
+    }
+    .mobile-sidebar-toggle {
+      display: block;
+      position: sticky;
+      top: 60px;
+      z-index: 40;
+    }
+    .tutorial-content {
+      padding: 1.5rem 1rem 3rem;
+    }
+  }
+</style>

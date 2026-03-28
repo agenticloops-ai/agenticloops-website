@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import TutorialLayout from '../../layouts/TutorialLayout.astro';
+import { getGitHubUrl, GITHUB_REPOS } from '../../config/repos';
+
+export async function getStaticPaths() {
+  const fmt = (id: string) => {
+    const lastPart = id.split('/').pop() || '';
+    return lastPart.replace(/^\d+-/, '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  };
+
+  const courses = await getCollection('courses');
+
+  const lessons = courses
+    .filter(e => e.id.split('/').length >= 3)
+    .sort((a, b) => a.id.localeCompare(b.id));
+
+  return courses.map(entry => {
+    const idx = lessons.findIndex(l => l.id === entry.id);
+    const prev = idx > 0 ? lessons[idx - 1] : null;
+    const next = idx >= 0 && idx < lessons.length - 1 ? lessons[idx + 1] : null;
+
+    return {
+      params: { slug: entry.id },
+      props: {
+        entry,
+        prevLesson: prev ? { slug: prev.id, title: prev.data.title || fmt(prev.id) } : null,
+        nextLesson: next ? { slug: next.id, title: next.data.title || fmt(next.id) } : null,
+      },
+    };
+  });
+}
+
+const { entry, prevLesson, nextLesson } = Astro.props;
+const { Content, headings } = await render(entry);
+
+const titleFromId = (id: string) => {
+  const lastPart = id.split('/').pop() || '';
+  return lastPart.replace(/^\d+-/, '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+};
+
+const title = entry.data.title || titleFromId(entry.id);
+const githubUrl = getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, entry.id);
+---
+
+<TutorialLayout
+  title={title}
+  headings={headings}
+  githubUrl={githubUrl}
+  prevLesson={prevLesson}
+  nextLesson={nextLesson}
+>
+  <Content />
+</TutorialLayout>

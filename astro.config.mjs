@@ -7,4 +7,9 @@ export default defineConfig({
     site: process.env.SITE_URL || 'https://agenticloops-ai.github.io',
     base: process.env.BASE_PATH || '',
     integrations: [react(), tailwind()],
+    markdown: {
+        shikiConfig: {
+            theme: 'github-dark',
+        },
+    },
 });

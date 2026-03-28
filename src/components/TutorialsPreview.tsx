@@ -31,7 +31,7 @@ export function TutorialsPreview() {
                 if (Array.isArray(data)) setModules(data);
             })
             .catch(() => {});
-    }, []);
+    }, [baseUrl]);
 
     return (
         <section className="section relative overflow-hidden" id="topics">

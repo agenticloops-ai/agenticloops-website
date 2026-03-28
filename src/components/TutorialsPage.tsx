@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import * as Icons from 'lucide-react';
-import { getGitHubUrl, GITHUB_REPOS } from '../config/repos';
+import { GITHUB_REPOS } from '../config/repos';
 import { Github } from './BrandIcons';
 
 const moduleColorClasses = ['cyan', 'violet', 'pink', 'emerald', 'amber'] as const;
@@ -75,7 +75,7 @@ export function TutorialsPage() {
                 });
             })
             .catch(() => setLoading(false));
-    }, []);
+    }, [baseUrl]);
 
     const totalLessons = useMemo(() => modules.reduce((sum, m) => sum + m.lessons.length, 0), [modules]);
     const totalMinutes = useMemo(() =>
@@ -241,9 +241,7 @@ export function TutorialsPage() {
                                                     return (
                                                         <a
                                                             key={lesson.slug}
-                                                            href={getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, lesson.slug)}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
+                                                            href={isLessonComingSoon ? undefined : `${baseUrl}courses/${lesson.slug}`}
                                                             className="group block no-underline text-inherit py-3 relative"
                                                             style={{ opacity: isLessonComingSoon ? 0.5 : 1 }}
                                                             onClick={() => {

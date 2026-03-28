@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ThemeScript from '../components/ThemeScript.astro';
 
 interface Props {
 	title: string;
@@ -37,6 +38,7 @@ const { title } = Astro.props;
     }
 	</head>
 	<body class="bg-bg-primary text-text-primary">
+		<ThemeScript />
 		<slot />
 	</body>
 </html>
