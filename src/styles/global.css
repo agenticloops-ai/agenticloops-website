@@ -24,9 +24,9 @@
   --color-accent-primary-dark: #0891B2;
   /* Legacy aliases (used in components) */
   --color-accent-cyan: #06B6D4;
-  --color-accent-teal: #22D3EE;
+  --color-accent-teal: #14b8a6;
   --color-accent-amber: #F59E0B;
-  --color-accent-gradient: linear-gradient(135deg, #06B6D4, #22D3EE);
+  --color-accent-gradient: linear-gradient(135deg, #06b6d4, #14b8a6);
   /* Code */
   --color-code-bg: #0a0f1a;
   --color-code-text: #e4e4e7;
@@ -606,6 +606,11 @@ p {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideRight {

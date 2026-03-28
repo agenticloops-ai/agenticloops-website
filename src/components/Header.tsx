@@ -1,17 +1,15 @@
-import { Sun, Moon, ChevronDown, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import { config } from '../config';
 import { useStore } from '@nanostores/react';
 import { theme as themeAtom, toggleTheme } from '../stores/themeStore';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { socialIconsMap } from './SocialIcons';
 import Search from './Search';
 
 export function Header() {
     const theme = useStore(themeAtom);
     const [scrolled, setScrolled] = useState(false);
-    const [learnOpen, setLearnOpen] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
     const baseUrl = import.meta.env.BASE_URL || '';
 
     useEffect(() => {
@@ -23,26 +21,11 @@ export function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-                setLearnOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
     const navLinks = [
         { label: 'Tutorials', href: `${baseUrl}tutorials` },
+        { label: 'Learning Path', href: `${baseUrl}learn` },
         { label: 'Patterns', href: `${baseUrl}patterns` },
         { label: 'Team', href: `${baseUrl}team` },
-    ];
-
-    const learnLinks = [
-        { label: 'Learning Path', href: `${baseUrl}learn` },
-        { label: 'Dimensions', href: `${baseUrl}learn/dimensions` },
-        { label: 'Archetypes', href: `${baseUrl}learn/archetypes` },
     ];
 
     return (
@@ -71,37 +54,6 @@ export function Header() {
 
                 {/* NAVIGATION (desktop) */}
                 <nav className="hidden md:flex gap-1 items-center">
-                    {/* Learn dropdown */}
-                    <div className="relative" ref={dropdownRef}>
-                        <button
-                            onClick={() => setLearnOpen(!learnOpen)}
-                            className="flex items-center gap-1 py-2 px-3 text-sm font-medium text-text-secondary no-underline transition-colors hover:text-text-primary bg-transparent border-none"
-                        >
-                            Learn
-                            <ChevronDown size={14} className={`transition-transform ${learnOpen ? 'rotate-180' : ''}`} />
-                        </button>
-                        {learnOpen && (
-                            <div
-                                className="absolute top-full left-0 mt-1 py-1 min-w-[180px] rounded-lg border border-border shadow-lg"
-                                style={{ background: 'var(--color-bg-card-solid)' }}
-                            >
-                                {learnLinks.map(({ label, href }) => (
-                                    <a
-                                        key={label}
-                                        href={href}
-                                        className="block px-4 py-2 text-sm text-text-secondary no-underline hover:text-text-primary transition-colors"
-                                        style={{ background: 'transparent' }}
-                                        onMouseEnter={e => (e.currentTarget.style.background = 'var(--color-bg-secondary)')}
-                                        onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
-                                        onClick={() => setLearnOpen(false)}
-                                    >
-                                        {label}
-                                    </a>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
                     {navLinks.map(({ label, href }) => (
                         <a
                             key={label}
@@ -165,18 +117,6 @@ export function Header() {
                     style={{ background: 'var(--color-bg-card-solid)' }}
                 >
                     <nav className="container px-6 py-4 flex flex-col gap-1">
-                        <span className="text-xs font-mono text-text-muted uppercase tracking-wider px-3 py-1">Learn</span>
-                        {learnLinks.map(({ label, href }) => (
-                            <a
-                                key={label}
-                                href={href}
-                                className="px-3 py-2 text-sm text-text-secondary no-underline hover:text-text-primary transition-colors rounded-lg"
-                                onClick={() => setMobileOpen(false)}
-                            >
-                                {label}
-                            </a>
-                        ))}
-                        <div className="h-px bg-border my-2" />
                         {navLinks.map(({ label, href }) => (
                             <a
                                 key={label}
