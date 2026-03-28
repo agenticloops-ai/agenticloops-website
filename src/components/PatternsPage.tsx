@@ -87,6 +87,17 @@ const PATTERN_COMBOS = [
     },
 ];
 
+/** Render inline markdown (bold, italic, code) */
+function renderMd(text: string) {
+    const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
+    return parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) return <strong key={i} className="text-text-primary">{part.slice(2, -2)}</strong>;
+        if (part.startsWith('*') && part.endsWith('*')) return <em key={i}>{part.slice(1, -1)}</em>;
+        if (part.startsWith('`') && part.endsWith('`')) return <code key={i} style={{ fontSize: '0.9em', padding: '0.1em 0.35em', background: 'var(--color-bg-tertiary)', borderRadius: '3px' }}>{part.slice(1, -1)}</code>;
+        return part;
+    });
+}
+
 const statusIcons: Record<string, string> = {
     'Canonical': '\u{1F3DB}\uFE0F',
     'Established': '\u2705',
@@ -165,8 +176,16 @@ export function PatternsPage() {
         }
     }, [patterns]);
 
-    // Running pattern number
-    let globalIndex = 0;
+    // Compute running start index per category
+    const categoryStartIndex = useMemo(() => {
+        const map: Record<string, number> = {};
+        let idx = 0;
+        for (const cat of PATTERN_CATEGORIES) {
+            map[cat.id] = idx;
+            idx += (patternsByCategory[cat.id] || []).length;
+        }
+        return map;
+    }, [patternsByCategory]);
 
     return (
         <div style={{ minHeight: '100vh' }}>
@@ -352,8 +371,7 @@ export function PatternsPage() {
                                 const complexityRange = catPatterns.length > 0
                                     ? `${COMPLEXITY_LEVELS[Math.min(...catPatterns.map(p => p.complexityLevel)) - 1]?.stars ?? ''} → ${COMPLEXITY_LEVELS[Math.max(...catPatterns.map(p => p.complexityLevel)) - 1]?.stars ?? ''}`
                                     : '';
-                                const startIndex = globalIndex;
-                                globalIndex += catPatterns.length;
+                                const startIndex = categoryStartIndex[cat.id] ?? 0;
 
                                 return (
                                     <div key={cat.id} id={`category-${cat.id}`}>
@@ -464,17 +482,6 @@ export function PatternsPage() {
                 const catConfig = PATTERN_CATEGORIES.find(c => c.id === selectedPattern.category);
                 const color = catConfig?.color || 'cyan';
                 const complexityInfo = COMPLEXITY_LEVELS[selectedPattern.complexityLevel - 1];
-
-                /** Render inline markdown */
-                const renderMd = (text: string) => {
-                    const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
-                    return parts.map((part, i) => {
-                        if (part.startsWith('**') && part.endsWith('**')) return <strong key={i} className="text-text-primary">{part.slice(2, -2)}</strong>;
-                        if (part.startsWith('*') && part.endsWith('*')) return <em key={i}>{part.slice(1, -1)}</em>;
-                        if (part.startsWith('`') && part.endsWith('`')) return <code key={i} style={{ fontSize: '0.9em', padding: '0.1em 0.35em', background: 'var(--color-bg-tertiary)', borderRadius: '3px' }}>{part.slice(1, -1)}</code>;
-                        return part;
-                    });
-                };
 
                 return (
                     <div

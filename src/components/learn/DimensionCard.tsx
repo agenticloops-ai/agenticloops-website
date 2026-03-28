@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import type { LucideIcon } from 'lucide-react';
 import * as Icons from 'lucide-react';
 

@@ -94,8 +94,16 @@ export function TutorialsPage() {
         });
     };
 
-    // Running lesson counter across modules
-    let globalLessonIndex = 0;
+    // Compute running start index per module
+    const moduleStartIndex = useMemo(() => {
+        const map: Record<string, number> = {};
+        let idx = 0;
+        for (const mod of modules) {
+            map[mod.id] = idx;
+            idx += mod.lessons.length;
+        }
+        return map;
+    }, [modules]);
 
     return (
         <div className="tutorials-page">
@@ -164,14 +172,13 @@ export function TutorialsPage() {
                         <div className="text-center py-16 text-text-muted">Loading tutorials...</div>
                     ) : (
                         <div className="space-y-6">
-                            {filteredModules.map((module, moduleIndex) => {
+                            {filteredModules.map((module) => {
                                 const actualIndex = modules.findIndex(m => m.id === module.id);
                                 const colorClass = moduleColorClasses[actualIndex % moduleColorClasses.length];
                                 const isExpanded = expandedModules.has(module.id);
                                 const isComingSoon = module.lessons.length > 0 && module.lessons.every(l => l.status === 'coming-soon');
                                 const moduleTime = module.lessons.reduce((s, l) => s + estimateTime(l.slug), 0);
-                                const startIndex = globalLessonIndex;
-                                globalLessonIndex += module.lessons.length;
+                                const startIndex = moduleStartIndex[module.id] ?? 0;
 
                                 return (
                                     <div key={module.id} id={`module-${module.id}`}>

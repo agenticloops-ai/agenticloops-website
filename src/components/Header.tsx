@@ -4,7 +4,6 @@ import { useStore } from '@nanostores/react';
 import { theme as themeAtom, toggleTheme } from '../stores/themeStore';
 import { useState, useEffect } from 'react';
 import { socialIconsMap } from './SocialIcons';
-import Search from './Search';
 
 export function Header() {
     const theme = useStore(themeAtom);
@@ -88,8 +87,6 @@ export function Header() {
                             );
                         })}
                     </div>
-
-                    {/* <Search /> */}
 
                     <button
                         onClick={() => toggleTheme()}
