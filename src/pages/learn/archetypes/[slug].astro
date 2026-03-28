@@ -1,0 +1,152 @@
+---
+import LearnLayout from '../../../layouts/LearnLayout.astro';
+import { Header, Footer, RadarChart, DimensionBar } from '../../../components/Islands';
+import archetypes from '../../../data/archetypes.json';
+import dimensions from '../../../data/dimensions.json';
+import contentCatalog from '../../../data/content-catalog.json';
+
+export function getStaticPaths() {
+	return archetypes.map(arch => ({
+		params: { slug: arch.id },
+		props: { archetype: arch },
+	}));
+}
+
+const { archetype } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL || '';
+
+const colorClasses = ['cyan', 'violet', 'pink', 'emerald', 'amber', 'rose', 'sky', 'orange'] as const;
+
+const dimensionsMeta = dimensions.map(d => ({ id: d.id, name: d.name }));
+
+const typeLabels = { tutorial: 'Tutorial', pattern: 'Pattern', blog: 'Blog', external: 'External' } as const;
+
+function getTypeLabel(type: string): string {
+	return (typeLabels as any)[type] || type;
+}
+
+const recommendedContent = contentCatalog
+	.filter(item => {
+		return item.dimensions.some(d => {
+			const target = (archetype.targetProfile as any)[d.dimension];
+			return target !== undefined && d.level <= target;
+		});
+	})
+	.sort((a, b) => {
+		const aMin = Math.min(...a.dimensions.map(d => d.level));
+		const bMin = Math.min(...b.dimensions.map(d => d.level));
+		return aMin - bMin;
+	});
+---
+
+<LearnLayout
+	title={`${archetype.name} | Learn | Agentic Loops`}
+	breadcrumbs={[
+		{ label: 'Archetypes', href: `${baseUrl}learn/archetypes` },
+		{ label: archetype.name },
+	]}
+>
+	<Header client:load slot="header" />
+
+	<section class="section relative overflow-hidden">
+		<div class="container max-w-[900px]">
+			<!-- Header -->
+			<div class="mb-12">
+				<div class="flex items-center gap-3 mb-4">
+					<span class="text-xs font-mono uppercase tracking-wider px-3 py-1 rounded-full border" style="color: var(--color-accent-primary); border-color: var(--color-accent-primary); background: rgba(59, 130, 246, 0.1);">
+						Archetype
+					</span>
+				</div>
+
+				<h1 class="mb-4">{archetype.name}</h1>
+
+				<p class="hero-tagline mb-4">
+					{archetype.description}
+				</p>
+
+				<div class="flex flex-wrap gap-2">
+					{archetype.examples.map((example: string) => (
+						<span class="text-xs font-mono text-text-muted px-3 py-1 border border-border rounded">
+							{example}
+						</span>
+					))}
+				</div>
+			</div>
+
+			<!-- Radar Chart + Dimension Bars -->
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+				<div class="flex justify-center items-center">
+					<RadarChart
+						client:load
+						dimensions={dimensionsMeta}
+						values={archetype.targetProfile}
+						size={350}
+					/>
+				</div>
+
+				<div>
+					<h3 class="mb-4">Target Profile</h3>
+					{dimensions.map((dim, i) => {
+						const level = (archetype.targetProfile as any)[dim.id] ?? 0;
+						const cc = colorClasses[i % colorClasses.length];
+						return (
+							<DimensionBar
+								client:load
+								name={dim.name}
+								level={level}
+								colorClass={cc}
+							/>
+						);
+					})}
+				</div>
+			</div>
+
+			<!-- Recommended Content -->
+			<div>
+				<h2 class="mb-6">
+					Recommended Content
+				</h2>
+				<p class="body-text mb-8">
+					Content items mapped to this archetype's target profile, ordered by progression level.
+				</p>
+
+				<div class="space-y-2">
+					{recommendedContent.map((item) => (
+						<div
+							class={`flex items-center gap-3 py-3 px-4 border border-border rounded-lg transition-colors ${item.status === 'coming-soon' ? 'opacity-50' : 'hover:border-border-hover'}`}
+						>
+							<span class="inline-flex items-center px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider border rounded text-text-muted border-border">
+								{getTypeLabel(item.type)}
+							</span>
+
+							{item.status === 'coming-soon' ? (
+								<span class="flex-1 text-sm text-text-muted">{item.title}</span>
+							) : (
+								<a
+									href={item.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="flex-1 text-sm text-text-primary no-underline hover:text-accent-primary transition-colors"
+								>
+									{item.title}
+								</a>
+							)}
+
+							{item.estimatedMinutes && (
+								<span class="text-xs text-text-muted font-mono">
+									{item.estimatedMinutes}m
+								</span>
+							)}
+
+							{item.status === 'coming-soon' && (
+								<span class="coming-soon-badge">Soon</span>
+							)}
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<Footer client:load slot="footer" />
+</LearnLayout>

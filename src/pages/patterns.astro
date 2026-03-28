@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Header, PatternsPageIsland, Footer } from '../components/Islands';
+---
+
+<Layout title="Agentic Patterns | Agentic Loops">
+  <Header client:load />
+  <main>
+    <PatternsPageIsland client:load />
+  </main>
+  <Footer client:visible />
+</Layout>

@@ -1,0 +1,458 @@
+[
+  {
+    "id": "01-foundations/01-simple-llm-call",
+    "title": "Your First LLM Call",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/01-foundations/01-simple-llm-call",
+    "estimatedMinutes": 20,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "fundamentals", "level": 1 }
+    ]
+  },
+  {
+    "id": "01-foundations/02-prompt-engineering",
+    "title": "Prompt Engineering",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/01-foundations/02-prompt-engineering",
+    "estimatedMinutes": 30,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "fundamentals", "level": 2 }
+    ]
+  },
+  {
+    "id": "01-foundations/03-chat",
+    "title": "Chat & Conversations",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/01-foundations/03-chat",
+    "estimatedMinutes": 25,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "fundamentals", "level": 2 }
+    ]
+  },
+  {
+    "id": "01-foundations/04-tool-use",
+    "title": "Tool Use",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/01-foundations/04-tool-use",
+    "estimatedMinutes": 30,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "fundamentals", "level": 3 },
+      { "dimension": "tooling", "level": 1 }
+    ]
+  },
+  {
+    "id": "01-foundations/05-agent-loop",
+    "title": "The Agentic Loop",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/01-foundations/05-agent-loop",
+    "estimatedMinutes": 45,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "fundamentals", "level": 4 }
+    ]
+  },
+  {
+    "id": "01-foundations/06-capstone",
+    "title": "Capstone: Codebase Navigator",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/01-foundations/06-capstone",
+    "estimatedMinutes": 60,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "fundamentals", "level": 5 }
+    ]
+  },
+  {
+    "id": "02-effective-agents/01-prompt-chaining",
+    "title": "Prompt Chaining",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/02-effective-agents/01-prompt-chaining",
+    "estimatedMinutes": 30,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 1 }
+    ]
+  },
+  {
+    "id": "02-effective-agents/02-routing",
+    "title": "Routing",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/02-effective-agents/02-routing",
+    "estimatedMinutes": 30,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 2 }
+    ]
+  },
+  {
+    "id": "02-effective-agents/03-parallelization",
+    "title": "Parallelization",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/02-effective-agents/03-parallelization",
+    "estimatedMinutes": 30,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 2 }
+    ]
+  },
+  {
+    "id": "02-effective-agents/04-orchestrator-workers",
+    "title": "Orchestrator-Workers",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/02-effective-agents/04-orchestrator-workers",
+    "estimatedMinutes": 45,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 3 }
+    ]
+  },
+  {
+    "id": "02-effective-agents/05-evaluator-optimizer",
+    "title": "Evaluator-Optimizer",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/02-effective-agents/05-evaluator-optimizer",
+    "estimatedMinutes": 45,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 3 }
+    ]
+  },
+  {
+    "id": "02-effective-agents/06-human-in-the-loop",
+    "title": "Human-in-the-Loop",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/02-effective-agents/06-human-in-the-loop",
+    "estimatedMinutes": 35,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 3 },
+      { "dimension": "security", "level": 2 }
+    ]
+  },
+  {
+    "id": "02-effective-agents/07-capstone",
+    "title": "Capstone: Multi-Agent System",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/02-effective-agents/07-capstone",
+    "estimatedMinutes": 90,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 5 }
+    ]
+  },
+  {
+    "id": "03-advanced-techniques/06-mcp",
+    "title": "Model Context Protocol (MCP)",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/03-advanced-techniques/06-mcp",
+    "estimatedMinutes": 45,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "tooling", "level": 3 }
+    ]
+  },
+  {
+    "id": "03-advanced-techniques/08-rag-techniques",
+    "title": "RAG Techniques",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/03-advanced-techniques/08-rag-techniques",
+    "estimatedMinutes": 45,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "tooling", "level": 3 }
+    ]
+  },
+  {
+    "id": "04-frameworks",
+    "title": "Framework Comparison",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/04-frameworks",
+    "estimatedMinutes": 60,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "tooling", "level": 2 }
+    ]
+  },
+  {
+    "id": "05-testing-evaluation/01-unit-testing",
+    "title": "Unit Testing Agents",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/05-testing-evaluation/01-unit-testing",
+    "estimatedMinutes": 30,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "evaluation", "level": 1 }
+    ]
+  },
+  {
+    "id": "05-testing-evaluation/02-evals",
+    "title": "LLM Evaluations",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/05-testing-evaluation/02-evals",
+    "estimatedMinutes": 45,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "evaluation", "level": 2 }
+    ]
+  },
+  {
+    "id": "05-testing-evaluation/03-tracing-debugging",
+    "title": "Tracing & Debugging",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/05-testing-evaluation/03-tracing-debugging",
+    "estimatedMinutes": 40,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "observability", "level": 2 }
+    ]
+  },
+  {
+    "id": "05-testing-evaluation/04-red-teaming",
+    "title": "Red Teaming",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/05-testing-evaluation/04-red-teaming",
+    "estimatedMinutes": 45,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "evaluation", "level": 3 }
+    ]
+  },
+  {
+    "id": "05-testing-evaluation/05-benchmarking",
+    "title": "Benchmarking",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/05-testing-evaluation/05-benchmarking",
+    "estimatedMinutes": 40,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "evaluation", "level": 3 }
+    ]
+  },
+  {
+    "id": "06-production/01-twelve-factor-agents",
+    "title": "Twelve-Factor Agents",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/06-production/01-twelve-factor-agents",
+    "estimatedMinutes": 40,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "scale", "level": 2 }
+    ]
+  },
+  {
+    "id": "06-production/02-deployment-strategies",
+    "title": "Deployment Strategies",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/06-production/02-deployment-strategies",
+    "estimatedMinutes": 45,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "scale", "level": 3 }
+    ]
+  },
+  {
+    "id": "06-production/03-monitoring-observability",
+    "title": "Monitoring & Observability",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/06-production/03-monitoring-observability",
+    "estimatedMinutes": 45,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "observability", "level": 3 }
+    ]
+  },
+  {
+    "id": "06-production/04-cost-optimization",
+    "title": "Cost Optimization",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/06-production/04-cost-optimization",
+    "estimatedMinutes": 40,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "scale", "level": 3 }
+    ]
+  },
+  {
+    "id": "06-production/05-security-guardrails",
+    "title": "Security & Guardrails",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/06-production/05-security-guardrails",
+    "estimatedMinutes": 45,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "security", "level": 3 }
+    ]
+  },
+  {
+    "id": "06-production/06-error-handling-resilience",
+    "title": "Error Handling & Resilience",
+    "type": "tutorial",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-engineering/tree/main/06-production/06-error-handling-resilience",
+    "estimatedMinutes": 45,
+    "status": "coming-soon",
+    "dimensions": [
+      { "dimension": "resilience", "level": 3 }
+    ]
+  },
+  {
+    "id": "pattern/prompt-chaining",
+    "title": "Prompt Chaining Pattern",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 1 }
+    ]
+  },
+  {
+    "id": "pattern/routing",
+    "title": "Routing Pattern",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 2 }
+    ]
+  },
+  {
+    "id": "pattern/parallelization",
+    "title": "Parallelization Pattern",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 2 }
+    ]
+  },
+  {
+    "id": "pattern/orchestrator-workers",
+    "title": "Orchestrator-Workers Pattern",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 3 }
+    ]
+  },
+  {
+    "id": "pattern/evaluator-optimizer",
+    "title": "Evaluator-Optimizer Pattern",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 3 }
+    ]
+  },
+  {
+    "id": "pattern/react",
+    "title": "ReAct (Reason + Act)",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "fundamentals", "level": 4 },
+      { "dimension": "patterns", "level": 2 }
+    ]
+  },
+  {
+    "id": "pattern/retry-with-feedback",
+    "title": "Retry with Feedback",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "resilience", "level": 2 }
+    ]
+  },
+  {
+    "id": "pattern/dynamic-re-planning",
+    "title": "Dynamic Re-Planning",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "resilience", "level": 3 }
+    ]
+  },
+  {
+    "id": "pattern/input-output-guardrails",
+    "title": "Input/Output Guardrails",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "security", "level": 2 }
+    ]
+  },
+  {
+    "id": "pattern/human-in-the-loop",
+    "title": "Human-in-the-Loop Pattern",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "patterns", "level": 4 },
+      { "dimension": "security", "level": 2 }
+    ]
+  },
+  {
+    "id": "pattern/sandboxed-execution",
+    "title": "Sandboxed Execution",
+    "type": "pattern",
+    "url": "https://github.com/agenticloops-ai/agentic-ai-patterns",
+    "estimatedMinutes": 10,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "security", "level": 3 }
+    ]
+  },
+  {
+    "id": "external/anthropic-cookbook",
+    "title": "Anthropic API Cookbook",
+    "type": "external",
+    "url": "https://docs.anthropic.com/en/docs/build-with-claude/tool-use",
+    "estimatedMinutes": 30,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "fundamentals", "level": 3 },
+      { "dimension": "tooling", "level": 1 }
+    ]
+  },
+  {
+    "id": "external/langfuse-quickstart",
+    "title": "Langfuse Tracing Quickstart",
+    "type": "external",
+    "url": "https://langfuse.com/docs/get-started",
+    "estimatedMinutes": 20,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "observability", "level": 2 }
+    ]
+  },
+  {
+    "id": "external/owasp-llm-top-10",
+    "title": "OWASP Top 10 for LLM Applications",
+    "type": "external",
+    "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+    "estimatedMinutes": 30,
+    "status": "published",
+    "dimensions": [
+      { "dimension": "security", "level": 1 }
+    ]
+  }
+]

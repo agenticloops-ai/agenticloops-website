@@ -1,119 +1,143 @@
-import { BookOpen, ArrowRight, ChevronDown } from 'lucide-react';
-import { Github } from './BrandIcons';
-import { config } from '../config';
+import { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
-import { AgentLoopDiagram } from './AgentLoopDiagram';
+import { AgentLoopHorizontal } from './AgentLoopHorizontal';
+
+const tabs = [
+    {
+        id: 'tutorials',
+        label: 'Tutorials',
+        title: 'Tutorials',
+        description: 'Hands-on modules from basics to production — learn by building real agents.',
+        href: 'tutorials',
+        cta: 'Start',
+    },
+    {
+        id: 'learning-path',
+        label: 'Learning Path',
+        title: 'Learning Path',
+        description: 'Eight capability dimensions and personalized learning plans for your goal.',
+        href: 'learn',
+        cta: 'Explore',
+    },
+    {
+        id: 'patterns',
+        label: 'Patterns',
+        title: 'Patterns',
+        description: 'Battle-tested architecture patterns with diagrams, trade-offs, and code.',
+        href: 'patterns',
+        cta: 'Browse',
+    },
+];
 
 export function Hero() {
+    const baseUrl = import.meta.env.BASE_URL || '';
+    const [activeTab, setActiveTab] = useState(0);
+
     return (
-        <section className="section hero-section min-h-screen flex items-center overflow-hidden relative">
-            {/* Background Gradient Blurs */}
+        <section className="section hero-section overflow-hidden relative" style={{ paddingTop: '4rem', paddingBottom: '1.5rem' }}>
             <div className="gradient-blur gradient-blur-blue absolute top-32 -right-[5%]"></div>
             <div className="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%]"></div>
 
             <div className="container relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-20 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-10 items-center">
 
                     {/* Left: Content */}
                     <div>
                         <ScrollReveal direction="left">
-                            <div className="mb-10 flex flex-wrap gap-3 items-center">
-                                <span className="badge">
-                                    <span className="badge-dot"></span>
-                                    code first
+                            <div className="flex items-center gap-2 mb-3">
+                                <span className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded border" style={{
+                                    color: 'var(--color-accent-primary)',
+                                    borderColor: 'var(--color-accent-primary)',
+                                    background: 'color-mix(in srgb, var(--color-accent-primary) 10%, transparent)',
+                                }}>
+                                    Code First
                                 </span>
-                                <span className="badge">
-                                    no hype
+                                <span className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded border" style={{
+                                    color: 'var(--color-text-muted)',
+                                    borderColor: 'var(--color-border)',
+                                }}>
+                                    No Hype
                                 </span>
                             </div>
-                        </ScrollReveal>
-
-                        <ScrollReveal direction="left" delay={0.1}>
-                            <h1 className="mb-8 relative inline-block">
-                                <div className="absolute -top-5 -left-2.5 w-1 h-[120%] bg-gradient-to-b from-accent-cyan to-accent-teal shadow-[0_0_20px_var(--color-accent-cyan)]"></div>
-                                <span className="gradient-text">Agentic</span><br />Loops
+                            <h1 className="mb-4">
+                                Open-source learning<br />
+                                for{' '}
+                                <span className="gradient-text">agentic AI</span>
+                                <br />
+                                engineering.
                             </h1>
                         </ScrollReveal>
 
-                        <ScrollReveal direction="left" delay={0.2}>
-                            <p className="lead-text mb-12 max-w-[600px]">
-                                {config.content.heroSubheadline}
+                        <ScrollReveal direction="left" delay={0.1}>
+                            <p className="text-text-secondary mb-4 max-w-[480px] lead-text">
+                                Design patterns, system architecture, and
+                                production-grade implementations for software
+                                engineers building autonomous AI systems.
                             </p>
                         </ScrollReveal>
-
-                        <ScrollReveal direction="left" delay={0.3}>
-                            <div className="flex flex-wrap gap-4">
-                                <a
-                                    href={config.links.github}
-                                    className="btn-primary"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => {
-                                        if (typeof window.gtag === 'function') {
-                                            window.gtag('event', 'click_hero_source', {
-                                                event_category: 'engagement',
-                                                event_label: 'hero_source_code'
-                                            });
-                                        }
-                                    }}
-                                >
-                                    <Github size={20} />
-                                    Explore Repos
-                                    <ArrowRight size={18} />
-                                </a>
-                                <a
-                                    href={config.links.substack}
-                                    className="btn-secondary"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => {
-                                        if (typeof window.gtag === 'function') {
-                                            window.gtag('event', 'click_hero_blog', {
-                                                event_category: 'engagement',
-                                                event_label: 'hero_engineering_blog'
-                                            });
-                                        }
-                                    }}
-                                >
-                                    <BookOpen size={20} />
-                                    Read the Blog
-                                    <ArrowRight size={18} />
-                                </a>
-                            </div>
-                        </ScrollReveal>
-
                     </div>
 
-                    {/* Right (desktop) / Below (mobile): Agent Loop Diagram */}
+                    {/* Right: Agent Loop Diagram — hidden on mobile */}
                     <ScrollReveal direction="right" delay={0.2}>
-                        <div className="flex justify-center items-center relative">
-                            <div
-                                className="hidden lg:block absolute -top-5 -right-5 w-[100px] h-[100px] border-2 border-accent-cyan opacity-30"
-                                style={{ clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)' }}
-                            ></div>
-                            <div
-                                className="relative p-4 lg:p-8 border-2 border-border-accent bg-accent-cyan/[0.03] origin-top scale-[0.75] sm:scale-[0.85] lg:scale-100"
-                                style={{
-                                    clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
-                                    boxShadow: 'var(--shadow-glow)'
-                                }}
-                            >
-                                <AgentLoopDiagram />
+                        <div className="hidden lg:flex justify-center items-center">
+                            <div className="relative p-4 border border-border rounded-xl" style={{
+                                background: '#1e2a3a',
+                                boxShadow: '0 0 60px rgba(6, 182, 212, 0.08), 0 0 120px rgba(139, 92, 246, 0.05)',
+                            }}>
+                                <div className="relative">
+                                    <AgentLoopHorizontal />
+                                </div>
                             </div>
                         </div>
                     </ScrollReveal>
                 </div>
-            </div>
 
-            {/* Scroll Indicator */}
-            <a
-                href="#tenets"
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted hover:text-accent-cyan transition-colors no-underline"
-                aria-label="Scroll to content"
-            >
-                <span className="text-xs font-mono tracking-widest uppercase opacity-60">scroll</span>
-                <ChevronDown size={20} className="animate-bounce-slow" />
-            </a>
+                {/* Three Ways In — integrated below */}
+                <ScrollReveal delay={0.3}>
+                    <div className="mt-6 pt-6 border-t border-border">
+                        <h2 className="text-center text-lg font-semibold mb-3">Three ways in</h2>
+
+                        {/* Tab bar */}
+                        <div className="mx-auto mb-4">
+                            <div className="flex border border-border rounded-lg overflow-hidden" style={{ background: 'var(--color-bg-secondary)' }}>
+                                {tabs.map((tab, i) => (
+                                    <button
+                                        key={tab.id}
+                                        onClick={() => setActiveTab(i)}
+                                        className={`flex-1 py-2.5 px-3 text-sm font-medium transition-colors border-none cursor-pointer`}
+                                        style={{
+                                            background: activeTab === i ? 'var(--color-accent-primary)' : 'transparent',
+                                            color: activeTab === i ? '#ffffff' : 'var(--color-text-muted)',
+                                        }}
+                                    >
+                                        {tab.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Tab content cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mx-auto">
+                            {tabs.map((tab, i) => (
+                                <a
+                                    key={tab.id}
+                                    href={`${baseUrl}${tab.href}`}
+                                    className="card p-4 no-underline text-inherit group block"
+                                    style={activeTab === i ? { borderColor: 'var(--color-accent-primary)' } : {}}
+                                    onMouseEnter={() => setActiveTab(i)}
+                                >
+                                    <h3 className="text-sm font-semibold mb-1.5 text-text-primary">{tab.title}</h3>
+                                    <p className="text-xs text-text-secondary leading-relaxed m-0 mb-2">{tab.description}</p>
+                                    <span className="link-action text-xs">
+                                        {tab.cta} <ArrowRight size={11} />
+                                    </span>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </ScrollReveal>
+            </div>
         </section>
     );
 }

@@ -1,22 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Header, Hero, About, Team, RepoSection, Topics, Subscribe, Footer } from '../components/Islands';
-import ThemeScript from '../components/ThemeScript.astro';
-
-// We use client:load because the landing page is heavy on interactivity and animations
-// and we are porting a React SPA. Optimizing into separate islands can be done later.
+import { Header, Hero, About, TutorialsPreview, LearnPreview, PatternsPreview, Footer } from '../components/Islands';
 ---
 
 <Layout title="Agentic Loops">
-  <ThemeScript />
   <Header client:load />
   <main>
     <Hero client:load />
     <About client:visible />
-    <Team client:visible />
-    <RepoSection client:visible />
-    <Topics client:visible />
-    <Subscribe client:visible />
+    <TutorialsPreview client:visible />
+    <LearnPreview client:visible />
+    <PatternsPreview client:visible />
   </main>
   <Footer client:visible />
 </Layout>

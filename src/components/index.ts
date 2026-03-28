@@ -4,7 +4,6 @@ export { Topics } from './Topics';
 export { RepoSection } from './RepoSection';
 export { About } from './About';
 export { Team } from './Team';
-export { Subscribe } from './Subscribe';
 export { Footer } from './Footer';
 export { ScrollReveal, StaggerReveal } from './ScrollReveal';
 export { AgentLoopDiagram } from './AgentLoopDiagram';

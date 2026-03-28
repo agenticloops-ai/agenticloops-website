@@ -33,6 +33,8 @@ jobs:
         with:
           app-id: ${{ secrets.AGENTIC_LOOPS_GITHUB_APP_ID }}
           private-key: ${{ secrets.AGENTIC_LOOPS_GITHUB_APP_PRIVATE_KEY }}
+          owner: agenticloops-ai
+          repositories: agenticloops-website,agentic-ai-engineering,agentic-ai-patterns
 
       - name: Checkout website
         uses: actions/checkout@v4

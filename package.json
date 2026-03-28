@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/sync-content.js && astro dev",
+    "dev": "node scripts/sync-content.js && node scripts/sync-patterns.js && astro dev",
     "start": "astro dev",
-    "build": "node scripts/sync-content.js && astro check && astro build",
+    "build": "node scripts/sync-content.js && node scripts/sync-patterns.js && astro check && astro build",
     "preview": "astro preview",
     "lint": "eslint .",
     "sync": "node scripts/sync-content.js",
@@ -24,14 +24,21 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^25.3.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "autoprefixer": "^10.4.20",
     "dotenv": "^17.2.3",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3",
+    "typescript-eslint": "^8.57.2",
     "vite": "^6.1.0"
   }
 }

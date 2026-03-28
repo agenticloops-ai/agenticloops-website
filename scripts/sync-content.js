@@ -31,8 +31,8 @@ function getAuthenticatedRepoUrl(repoUrl) {
     if (!GITHUB_TOKEN) {
         return repoUrl;
     }
-    // Convert https://github.com/... to https://<token>@github.com/...
-    return repoUrl.replace('https://github.com/', `https://${GITHUB_TOKEN}@github.com/`);
+    // Convert https://github.com/... to https://x-access-token:<token>@github.com/...
+    return repoUrl.replace('https://github.com/', `https://x-access-token:${GITHUB_TOKEN}@github.com/`);
 }
 
 function cleanDir(dir) {
@@ -137,8 +137,8 @@ function transformLinks(content, repoUrl, branch, relativePath, courseName) {
         if (url.startsWith('./') || url.startsWith('../')) {
             // Resolve the relative path
             const resolvedPath = path.posix.normalize(path.posix.join(relativePath, url));
-            // Remove trailing README.md or index.md
-            const cleanPath = resolvedPath.replace(/\/(README|index)\.md$/i, '').replace(/\/$/, '');
+            // Remove trailing README.md/index.md, strip .md extension, clean trailing slash, lowercase for Astro
+            const cleanPath = resolvedPath.replace(/\/(README|index)\.md$/i, '').replace(/\.md$/i, '').replace(/\/$/, '').toLowerCase();
             const newUrl = `/courses/${courseName}/${cleanPath}`;
             console.log(`    ↳ Internal link: ${url} → ${newUrl}`);
             return `${prefix}(${newUrl})`;
@@ -223,6 +223,24 @@ async function fetchFromRepo(course) {
                 const destPath = path.join(courseDestDir, moduleDir);
                 fs.mkdirSync(destPath, { recursive: true });
                 copyAndRename(srcPath, destPath, course.repo, course.branch, moduleDir, courseName);
+            }
+
+            // Also copy root-level markdown files (e.g., SETUP.md)
+            const rootMdFiles = items.filter(item => {
+                const itemPath = path.join(tempDir, item);
+                return fs.statSync(itemPath).isFile() && item.endsWith('.md') && item !== 'README.md';
+            });
+            for (const mdFile of rootMdFiles) {
+                const srcFile = path.join(tempDir, mdFile);
+                const destFile = path.join(courseDestDir, mdFile);
+                let content = fs.readFileSync(srcFile, 'utf-8');
+                // Add basic frontmatter if missing
+                if (!content.startsWith('---')) {
+                    const title = mdFile.replace('.md', '').replace(/[-_]/g, ' ');
+                    content = `---\ntitle: "${title}"\n---\n\n${content}`;
+                }
+                fs.writeFileSync(destFile, content);
+                console.log(`    ↳ Copied root file: ${mdFile}`);
             }
         } else {
             // Copy content from single subdirectory
