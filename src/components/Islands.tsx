@@ -20,6 +20,7 @@ import { TutorialsPage as TutorialsPageComponent } from './TutorialsPage';
 import { TutorialsPreview as TutorialsPreviewComponent } from './TutorialsPreview';
 import { ThreeWaysIn as ThreeWaysInComponent } from './ThreeWaysIn';
 import { LearnLanding as LearnLandingComponent } from './learn/LearnLanding';
+import { LearnPreview as LearnPreviewComponent } from './LearnPreview';
 
 function withTheme<T extends object>(Component: React.ComponentType<T>) {
     return (props: T) => (
@@ -49,3 +50,4 @@ export const TutorialsPageIsland = withTheme(TutorialsPageComponent);
 export const TutorialsPreview = withTheme(TutorialsPreviewComponent);
 export const ThreeWaysIn = withTheme(ThreeWaysInComponent);
 export const LearnLanding = withTheme(LearnLandingComponent);
+export const LearnPreview = withTheme(LearnPreviewComponent);

@@ -1,10 +1,12 @@
 ---
-import LearnLayout from '../../layouts/LearnLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 import { Header, Footer, LearnLanding } from '../../components/Islands';
 ---
 
-<LearnLayout title="Learn | Agentic Loops">
-	<Header client:load slot="header" />
-	<LearnLanding client:load />
-	<Footer client:load slot="footer" />
-</LearnLayout>
+<Layout title="Learning Path | Agentic Loops">
+	<Header client:load />
+	<main style="padding-top: 60px;">
+		<LearnLanding client:load />
+	</main>
+	<Footer client:load />
+</Layout>

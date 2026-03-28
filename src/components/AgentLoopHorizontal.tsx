@@ -56,7 +56,7 @@ export function AgentLoopHorizontal() {
                     x1={ctxX + ctxW} y1={llmY + llmH / 2}
                     x2={llmX} y2={llmY + llmH / 2}
                     stroke="#8b5cf6" strokeWidth="2" className="hflow" markerEnd="url(#ah)"
-                    style={{ opacity: activeStep === 1 ? 1 : 0.15, transition: 'opacity 0.3s' }}
+                    style={{ opacity: activeStep === 1 ? 1 : 0.35, transition: 'opacity 0.3s' }}
                 />
 
                 {/* LLM → Tools */}
@@ -64,7 +64,7 @@ export function AgentLoopHorizontal() {
                     x1={llmX + llmW} y1={llmY + llmH / 2}
                     x2={toolX} y2={llmY + llmH / 2}
                     stroke="#8b5cf6" strokeWidth="2" className="hflow" markerEnd="url(#ah)"
-                    style={{ opacity: activeStep === 2 ? 1 : 0.15, transition: 'opacity 0.3s' }}
+                    style={{ opacity: activeStep === 2 ? 1 : 0.35, transition: 'opacity 0.3s' }}
                 />
 
                 {/* Loop back: Tools bottom → Context bottom */}
@@ -75,7 +75,7 @@ export function AgentLoopHorizontal() {
                         L ${ctxX + ctxW / 2} ${rowY + ctxH}`}
                     fill="none" stroke="#8b5cf6" strokeWidth="2" className="hflow"
                     markerEnd="url(#ah-up)"
-                    style={{ opacity: activeStep === 3 ? 1 : 0.15, transition: 'opacity 0.3s' }}
+                    style={{ opacity: activeStep === 3 ? 1 : 0.35, transition: 'opacity 0.3s' }}
                 />
             </svg>
 
@@ -89,20 +89,20 @@ export function AgentLoopHorizontal() {
                 color: 'var(--color-text-muted)',
                 fontFamily: 'var(--font-mono)',
                 display: 'flex', alignItems: 'center', gap: '0.3rem',
-                opacity: activeStep === 3 ? 1 : 0.3,
+                opacity: activeStep === 3 ? 1 : 0.5,
                 transition: 'opacity 0.3s',
             }}>
                 <span style={{ fontSize: '0.8rem' }}>↺</span> repeat until done
             </div>
 
             {/* Step labels */}
-            <div style={{ position: 'absolute', left: `${ctxX}px`, top: `${rowY - 28}px`, width: `${ctxW}px`, textAlign: 'center', fontSize: '0.75rem', fontWeight: 600, lineHeight: '1.2', color: activeStep === 0 ? 'var(--color-accent-primary)' : 'var(--color-text-muted)', opacity: activeStep === 0 ? 1 : 0.3, transition: 'all 0.3s' }}>
+            <div style={{ position: 'absolute', left: `${ctxX}px`, top: `${rowY - 28}px`, width: `${ctxW}px`, textAlign: 'center', fontSize: '0.75rem', fontWeight: 600, lineHeight: '1.2', color: activeStep === 0 ? 'var(--color-accent-primary)' : 'var(--color-text-secondary)', opacity: activeStep === 0 ? 1 : 0.5, transition: 'all 0.3s' }}>
                 ① gather context
             </div>
-            <div style={{ position: 'absolute', left: `${llmX}px`, top: `${llmY - 38}px`, width: `${llmW}px`, textAlign: 'center', fontSize: '0.75rem', fontWeight: 600, lineHeight: '1.2', color: activeStep === 1 ? '#f59e0b' : 'var(--color-text-muted)', opacity: activeStep === 1 ? 1 : 0.3, transition: 'all 0.3s' }}>
+            <div style={{ position: 'absolute', left: `${llmX}px`, top: `${llmY - 38}px`, width: `${llmW}px`, textAlign: 'center', fontSize: '0.75rem', fontWeight: 600, lineHeight: '1.2', color: activeStep === 1 ? '#f59e0b' : 'var(--color-text-secondary)', opacity: activeStep === 1 ? 1 : 0.5, transition: 'all 0.3s' }}>
                 ② plan &<br />decide
             </div>
-            <div style={{ position: 'absolute', left: `${toolX}px`, top: `${rowY - 28}px`, width: `${toolW}px`, textAlign: 'center', fontSize: '0.75rem', fontWeight: 600, lineHeight: '1.2', color: activeStep === 2 ? '#8b5cf6' : 'var(--color-text-muted)', opacity: activeStep === 2 ? 1 : 0.3, transition: 'all 0.3s' }}>
+            <div style={{ position: 'absolute', left: `${toolX}px`, top: `${rowY - 28}px`, width: `${toolW}px`, textAlign: 'center', fontSize: '0.75rem', fontWeight: 600, lineHeight: '1.2', color: activeStep === 2 ? '#8b5cf6' : 'var(--color-text-secondary)', opacity: activeStep === 2 ? 1 : 0.5, transition: 'all 0.3s' }}>
                 ③ execute tool
             </div>
 

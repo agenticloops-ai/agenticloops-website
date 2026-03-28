@@ -4,12 +4,6 @@ import { ScrollReveal } from './ScrollReveal';
 
 const moduleColorClasses = ['cyan', 'violet', 'pink', 'emerald', 'amber'] as const;
 
-const filterPills = [
-    { label: 'All', color: 'cyan' },
-    { label: 'Python', color: 'emerald' },
-    { label: 'Tutorials', color: 'violet' },
-    { label: 'Tags', color: 'pink' },
-];
 
 interface Lesson {
     title: string;
@@ -45,21 +39,6 @@ export function TutorialsPreview() {
                 <ScrollReveal>
                     <div className="mb-8">
                         <h2 className="mb-4">Agentic Tutorials</h2>
-                        <div className="flex flex-wrap gap-2">
-                            {filterPills.map((pill) => (
-                                <span
-                                    key={pill.label}
-                                    className="text-xs font-mono px-3 py-1 rounded-full border border-border text-text-muted"
-                                    style={pill.label === 'All' ? {
-                                        background: 'var(--color-accent-primary)',
-                                        color: '#fff',
-                                        borderColor: 'var(--color-accent-primary)',
-                                    } : {}}
-                                >
-                                    {pill.label}
-                                </span>
-                            ))}
-                        </div>
                     </div>
                 </ScrollReveal>
 
@@ -71,7 +50,7 @@ export function TutorialsPreview() {
                         return (
                             <ScrollReveal key={module.id} direction="up" delay={i * 0.05}>
                                 <a
-                                    href={`${baseUrl}tutorials`}
+                                    href={`${baseUrl}tutorials#module-${module.id}`}
                                     className={`card card-color-${colorClass} block p-5 h-full no-underline text-inherit group flex flex-col`}
                                 >
                                     {isComingSoon && (
