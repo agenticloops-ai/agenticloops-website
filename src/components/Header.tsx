@@ -137,7 +137,7 @@ export function Header() {
                         })}
                     </div>
 
-                    <Search />
+                    {/* <Search /> */}
 
                     <button
                         onClick={() => toggleTheme()}

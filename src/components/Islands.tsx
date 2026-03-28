@@ -18,6 +18,7 @@ import { PatternsPage as PatternsPageComponent } from './PatternsPage';
 import { PatternsPreview as PatternsPreviewComponent } from './PatternsPreview';
 import { TutorialsPage as TutorialsPageComponent } from './TutorialsPage';
 import { TutorialsPreview as TutorialsPreviewComponent } from './TutorialsPreview';
+import { ThreeWaysIn as ThreeWaysInComponent } from './ThreeWaysIn';
 
 function withTheme<T extends object>(Component: React.ComponentType<T>) {
     return (props: T) => (
@@ -45,3 +46,4 @@ export const PatternsPageIsland = withTheme(PatternsPageComponent);
 export const PatternsPreview = withTheme(PatternsPreviewComponent);
 export const TutorialsPageIsland = withTheme(TutorialsPageComponent);
 export const TutorialsPreview = withTheme(TutorialsPreviewComponent);
+export const ThreeWaysIn = withTheme(ThreeWaysInComponent);

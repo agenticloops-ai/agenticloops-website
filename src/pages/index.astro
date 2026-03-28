@@ -2,8 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import { Header, Hero, About, TutorialsPreview, PatternsPreview, Subscribe, Footer } from '../components/Islands';
 import ThemeScript from '../components/ThemeScript.astro';
-
-const baseUrl = import.meta.env.BASE_URL || '';
 ---
 
 <Layout title="Agentic Loops">
@@ -11,52 +9,6 @@ const baseUrl = import.meta.env.BASE_URL || '';
   <Header client:load />
   <main>
     <Hero client:load />
-
-    <!-- Three Ways In -->
-    <section class="section section-alt relative overflow-hidden">
-      <div class="gradient-blur gradient-blur-blue absolute -top-32 -right-[5%] opacity-10"></div>
-      <div class="container">
-        <div class="text-center mb-14">
-          <h2 class="mb-4">Three ways in</h2>
-          <p class="body-text max-w-[500px] mx-auto">
-            Whether you're exploring concepts, following tutorials, or looking for patterns — we've got you covered.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
-          <a href={`${baseUrl}learn`} class="card p-6 no-underline text-inherit group card-color-cyan">
-            <h3 class="card-title mb-2">Learning Path</h3>
-            <p class="text-sm text-text-secondary m-0 mb-4">
-              Find your gaps across 8 capability dimensions of agentic AI engineering.
-            </p>
-            <span class="link-action text-sm">
-              Explore &rarr;
-            </span>
-          </a>
-
-          <a href={`${baseUrl}tutorials`} class="card p-6 no-underline text-inherit group card-color-violet">
-            <h3 class="card-title mb-2">Tutorials</h3>
-            <p class="text-sm text-text-secondary m-0 mb-4">
-              Hands-on modules from basics to production — learn by building real agents.
-            </p>
-            <span class="link-action text-sm">
-              Start &rarr;
-            </span>
-          </a>
-
-          <a href={`${baseUrl}patterns`} class="card p-6 no-underline text-inherit group card-color-emerald">
-            <h3 class="card-title mb-2">Patterns</h3>
-            <p class="text-sm text-text-secondary m-0 mb-4">
-              Battle-tested architecture patterns with diagrams, trade-offs, and code.
-            </p>
-            <span class="link-action text-sm">
-              Browse &rarr;
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <About client:visible />
     <TutorialsPreview client:visible />
     <PatternsPreview client:visible />
