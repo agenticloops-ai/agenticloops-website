@@ -63,9 +63,9 @@ export function Hero() {
                         </ScrollReveal>
                     </div>
 
-                    {/* Right: Agent Loop Diagram */}
+                    {/* Right: Agent Loop Diagram — hidden on mobile */}
                     <ScrollReveal direction="right" delay={0.2}>
-                        <div className="flex justify-center items-center">
+                        <div className="hidden lg:flex justify-center items-center">
                             <div className="relative p-4 border border-border rounded-xl" style={{
                                 background: '#1e2a3a',
                                 boxShadow: '0 0 60px rgba(6, 182, 212, 0.08), 0 0 120px rgba(139, 92, 246, 0.05)',
