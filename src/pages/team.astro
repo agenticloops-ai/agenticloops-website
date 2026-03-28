@@ -1,11 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Header, Team as TeamSection, RepoSection, Footer } from '../components/Islands';
-import ThemeScript from '../components/ThemeScript.astro';
 ---
 
 <Layout title="Team | Agentic Loops">
-  <ThemeScript />
   <Header client:load />
   <main>
     <TeamSection client:visible />

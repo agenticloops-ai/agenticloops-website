@@ -3,7 +3,6 @@ import Layout from './Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import { Header, Footer } from '../components/Islands';
-import ThemeScript from '../components/ThemeScript.astro';
 
 interface Props {
   title: string;
@@ -18,7 +17,6 @@ const baseUrl = import.meta.env.BASE_URL || '';
 ---
 
 <Layout title={`${title} | Agentic Loops`}>
-  <ThemeScript />
   <Header client:load />
 
   <div class="tutorial-layout">

@@ -47,7 +47,7 @@ export function Topics() {
                 setLoading(false);
             })
             .catch(() => setLoading(false));
-    }, []);
+    }, [baseUrl]);
 
     return (
         <section className="section relative overflow-hidden" id="topics">

@@ -35,7 +35,7 @@ export function Hero() {
     const [activeTab, setActiveTab] = useState(0);
 
     return (
-        <section className="section hero-section overflow-hidden relative" style={{ paddingTop: '5rem', paddingBottom: '2rem' }}>
+        <section className="section hero-section overflow-hidden relative" style={{ paddingTop: '4rem', paddingBottom: '1.5rem' }}>
             <div className="gradient-blur gradient-blur-blue absolute top-32 -right-[5%]"></div>
             <div className="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%]"></div>
 
@@ -45,6 +45,21 @@ export function Hero() {
                     {/* Left: Content */}
                     <div>
                         <ScrollReveal direction="left">
+                            <div className="flex items-center gap-2 mb-3">
+                                <span className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded border" style={{
+                                    color: 'var(--color-accent-primary)',
+                                    borderColor: 'var(--color-accent-primary)',
+                                    background: 'color-mix(in srgb, var(--color-accent-primary) 10%, transparent)',
+                                }}>
+                                    Code First
+                                </span>
+                                <span className="text-xs font-mono font-bold uppercase tracking-wider px-3 py-1 rounded border" style={{
+                                    color: 'var(--color-text-muted)',
+                                    borderColor: 'var(--color-border)',
+                                }}>
+                                    No Hype
+                                </span>
+                            </div>
                             <h1 className="mb-4">
                                 Open-source learning<br />
                                 for{' '}
@@ -55,7 +70,7 @@ export function Hero() {
                         </ScrollReveal>
 
                         <ScrollReveal direction="left" delay={0.1}>
-                            <p className="text-text-secondary mb-6 max-w-[480px] lead-text">
+                            <p className="text-text-secondary mb-4 max-w-[480px] lead-text">
                                 Design patterns, system architecture, and
                                 production-grade implementations for software
                                 engineers building autonomous AI systems.
@@ -80,8 +95,8 @@ export function Hero() {
 
                 {/* Three Ways In — integrated below */}
                 <ScrollReveal delay={0.3}>
-                    <div className="mt-10 pt-8 border-t border-border">
-                        <h2 className="text-center text-lg font-semibold mb-4">Three ways in</h2>
+                    <div className="mt-6 pt-6 border-t border-border">
+                        <h2 className="text-center text-lg font-semibold mb-3">Three ways in</h2>
 
                         {/* Tab bar */}
                         <div className="mx-auto mb-4">

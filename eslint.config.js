@@ -25,6 +25,7 @@ export default defineConfig([
       'react-refresh/only-export-components': 'off',
       'no-misleading-character-class': 'off',
       'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/static-components': 'off',
     },
   },
 ])

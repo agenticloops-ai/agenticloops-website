@@ -15,7 +15,7 @@ export function PatternsPreview() {
                 if (Array.isArray(data)) setPatterns(data);
             })
             .catch(() => { });
-    }, []);
+    }, [baseUrl]);
 
     const categoryData = PATTERN_CATEGORIES.map(cat => {
         const catPatterns = patterns.filter(p => p.category === cat.id);

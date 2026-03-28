@@ -136,7 +136,7 @@ export function PatternsPage() {
                 });
             })
             .catch(() => setLoading(false));
-    }, []);
+    }, [baseUrl]);
 
     // Group patterns by category
     const patternsByCategory = useMemo(() => {

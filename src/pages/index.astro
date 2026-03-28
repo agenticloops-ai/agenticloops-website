@@ -1,11 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Header, Hero, About, TutorialsPreview, LearnPreview, PatternsPreview, Footer } from '../components/Islands';
-import ThemeScript from '../components/ThemeScript.astro';
 ---
 
 <Layout title="Agentic Loops">
-  <ThemeScript />
   <Header client:load />
   <main>
     <Hero client:load />

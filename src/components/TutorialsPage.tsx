@@ -75,7 +75,7 @@ export function TutorialsPage() {
                 });
             })
             .catch(() => setLoading(false));
-    }, []);
+    }, [baseUrl]);
 
     const totalLessons = useMemo(() => modules.reduce((sum, m) => sum + m.lessons.length, 0), [modules]);
     const totalMinutes = useMemo(() =>
