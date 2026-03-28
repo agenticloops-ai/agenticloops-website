@@ -5,20 +5,20 @@ import { AgentLoopHorizontal } from './AgentLoopHorizontal';
 
 const tabs = [
     {
-        id: 'learning-path',
-        label: 'Learning Path',
-        title: 'Learning Path',
-        description: 'Learning design patterns, create architecture for software engineers building autonomous AI systems.',
-        href: 'learn',
-        cta: 'Explore',
-    },
-    {
         id: 'tutorials',
         label: 'Tutorials',
         title: 'Tutorials',
         description: 'Hands-on modules from basics to production — learn by building real agents.',
         href: 'tutorials',
         cta: 'Start',
+    },
+    {
+        id: 'learning-path',
+        label: 'Learning Path',
+        title: 'Learning Path',
+        description: 'Eight capability dimensions and personalized learning plans for your goal.',
+        href: 'learn',
+        cta: 'Explore',
     },
     {
         id: 'patterns',

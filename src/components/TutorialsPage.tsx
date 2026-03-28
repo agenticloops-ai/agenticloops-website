@@ -1,15 +1,30 @@
 import { useState, useEffect, useMemo } from 'react';
 import {
-    Search, Filter, X, ChevronDown, ChevronRight, ArrowRight,
+    ChevronDown, Clock,
     BookOpen, ExternalLink
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import * as Icons from 'lucide-react';
-import { ScrollReveal } from './ScrollReveal';
 import { getGitHubUrl, GITHUB_REPOS } from '../config/repos';
 import { Github } from './BrandIcons';
 
 const moduleColorClasses = ['cyan', 'violet', 'pink', 'emerald', 'amber'] as const;
+
+// Rough time estimates per lesson (minutes)
+const LESSON_TIME: Record<string, number> = {
+    'simple-llm-call': 20, 'prompt-engineering': 30, 'chat': 25,
+    'tool-use': 30, 'agent-loop': 45, 'capstone': 60,
+    'prompt-chaining': 30, 'routing': 30, 'parallelization': 30,
+    'orchestrator-workers': 45, 'evaluator-optimizer': 45, 'human-in-the-loop': 35,
+};
+
+function estimateTime(slug: string): number {
+    const lastPart = slug.split('/').pop() || '';
+    for (const [key, val] of Object.entries(LESSON_TIME)) {
+        if (lastPart.includes(key)) return val;
+    }
+    return 30; // default
+}
 
 interface Lesson {
     title: string;
@@ -37,404 +52,261 @@ function getIcon(iconName: string): LucideIcon {
 export function TutorialsPage() {
     const [modules, setModules] = useState<Module[]>([]);
     const [loading, setLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState('');
-    const [selectedModule, setSelectedModule] = useState<string | null>(null);
-    const [showFilters, setShowFilters] = useState(false);
+    const [expandedModules, setExpandedModules] = useState<Set<string>>(new Set());
     const baseUrl = import.meta.env.BASE_URL || '';
 
     useEffect(() => {
         fetch(`${baseUrl}api/course-modules.json`)
             .then(res => res.json())
             .then(data => {
-                if (Array.isArray(data)) setModules(data);
+                if (Array.isArray(data)) {
+                    setModules(data);
+                    // Expand all modules by default
+                    setExpandedModules(new Set(data.map((m: Module) => m.id)));
+                }
                 setLoading(false);
             })
             .catch(() => setLoading(false));
     }, []);
 
     const totalLessons = useMemo(() => modules.reduce((sum, m) => sum + m.lessons.length, 0), [modules]);
+    const totalMinutes = useMemo(() =>
+        modules.reduce((sum, m) => sum + m.lessons.reduce((s, l) => s + estimateTime(l.slug), 0), 0),
+        [modules]
+    );
 
-    const filteredModules = useMemo(() => {
-        return modules
-            .map(mod => {
-                if (selectedModule && mod.id !== selectedModule) return null;
+    const filteredModules = modules;
 
-                if (!searchQuery) return mod;
-
-                const q = searchQuery.toLowerCase();
-                const moduleMatch = mod.title.toLowerCase().includes(q) || mod.description.toLowerCase().includes(q);
-                const matchingLessons = mod.lessons.filter(l =>
-                    l.title.toLowerCase().includes(q) || l.description.toLowerCase().includes(q)
-                );
-
-                if (moduleMatch) return mod;
-                if (matchingLessons.length > 0) return { ...mod, lessons: matchingLessons };
-                return null;
-            })
-            .filter((mod): mod is Module => mod !== null);
-    }, [modules, selectedModule, searchQuery]);
-
-    const clearFilters = () => {
-        setSelectedModule(null);
-        setSearchQuery('');
+    const toggleModule = (id: string) => {
+        setExpandedModules(prev => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
     };
 
-    const hasActiveFilters = selectedModule || searchQuery;
+    // Running lesson counter across modules
+    let globalLessonIndex = 0;
 
     return (
         <div className="tutorials-page">
-            {/* Hero */}
-            <section className="section hero-section relative overflow-hidden" style={{ minHeight: 'auto', paddingTop: '8rem', paddingBottom: '2.5rem' }}>
-                <div className="gradient-blur gradient-blur-blue absolute top-32 -right-[5%]"></div>
-                <div className="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%]"></div>
-
-                <div className="container">
-                    <ScrollReveal>
-                        <div className="text-center mb-8">
-                            <div className="flex items-center justify-center gap-4 mb-6">
-                                <div className="w-10 h-0.5 bg-accent-primary"></div>
-                                <span className="badge">
-                                    <span className="badge-dot"></span>
-                                    {totalLessons} lessons
-                                </span>
-                                <div className="w-10 h-0.5 bg-accent-primary"></div>
-                            </div>
-
-                            <h1 className="mb-6">
-                                Agentic Tutorials
-                            </h1>
-
-                            <p className="body-text max-w-[700px] mx-auto mb-8">
-                                A comprehensive curriculum for building production-ready AI agents.
+            {/* Header bar */}
+            <section className="relative overflow-hidden" style={{ padding: '5.5rem 1.5rem 1.5rem' }}>
+                <div className="container max-w-[900px]">
+                    <div className="flex items-center justify-between mb-4">
+                        <div>
+                            <h1 className="text-2xl font-bold mb-1">Agentic Tutorials</h1>
+                            <p className="text-sm text-text-secondary m-0">
+                                {totalLessons} lessons · ~{Math.round(totalMinutes / 60)} hours · from basics to production
                             </p>
-
-                            <a
-                                href={GITHUB_REPOS.agenticAIEngineering}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-secondary inline-flex items-center gap-2"
-                                style={{ padding: '0.65rem 1.5rem', fontSize: '0.8rem' }}
-                            >
-                                <Github size={16} />
-                                View on GitHub <ExternalLink size={14} />
-                            </a>
                         </div>
-                    </ScrollReveal>
+                        <a
+                            href={GITHUB_REPOS.agenticAIEngineering}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-secondary inline-flex items-center gap-1.5 shrink-0"
+                            style={{ padding: '0.4rem 0.8rem', fontSize: '0.75rem' }}
+                        >
+                            <Github size={13} /> GitHub <ExternalLink size={10} />
+                        </a>
+                    </div>
+
+                    {/* Module jump pills */}
+                    <div className="flex flex-wrap gap-2">
+                        {modules.map((mod, i) => {
+                            const colorClass = moduleColorClasses[i % moduleColorClasses.length];
+                            const isComingSoon = mod.lessons.length > 0 && mod.lessons.every(l => l.status === 'coming-soon');
+                            return (
+                                <button
+                                    key={mod.id}
+                                    onClick={() => {
+                                        // Expand and scroll to module
+                                        setExpandedModules(prev => new Set(prev).add(mod.id));
+                                        document.getElementById(`module-${mod.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }}
+                                    className="border-none cursor-pointer transition-all flex items-center gap-1.5"
+                                    style={{
+                                        padding: '0.35rem 0.7rem',
+                                        borderRadius: '5px',
+                                        fontSize: '0.75rem',
+                                        fontFamily: 'inherit',
+                                        fontWeight: 500,
+                                        background: `color-mix(in srgb, var(--palette-${colorClass}) 10%, transparent)`,
+                                        color: `var(--palette-${colorClass})`,
+                                        border: `1px solid color-mix(in srgb, var(--palette-${colorClass}) 25%, transparent)`,
+                                        opacity: isComingSoon ? 0.5 : 1,
+                                    }}
+                                >
+                                    <span className="font-mono text-[10px] opacity-60">{String(i + 1).padStart(2, '0')}</span>
+                                    {mod.title}
+                                    <span className="text-[10px] opacity-50">{mod.lessons.length}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
 
             {/* Content */}
-            <section className="section" style={{ paddingTop: '2rem' }}>
-                <div className="container">
-                    {/* Search & Filters Bar */}
-                    <div className="tp-toolbar">
-                        <div className="tp-search-bar">
-                            <Search size={18} className="tp-search-icon" />
-                            <input
-                                type="text"
-                                placeholder="Search tutorials..."
-                                value={searchQuery}
-                                onChange={e => setSearchQuery(e.target.value)}
-                                className="tp-search-input"
-                            />
-                            {searchQuery && (
-                                <button className="tp-search-clear" onClick={() => setSearchQuery('')}>
-                                    <X size={14} />
-                                </button>
-                            )}
-                        </div>
-                        <button
-                            className={`tp-filter-toggle ${hasActiveFilters ? 'has-filters' : ''}`}
-                            onClick={() => setShowFilters(!showFilters)}
-                        >
-                            <Filter size={16} />
-                            Modules
-                            {selectedModule && (
-                                <span className="tp-filter-count">1</span>
-                            )}
-                            <ChevronDown size={14} className={showFilters ? 'tp-chevron-open' : ''} />
-                        </button>
-                    </div>
+            <section style={{ padding: '1rem 1.5rem 3rem' }}>
+                <div className="container max-w-[900px]">
 
-                    {/* Expandable Filter Panel */}
-                    {showFilters && (
-                        <div className="tp-filter-panel">
-                            <div className="tp-filter-group">
-                                <span className="tp-filter-label">Module</span>
-                                <div className="tp-filter-chips">
-                                    {modules.map((mod, i) => {
-                                        const colorClass = moduleColorClasses[i % moduleColorClasses.length];
-                                        return (
-                                            <button
-                                                key={mod.id}
-                                                className={`tp-chip ${selectedModule === mod.id ? 'active' : ''}`}
-                                                onClick={() => setSelectedModule(selectedModule === mod.id ? null : mod.id)}
-                                                style={selectedModule === mod.id ? {
-                                                    borderColor: `var(--palette-${colorClass})`,
-                                                    color: `var(--palette-${colorClass})`,
-                                                    background: `color-mix(in srgb, var(--palette-${colorClass}) 10%, transparent)`
-                                                } : undefined}
-                                            >
-                                                {mod.title}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                            {hasActiveFilters && (
-                                <button className="tp-clear-filters" onClick={clearFilters}>
-                                    <X size={12} /> Clear all filters
-                                </button>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Module Grid with Lessons */}
                     {loading ? (
-                        <div className="text-center py-16 text-text-muted">
-                            Loading tutorials...
-                        </div>
-                    ) : filteredModules.length === 0 ? (
-                        <div className="text-center py-16">
-                            <p className="text-text-muted mb-4">No tutorials match your criteria</p>
-                            <button className="btn-secondary" onClick={clearFilters} style={{ padding: '0.5rem 1.25rem', fontSize: '0.8rem' }}>
-                                Clear filters
-                            </button>
-                        </div>
+                        <div className="text-center py-16 text-text-muted">Loading tutorials...</div>
                     ) : (
-                        filteredModules.map((module, moduleIndex) => {
-                            const actualIndex = modules.findIndex(m => m.id === module.id);
-                            const colorClass = moduleColorClasses[actualIndex % moduleColorClasses.length];
-                            const isComingSoon = module.lessons.length > 0 && module.lessons.every(l => l.status === 'coming-soon');
+                        <div className="space-y-6">
+                            {filteredModules.map((module, moduleIndex) => {
+                                const actualIndex = modules.findIndex(m => m.id === module.id);
+                                const colorClass = moduleColorClasses[actualIndex % moduleColorClasses.length];
+                                const isExpanded = expandedModules.has(module.id);
+                                const isComingSoon = module.lessons.length > 0 && module.lessons.every(l => l.status === 'coming-soon');
+                                const moduleTime = module.lessons.reduce((s, l) => s + estimateTime(l.slug), 0);
+                                const startIndex = globalLessonIndex;
+                                globalLessonIndex += module.lessons.length;
 
-                            return (
-                                <div key={module.id} className={moduleIndex < filteredModules.length - 1 ? 'mb-24' : ''}>
-                                    <ScrollReveal>
-                                        <div
-                                            className="mb-12 pt-4 pb-6 pl-6 border-b-2 border-border relative"
+                                return (
+                                    <div key={module.id} id={`module-${module.id}`}>
+                                        {/* Module header — clickable accordion */}
+                                        <button
+                                            onClick={() => toggleModule(module.id)}
+                                            className="w-full text-left cursor-pointer border-none p-4 rounded-lg transition-all"
                                             style={{
-                                                borderLeft: `4px solid var(--palette-${colorClass})`,
-                                                background: `linear-gradient(90deg, color-mix(in srgb, var(--palette-${colorClass}) 5%, transparent), transparent)`
+                                                background: 'var(--color-bg-card-solid)',
+                                                border: `1px solid ${isExpanded ? `var(--palette-${colorClass})` : 'var(--color-border)'}`,
+                                                borderLeft: `3px solid var(--palette-${colorClass})`,
                                             }}
                                         >
-                                            <div
-                                                className="absolute top-0 -left-1 w-1 h-10"
-                                                style={{ background: `var(--palette-${colorClass})`, boxShadow: `0 0 20px var(--palette-${colorClass})` }}
-                                            ></div>
-
-                                            <div className="flex items-center gap-4 mb-3">
-                                                <div
-                                                    className="label py-1 px-3 border-2"
+                                            <div className="flex items-center gap-3">
+                                                <span
+                                                    className="text-[10px] font-mono font-bold px-2 py-0.5 rounded shrink-0"
                                                     style={{
                                                         color: `var(--palette-${colorClass})`,
-                                                        borderColor: `var(--palette-${colorClass})`,
-                                                        clipPath: 'var(--clip-corner-sm)'
+                                                        background: `color-mix(in srgb, var(--palette-${colorClass}) 12%, transparent)`,
+                                                        border: `1px solid color-mix(in srgb, var(--palette-${colorClass}) 30%, transparent)`,
                                                     }}
                                                 >
-                                                    MODULE_0{actualIndex + 1}
-                                                </div>
-                                                <h3
-                                                    className="text-2xl font-bold m-0"
-                                                    style={{ color: `var(--palette-${colorClass})`, textShadow: `0 0 20px color-mix(in srgb, var(--palette-${colorClass}) 25%, transparent)` }}
-                                                >
-                                                    {module.title}
-                                                </h3>
-                                                {isComingSoon && (
-                                                    <div
-                                                        className="flex items-center gap-1.5 px-3 py-1 text-xs font-mono uppercase tracking-wider border rounded"
-                                                        style={{
-                                                            color: 'var(--color-text-muted)',
-                                                            borderColor: 'var(--color-border)',
-                                                            background: 'color-mix(in srgb, var(--color-bg-elevated) 80%, transparent)'
-                                                        }}
-                                                    >
-                                                        <Icons.Clock size={10} /> Coming Soon
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <p className="body-text m-0">
-                                                {module.description}
-                                            </p>
-                                        </div>
-                                    </ScrollReveal>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {module.lessons.map((lesson, i) => {
-                                            const LessonIcon = getIcon(lesson.icon || 'book-open');
-
-                                            return (
-                                                <ScrollReveal
-                                                    key={lesson.slug}
-                                                    direction={i % 2 === 0 ? 'left' : 'right'}
-                                                    delay={i * 0.03}
-                                                >
-                                                    <a
-                                                        href={getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, lesson.slug)}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        onClick={() => {
-                                                            if (typeof window.gtag === 'function') {
-                                                                window.gtag('event', 'click_lesson', {
-                                                                    event_category: 'engagement',
-                                                                    event_label: lesson.slug,
-                                                                    module: module.title
-                                                                });
-                                                            }
-                                                        }}
-                                                        className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:-translate-y-0.5 group flex flex-col`}
-                                                    >
-
-
-                                                        {lesson.status === 'coming-soon' && (
-                                                            <div
-                                                                className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 text-xs font-mono uppercase tracking-wider border rounded"
-                                                                style={{
-                                                                    color: 'var(--color-text-muted)',
-                                                                    borderColor: 'var(--color-border)',
-                                                                    background: 'color-mix(in srgb, var(--color-bg-elevated) 80%, transparent)'
-                                                                }}
-                                                            >
-                                                                <Icons.Clock size={10} /> Coming Soon
-                                                            </div>
-                                                        )}
-
-                                                        <div className="icon-box icon-box-outline mb-4">
-                                                            <LessonIcon size={22} strokeWidth={2.5} />
-                                                        </div>
-
-                                                        <h4 className="card-title mb-3 flex items-center gap-2">
-                                                            {lesson.title}
-                                                            <ChevronRight size={16} className="opacity-50" />
-                                                        </h4>
-
-                                                        {lesson.description && (
-                                                            <p className="text-sm text-text-secondary leading-relaxed mb-2">
-                                                                {lesson.description}
-                                                            </p>
-                                                        )}
-
-                                                        <div className="mt-auto pt-2 flex items-center justify-end gap-2 text-xs font-mono font-bold uppercase tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">
-                                                            <span className="flex items-center gap-1.5">
-                                                                view code <Github size={14} />
+                                                    MODULE {String(actualIndex + 1).padStart(2, '0')}
+                                                </span>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-center gap-2">
+                                                        <h3 className="text-base font-semibold m-0" style={{ color: `var(--palette-${colorClass})` }}>
+                                                            {module.title}
+                                                        </h3>
+                                                        {isComingSoon && (
+                                                            <span className="text-[10px] font-mono text-text-muted flex items-center gap-1">
+                                                                <Clock size={9} /> Coming Soon
                                                             </span>
-                                                            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                                                        </div>
-                                                    </a>
-                                                </ScrollReveal>
-                                            );
-                                        })}
+                                                        )}
+                                                    </div>
+                                                    <p className="text-xs text-text-secondary m-0 mt-0.5">{module.description}</p>
+                                                </div>
+                                                <div className="text-right shrink-0 hidden sm:block">
+                                                    <span className="text-[10px] font-mono text-text-muted block">
+                                                        {module.lessons.length} lessons · ~{moduleTime}m
+                                                    </span>
+                                                </div>
+                                                <ChevronDown
+                                                    size={16}
+                                                    className="text-text-muted shrink-0 transition-transform"
+                                                    style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0)' }}
+                                                />
+                                            </div>
+                                        </button>
+
+                                        {/* Expanded: vertical lesson list */}
+                                        {isExpanded && (
+                                            <div className="relative ml-6 mt-2 pl-6 border-l-2" style={{ borderColor: `color-mix(in srgb, var(--palette-${colorClass}) 30%, transparent)`, animation: 'fadeIn 0.2s ease' }}>
+                                                {module.lessons.map((lesson, i) => {
+                                                    const LessonIcon = getIcon(lesson.icon || 'book-open');
+                                                    const time = estimateTime(lesson.slug);
+                                                    const lessonNumber = startIndex + i + 1;
+                                                    const isLessonComingSoon = lesson.status === 'coming-soon';
+
+                                                    return (
+                                                        <a
+                                                            key={lesson.slug}
+                                                            href={getGitHubUrl(GITHUB_REPOS.agenticAIEngineering, lesson.slug)}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="group block no-underline text-inherit py-3 relative"
+                                                            style={{ opacity: isLessonComingSoon ? 0.5 : 1 }}
+                                                            onClick={() => {
+                                                                if (typeof window.gtag === 'function') {
+                                                                    window.gtag('event', 'click_lesson', {
+                                                                        event_category: 'engagement',
+                                                                        event_label: lesson.slug,
+                                                                        module: module.title
+                                                                    });
+                                                                }
+                                                            }}
+                                                        >
+                                                            {/* Timeline dot */}
+                                                            <div
+                                                                className="absolute -left-[31px] top-[18px] w-3 h-3 rounded-full border-2"
+                                                                style={{
+                                                                    borderColor: `var(--palette-${colorClass})`,
+                                                                    background: isLessonComingSoon ? 'var(--color-bg-primary)' : `var(--palette-${colorClass})`,
+                                                                    boxShadow: isLessonComingSoon ? 'none' : `0 0 6px color-mix(in srgb, var(--palette-${colorClass}) 50%, transparent)`,
+                                                                }}
+                                                            />
+
+                                                            <div className="flex items-start gap-3">
+                                                                {/* Step number */}
+                                                                <span className="text-[10px] font-mono text-text-muted w-5 shrink-0 text-right pt-0.5">
+                                                                    {String(lessonNumber).padStart(2, '0')}
+                                                                </span>
+
+                                                                {/* Icon */}
+                                                                <div
+                                                                    className="icon-box icon-box-outline shrink-0"
+                                                                    style={{ width: '28px', height: '28px' }}
+                                                                >
+                                                                    <LessonIcon size={14} />
+                                                                </div>
+
+                                                                {/* Content */}
+                                                                <div className="flex-1 min-w-0">
+                                                                    <div className="flex items-center gap-2">
+                                                                        <h4 className="text-sm font-semibold m-0 group-hover:text-accent-primary transition-colors">
+                                                                            {lesson.title}
+                                                                        </h4>
+                                                                        {isLessonComingSoon && (
+                                                                            <span className="text-[9px] font-mono text-text-muted uppercase">soon</span>
+                                                                        )}
+                                                                    </div>
+                                                                    {lesson.description && (
+                                                                        <p className="text-xs text-text-secondary m-0 mt-0.5 leading-relaxed">
+                                                                            {lesson.description}
+                                                                        </p>
+                                                                    )}
+                                                                </div>
+
+                                                                {/* Time + link */}
+                                                                <div className="flex items-center gap-3 shrink-0 pt-0.5">
+                                                                    <span className="text-[10px] font-mono text-text-muted flex items-center gap-1">
+                                                                        <Clock size={9} /> {time}m
+                                                                    </span>
+                                                                    <span className="text-[10px] font-mono text-text-muted opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                                                                        <Github size={11} /> code
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
                                     </div>
-                                </div>
-                            );
-                        })
+                                );
+                            })}
+                        </div>
                     )}
                 </div>
             </section>
 
             <style>{`
-                .tutorials-page {
-                    min-height: 100vh;
-                }
-
-                /* Toolbar */
-                .tp-toolbar {
-                    display: flex;
-                    gap: 0.75rem;
-                    margin-bottom: 1rem;
-                    align-items: stretch;
-                }
-                @media (max-width: 640px) {
-                    .tp-toolbar { flex-direction: column; }
-                }
-                .tp-search-bar {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.75rem;
-                    flex: 1;
-                    padding: 0.6rem 1rem;
-                    background: var(--color-bg-card-solid);
-                    border: 1.5px solid var(--color-border);
-                    transition: border-color 0.2s;
-                    border-radius: 6px;
-                }
-                .tp-search-bar:focus-within {
-                    border-color: var(--color-accent-cyan);
-                    box-shadow: 0 0 20px rgba(6,182,212,0.1);
-                }
-                .tp-search-icon { color: var(--color-accent-cyan); opacity: 0.6; flex-shrink: 0; }
-                .tp-search-input {
-                    flex: 1;
-                    background: transparent;
-                    border: none;
-                    outline: none;
-                    font-family: 'Inter', sans-serif;
-                    font-size: 1rem;
-                    font-weight: 600;
-                    color: var(--color-text-primary);
-                    letter-spacing: 0.01em;
-                }
-                .tp-search-input::placeholder { color: var(--color-text-muted); opacity: 0.5; }
-                .tp-search-clear {
-                    display: flex; align-items: center; justify-content: center;
-                    background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3);
-                    color: var(--color-accent-cyan); padding: 0.25rem; cursor: pointer;
-                    transition: all 0.2s;
-                }
-                .tp-search-clear:hover { background: rgba(6,182,212,0.2); }
-
-                .tp-filter-toggle {
-                    display: flex; align-items: center; gap: 0.4rem;
-                    padding: 0.6rem 1rem;
-                    font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 700;
-                    text-transform: uppercase; letter-spacing: 0.06em;
-                    background: var(--color-bg-card-solid); border: 1.5px solid var(--color-border);
-                    color: var(--color-text-secondary); cursor: pointer; transition: all 0.2s;
-                    border-radius: 6px; flex-shrink: 0;
-                }
-                .tp-filter-toggle:hover { border-color: var(--color-accent-cyan); color: var(--color-accent-cyan); }
-                .tp-filter-toggle.has-filters { border-color: var(--color-accent-cyan); color: var(--color-accent-cyan); }
-                .tp-filter-count {
-                    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
-                    background: var(--color-accent-cyan); color: #000;
-                    padding: 0.1rem 0.35rem; font-weight: 700;
-                }
-                .tp-chevron-open { transform: rotate(180deg); }
-
-                .tp-filter-panel {
-                    padding: 1rem 1.25rem; margin-bottom: 1rem;
-                    background: var(--color-bg-card-solid); border: 1.5px solid var(--color-border);
-                    border-radius: 6px;
-                    animation: tpSlideUp 0.2s ease-out;
-                }
-                @keyframes tpSlideUp {
-                    from { opacity: 0; transform: translateY(-8px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                .tp-filter-group { margin-bottom: 0.75rem; }
-                .tp-filter-group:last-of-type { margin-bottom: 0; }
-                .tp-filter-label {
-                    display: block; font-family: 'JetBrains Mono', monospace;
-                    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em;
-                    color: var(--color-text-muted); margin-bottom: 0.5rem;
-                }
-                .tp-filter-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-                .tp-chip {
-                    padding: 0.3rem 0.65rem;
-                    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600;
-                    background: transparent; border: 1px solid var(--color-border);
-                    color: var(--color-text-secondary); cursor: pointer;
-                    transition: all 0.15s; border-radius: 6px;
-                }
-                .tp-chip:hover { border-color: var(--color-accent-cyan); color: var(--color-accent-cyan); }
-                .tp-chip.active { border-color: var(--color-accent-cyan); color: var(--color-accent-cyan); background: rgba(6,182,212,0.1); }
-                .tp-clear-filters {
-                    display: inline-flex; align-items: center; gap: 0.3rem;
-                    margin-top: 0.75rem; font-family: 'JetBrains Mono', monospace;
-                    font-size: 0.6rem; color: var(--color-text-muted);
-                    background: none; border: none; cursor: pointer; padding: 0;
-                    transition: color 0.2s;
-                }
-                .tp-clear-filters:hover { color: var(--color-accent-cyan); }
+                .tutorials-page { min-height: 100vh; }
             `}</style>
         </div>
     );
