@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agentic Loops — Tokenomy-style redesign plan &amp; mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   TOKENS — ported verbatim from tokenomy/ui/src/styles/tokens.css
+   ============================================================ */
+:root{
+  --color-paper:#fafaf7; --color-surface:#fff; --color-subtle:#f4f4f0;
+  --color-text-primary:#0f0f0e; --color-text-secondary:#5c5c57; --color-text-tertiary:#8c8c85;
+  --color-border:#e5e5df;
+  --color-accent:#2e5c7a; --color-accent-hover:#234b68; --color-accent-bg:rgba(46,92,122,.06);
+  --color-success:#2e7a4d; --color-warn:#b8762e; --color-error:#a33e2e;
+  --color-viz-1:#2e5c7a; --color-viz-2:#b85c2e; --color-viz-3:#5c7a4d; --color-viz-4:#7a4d6f; --color-viz-5:#8a6e2e;
+  --font-sans:"Inter",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",monospace;
+  --radius-card:.375rem; --radius-input:.25rem; --radius-chip:9999px;
+  color-scheme:light;
+}
+html.dark{
+  color-scheme:dark;
+  --color-paper:#14140f; --color-surface:#1c1c18; --color-subtle:#232320;
+  --color-text-primary:#fafaf7; --color-text-secondary:#b8b8ac; --color-text-tertiary:#7a7a6f;
+  --color-border:#33332e;
+  --color-accent:#6fa0c2; --color-accent-hover:#8ab3cf; --color-accent-bg:rgba(111,160,194,.12);
+  --color-success:#5ba77a; --color-warn:#d4a158; --color-error:#d27a6a;
+  --color-viz-1:#6fa0c2; --color-viz-2:#d08a5e; --color-viz-3:#8aa874; --color-viz-4:#a87f9c; --color-viz-5:#bda05e;
+}
+
+/* ============================================================
+   BASELINE
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--color-paper);color:var(--color-text-primary);font-family:var(--font-sans);scroll-behavior:smooth}
+body{font-feature-settings:"ss01","cv11";line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--color-accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:2px}
+code,.mono{font-family:var(--font-mono)}
+h1,h2,h3,h4{font-weight:600;line-height:1.2;letter-spacing:-.01em}
+hr{border:none;border-top:1px solid var(--color-border);margin:0}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.doc{max-width:860px;margin:0 auto;padding:0 24px}
+.section{padding:72px 0;border-top:1px solid var(--color-border)}
+.eyebrow{font-family:var(--font-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-tertiary)}
+.lede{font-size:1.125rem;line-height:1.7;color:var(--color-text-secondary);max-width:62ch}
+.muted{color:var(--color-text-secondary)}
+.small{font-size:.875rem}
+p{margin:.75em 0;max-width:70ch}
+.doc h2{font-size:1.6rem;margin:0 0 8px}
+.doc h3{font-size:1.15rem;margin:32px 0 8px}
+.doc ul{margin:.5em 0 .5em 1.1em}
+.doc li{margin:.35em 0;color:var(--color-text-secondary)}
+.doc li b,.doc li strong{color:var(--color-text-primary);font-weight:600}
+
+/* ---- tables ---- */
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin:16px 0}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--color-border);vertical-align:top}
+thead th{background:var(--color-subtle);color:var(--color-text-secondary);font-weight:500;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+tbody tr:hover{background:var(--color-accent-bg)}
+td.was{color:var(--color-error)}
+td.now{color:var(--color-success)}
+.swatch{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--color-border);vertical-align:-2px;margin-right:6px}
+
+/* ============================================================
+   COMPONENT SAMPLES (the new design system in practice)
+   ============================================================ */
+/* nav */
+.topnav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--color-paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-border)}
+.topnav .row{display:flex;align-items:center;gap:24px;height:56px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
+.brand .glyph{width:22px;height:22px;border:1.5px solid var(--color-text-primary);border-radius:4px;display:grid;place-items:center;font-family:var(--font-mono);font-size:11px}
+.navlinks{display:flex;gap:20px;font-size:.9rem}
+.navlinks a{color:var(--color-text-secondary)}
+.navlinks a:hover{color:var(--color-text-primary);text-decoration:none}
+.spacer{flex:1}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border-radius:var(--radius-input);font-weight:500;font-size:.9rem;border:1px solid transparent;cursor:pointer;transition:background .12s,border-color .12s,color .12s}
+.btn-primary{background:var(--color-accent);color:#fff}
+.btn-primary:hover{background:var(--color-accent-hover);text-decoration:none}
+html.dark .btn-primary{color:#14140f}
+.btn-secondary{border-color:var(--color-border);color:var(--color-text-primary);background:transparent}
+.btn-secondary:hover{background:var(--color-accent-bg);text-decoration:none}
+.btn-tertiary{color:var(--color-accent);padding:0;height:auto;background:none}
+.btn-tertiary:hover{text-decoration:underline}
+
+/* chips / badges */
+.chip{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 12px;border-radius:var(--radius-chip);font-size:.78rem;border:1px solid var(--color-border);color:var(--color-text-secondary);font-family:var(--font-mono)}
+.chip:hover{border-color:var(--color-accent);background:var(--color-accent-bg);color:var(--color-accent)}
+.badge{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 10px;border-radius:var(--radius-chip);font-size:.72rem;font-weight:500;letter-spacing:.02em}
+.b-high{background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success);border:1px solid color-mix(in srgb,var(--color-success) 30%,transparent)}
+.b-med{background:color-mix(in srgb,var(--color-warn) 12%,transparent);color:var(--color-warn);border:1px solid color-mix(in srgb,var(--color-warn) 30%,transparent)}
+.b-low{background:color-mix(in srgb,var(--color-error) 12%,transparent);color:var(--color-error);border:1px dashed color-mix(in srgb,var(--color-error) 40%,transparent)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--color-success)}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:820px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);padding:20px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.card.interactive:hover{border-color:color-mix(in srgb,var(--color-accent) 50%,var(--color-border));box-shadow:0 1px 8px rgba(0,0,0,.06);transform:translateY(-1px)}
+.card .kicker{font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-tertiary)}
+.card h4{font-size:1.05rem;margin:8px 0}
+.card p{font-size:.9rem;color:var(--color-text-secondary);margin:0}
+.iconbox{width:36px;height:36px;border-radius:var(--radius-input);border:1px solid var(--color-border);display:grid;place-items:center;color:var(--color-accent);margin-bottom:12px}
+.card-foot{display:flex;gap:16px;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--color-border);font-size:.8rem;color:var(--color-text-tertiary);font-family:var(--font-mono)}
+
+/* module / course card — left rule in a viz color, NOT a glow */
+.modcard{border-left:3px solid var(--vc,var(--color-accent))}
+.numtag{font-family:var(--font-mono);font-size:.8rem;color:var(--color-text-tertiary)}
+
+/* code block */
+.code{background:var(--color-subtle);border:1px solid var(--color-border);border-radius:var(--radius-card);overflow:hidden;font-family:var(--font-mono);font-size:.84rem}
+.code .bar{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid var(--color-border);color:var(--color-text-tertiary);font-size:.74rem}
+.code pre{padding:14px 16px;overflow:auto;line-height:1.6;color:var(--color-text-primary)}
+.code .kw{color:var(--color-accent);font-weight:500}
+.code .st{color:var(--color-viz-3)}
+.code .cm{color:var(--color-text-tertiary);font-style:italic}
+
+/* reactive number (the "tangle" move) */
+.rnum{font-family:var(--font-mono);font-weight:500;color:var(--color-accent);border-bottom:1px dotted color-mix(in srgb,var(--color-accent) 50%,transparent)}
+.rnum::before{content:"[";opacity:.5}.rnum::after{content:"]";opacity:.5}
+
+/* hero mockup */
+.hero{padding:96px 0 72px}
+.hero h1{font-size:clamp(2.4rem,6vw,3.6rem);font-weight:600;letter-spacing:-.025em;line-height:1.05}
+.hero .accentrule{display:inline-block;border-left:3px solid var(--color-accent);padding-left:16px}
+.hero .sub{font-size:1.15rem;line-height:1.6;color:var(--color-text-secondary);max-width:54ch;margin:20px 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.heroGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+@media(max-width:820px){.heroGrid{grid-template-columns:1fr}}
+
+/* loop diagram — line-art, single accent, no glow */
+.loop svg{width:100%;height:auto}
+.loop .node{fill:var(--color-surface);stroke:var(--color-border)}
+.loop .lbl{fill:var(--color-text-secondary);font-family:var(--font-mono);font-size:11px}
+.loop .edge{stroke:var(--color-accent);fill:none;stroke-width:1.5}
+.loop .tok{fill:var(--color-accent)}
+@keyframes orbit{to{offset-distance:100%}}
+.loop .tok{offset-path:path('M 150 60 A 90 60 0 1 1 149.9 60');animation:orbit 4s linear infinite}
+@media(prefers-reduced-motion:reduce){.loop .tok{animation:none}}
+
+/* misc layout helpers */
+.flex{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.stack>*+*{margin-top:14px}
+.panel{background:var(--color-subtle);border:1px solid var(--color-border);border-radius:var(--radius-card);padding:18px}
+.callout{border-left:3px solid var(--color-accent);background:var(--color-accent-bg);padding:14px 16px;border-radius:0 var(--radius-card) var(--radius-card) 0;font-size:.92rem}
+.tag{font-family:var(--font-mono);font-size:.72rem;color:var(--color-text-tertiary)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.8rem;color:var(--color-text-secondary);font-family:var(--font-mono)}
+.phase{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--color-border)}
+.phase .n{font-family:var(--font-mono);color:var(--color-accent);font-weight:500;flex:0 0 auto;width:56px}
+.toggle{margin-left:auto;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border:1px solid var(--color-border);border-radius:var(--radius-chip);background:transparent;color:var(--color-text-secondary);font-size:.8rem;font-family:var(--font-mono);cursor:pointer}
+.toggle:hover{border-color:var(--color-accent);color:var(--color-accent)}
+.note{font-size:.8rem;color:var(--color-text-tertiary)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--color-border);border-radius:var(--radius-card);overflow:hidden}
+@media(max-width:820px){.compare{grid-template-columns:1fr}}
+.compare>div{padding:18px}
+.compare .before{background:#0a0e1a;color:#a5b4c8;border-right:1px solid var(--color-border)}
+.compare .before h4{color:#22d3ee;font-family:monospace;text-transform:uppercase;letter-spacing:.1em}
+.compare .after h4{color:var(--color-text-primary)}
+.before .neon{display:inline-block;padding:6px 14px;margin-top:8px;color:#000;font-weight:700;font-family:monospace;text-transform:uppercase;letter-spacing:.08em;background:linear-gradient(135deg,#06b6d4,#14b8a6);box-shadow:0 0 24px rgba(6,182,212,.5);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+</style>
+</head>
+<body>
+
+<!-- ===================== STICKY NAV (sample component) ===================== -->
+<div class="topnav">
+  <div class="wrap row">
+    <span class="brand"><span class="glyph">{}</span> Agentic Loops</span>
+    <nav class="navlinks">
+      <a href="#tenets">Tenets</a><a href="#course">Course</a><a href="#repos">Repos</a><a href="#team">Team</a>
+    </nav>
+    <span class="spacer"></span>
+    <button class="toggle" id="themeBtn">◐ theme</button>
+  </div>
+</div>
+
+<!-- ===================== TITLE ===================== -->
+<header class="doc" style="padding-top:56px">
+  <span class="eyebrow">design proposal · v1</span>
+  <h1 style="font-size:2.4rem;margin:10px 0 14px">Re-skinning Agentic Loops in the Tokenomy design language</h1>
+  <p class="lede">A plan to retire the neon-cyberpunk theme and adopt Tokenomy's calm, textbook-authority system: warm paper &amp; ink, a single slate-blue accent, Inter + JetBrains Mono, 1px ledger borders, and restrained, purposeful motion. <b>This page is itself rendered in the proposed system</b> — toggle light/dark in the top-right and scroll for live component samples and a full hero mockup.</p>
+</header>
+
+<!-- ===================== 1. WHY ===================== -->
+<section class="section"><div class="doc">
+  <span class="eyebrow">01 · the shift</span>
+  <h2>From "sci-fi terminal" to "engineering textbook"</h2>
+  <p>The current site leans on neon glows, chamfered <code>clip-path</code> corners, a grid+scanline overlay, gradient text, an all-monospace body, and the Rajdhani display face. It reads as <em>marketing / sci-fi</em>. Tokenomy deliberately rejects that — its north star sits between Bartosz Ciechanowski, Stripe Docs, and Anthropic research: <b>"textbook authority, engineering pragmatism, no marketing overhead."</b></p>
+  <p>That vibe is a far better fit for Agentic Loops' own thesis — <span class="rnum">building agents is engineering, not magic</span>. The visuals should make the same argument the copy does: calm, precise, credible. The table below is the core philosophy swap.</p>
+
+  <table>
+    <thead><tr><th>Dimension</th><th>Current (neon)</th><th>Proposed (Tokenomy)</th></tr></thead>
+    <tbody>
+      <tr><td>Surface</td><td class="was">Near-black <code>#050810</code> + grid + scanlines</td><td class="now">Warm paper <code>#FAFAF7</code> / ink <code>#14140F</code>, flat</td></tr>
+      <tr><td>Accent</td><td class="was">Cyan + teal + amber, gradients</td><td class="now">One slate-blue accent; earth-tone data-viz only</td></tr>
+      <tr><td>Depth</td><td class="was">Glows, drop-shadows, gradient blobs</td><td class="now">1px borders; shadow only on hover, ≤6%</td></tr>
+      <tr><td>Corners</td><td class="was">Chamfered clip-path bevels</td><td class="now">Soft 6px radii (4px inputs)</td></tr>
+      <tr><td>Type</td><td class="was">Rajdhani display + all-mono body, UPPERCASE</td><td class="now">Inter body, JetBrains Mono for numbers/code</td></tr>
+      <tr><td>Motion</td><td class="was">Float, glow-pulse, scanline, shimmer</td><td class="now">CSS→motion.dev→anime.js, purposeful, reduced-motion first</td></tr>
+      <tr><td>Theme</td><td class="was">Dark default, light secondary</td><td class="now">Dark first-class; both fully tokenized, no inversions</td></tr>
+      <tr><td>Voice</td><td class="was">"code first / no hype" neon badges</td><td class="now">Quiet authority; the content is the spectacle</td></tr>
+    </tbody>
+  </table>
+
+  <div class="compare" style="margin-top:24px">
+    <div class="before">
+      <h4>Before — hero CTA</h4>
+      <p style="font-size:.85rem">Gradient fill, glow, bevel, uppercase Rajdhani.</p>
+      <span class="neon">▶ Explore Repos →</span>
+    </div>
+    <div class="after">
+      <h4>After — hero CTA</h4>
+      <p class="small muted">Solid accent, 4px radius, one weight, no glow.</p>
+      <a class="btn btn-primary" style="margin-top:8px">Explore repos →</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== 2. TOKENS ===================== -->
+<section class="section"><div class="doc">
+  <span class="eyebrow">02 · tokens</span>
+  <h2>The token system to adopt</h2>
+  <p>Ported verbatim from <code>tokenomy/ui/src/styles/tokens.css</code>. These replace the entire <code>:root</code>/<code>[data-theme]</code> block in <code>src/styles/global.css</code>. Dark mode is applied via a <code>.dark</code> class on <code>&lt;html&gt;</code> (not <code>[data-theme]</code>), and every token has an explicit dark value — no inversions.</p>
+
+  <h3>Color — light / dark</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td><code>--color-paper</code></td><td><span class="swatch" style="background:#fafaf7"></span>#FAFAF7</td><td><span class="swatch" style="background:#14140f"></span>#14140F</td><td>page bg</td></tr>
+      <tr><td><code>--color-surface</code></td><td><span class="swatch" style="background:#fff"></span>#FFFFFF</td><td><span class="swatch" style="background:#1c1c18"></span>#1C1C18</td><td>cards, popovers</td></tr>
+      <tr><td><code>--color-subtle</code></td><td><span class="swatch" style="background:#f4f4f0"></span>#F4F4F0</td><td><span class="swatch" style="background:#232320"></span>#232320</td><td>code, tinted regions</td></tr>
+      <tr><td><code>--color-text-primary</code></td><td><span class="swatch" style="background:#0f0f0e"></span>#0F0F0E</td><td><span class="swatch" style="background:#fafaf7"></span>#FAFAF7</td><td>body, headings</td></tr>
+      <tr><td><code>--color-text-secondary</code></td><td><span class="swatch" style="background:#5c5c57"></span>#5C5C57</td><td><span class="swatch" style="background:#b8b8ac"></span>#B8B8AC</td><td>captions</td></tr>
+      <tr><td><code>--color-border</code></td><td><span class="swatch" style="background:#e5e5df"></span>#E5E5DF</td><td><span class="swatch" style="background:#33332e"></span>#33332E</td><td>dividers, edges</td></tr>
+      <tr><td><code>--color-accent</code></td><td><span class="swatch" style="background:#2e5c7a"></span>#2E5C7A</td><td><span class="swatch" style="background:#6fa0c2"></span>#6FA0C2</td><td>links, primary CTA</td></tr>
+      <tr><td><code>--color-success</code></td><td><span class="swatch" style="background:#2e7a4d"></span>#2E7A4D</td><td><span class="swatch" style="background:#5ba77a"></span>#5BA77A</td><td>"shipped" / positive</td></tr>
+      <tr><td><code>--color-warn</code></td><td><span class="swatch" style="background:#b8762e"></span>#B8762E</td><td><span class="swatch" style="background:#d4a158"></span>#D4A158</td><td>"coming soon"</td></tr>
+      <tr><td><code>--color-error</code></td><td><span class="swatch" style="background:#a33e2e"></span>#A33E2E</td><td><span class="swatch" style="background:#d27a6a"></span>#D27A6A</td><td>critical only</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Data-viz categorical (module/repo accents, up to 5): <span class="swatch" style="background:var(--color-viz-1)"></span>slate <span class="swatch" style="background:var(--color-viz-2)"></span>rust <span class="swatch" style="background:var(--color-viz-3)"></span>sage <span class="swatch" style="background:var(--color-viz-4)"></span>mulberry <span class="swatch" style="background:var(--color-viz-5)"></span>ochre — all low-chroma earth tones. These replace the violet/pink/cyan/emerald/amber palette used on course cards.</p>
+
+  <h3>Type, spacing, radii</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Value</th><th>Replaces</th></tr></thead>
+    <tbody>
+      <tr><td>Body / UI font</td><td>Inter (400/500/600)</td><td class="was">Azeret Mono body</td></tr>
+      <tr><td>Mono font</td><td>JetBrains Mono (400/500)</td><td class="was">Azeret Mono</td></tr>
+      <tr><td>Display font</td><td><b>none</b> — Inter 600 does headings</td><td class="was">Rajdhani uppercase</td></tr>
+      <tr><td>Grid</td><td>8px base; gaps multiples of 4/8</td><td class="was">ad-hoc</td></tr>
+      <tr><td><code>--radius-card</code></td><td>0.375rem (6px)</td><td class="was">clip-path bevels</td></tr>
+      <tr><td><code>--radius-input</code></td><td>0.25rem (4px)</td><td class="was">0 / bevel</td></tr>
+      <tr><td><code>--radius-chip</code></td><td>9999px</td><td class="was">bevel</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">Fonts are self-hosted via <code>@fontsource/inter</code> and <code>@fontsource/jetbrains-mono</code> (already Tokenomy's approach) — drop the Google Fonts <code>&lt;link&gt;</code> and the Rajdhani/Azeret references. This page uses the CDN only because it's a standalone mockup.</div>
+</div></section>
+
+<!-- ===================== 3. COMPONENT SAMPLES ===================== -->
+<section class="section"><div class="wrap">
+  <div class="doc" style="padding:0"><span class="eyebrow">03 · components</span>
+  <h2>Live component library</h2>
+  <p class="muted">Every element below is the proposed system, themeable. These map 1:1 onto the existing classes in <code>global.css</code> (<code>.btn-primary</code>, <code>.card</code>, <code>.badge</code>, <code>.code-block</code>…) so the migration is mostly a rewrite of those rules, not a rewrite of every component.</p></div>
+
+  <div class="grid g2" style="margin-top:28px">
+    <div class="panel stack">
+      <span class="tag">buttons</span>
+      <div class="flex"><a class="btn btn-primary">Explore repos →</a><a class="btn btn-secondary">Read the blog</a><a class="btn btn-tertiary">Methodology ↗</a></div>
+      <span class="tag" style="margin-top:8px">chips · one accent on hover</span>
+      <div class="flex"><span class="chip">first-principles</span><span class="chip">production</span><span class="chip">patterns</span><span class="chip">evals</span></div>
+      <span class="tag" style="margin-top:8px">status badges · color + shape, a11y-safe</span>
+      <div class="flex"><span class="badge b-high"><span class="dot"></span>shipped</span><span class="badge b-med">coming soon</span><span class="badge b-low">⚠ experimental</span></div>
+    </div>
+
+    <div class="panel">
+      <span class="tag">code block · minimal highlight, copy affordance</span>
+      <div class="code" style="margin-top:10px">
+        <div class="bar"><span>agent_loop.py</span><span>copy</span></div>
+        <pre><span class="cm"># one accent for keywords — no rainbow</span>
+<span class="kw">while</span> not done:
+    action = agent.<span class="kw">decide</span>(state)
+    result = tools.<span class="kw">run</span>(action)
+    state  = state.<span class="kw">update</span>(result)
+    done   = critic.<span class="kw">check</span>(<span class="st">"goal met?"</span>, state)</pre>
+      </div>
+    </div>
+  </div>
+
+  <span class="tag" style="display:block;margin:28px 0 10px">cards · 1px border, hover lifts subtly (no glow)</span>
+  <div class="grid g3">
+    <div class="card interactive">
+      <div class="iconbox">◇</div>
+      <span class="kicker">tenet 01</span>
+      <h4>First principles over frameworks</h4>
+      <p>Context limits, statelessness, and hallucination don't churn. Master the constraints, not the hype.</p>
+    </div>
+    <div class="card interactive">
+      <div class="iconbox">◷</div>
+      <span class="kicker">tenet 02</span>
+      <h4>Design for non-determinism</h4>
+      <p>Traditional software gives guarantees; LLMs don't. Architect for uncertainty instead of pretending it away.</p>
+    </div>
+    <div class="card interactive">
+      <div class="iconbox">⇄</div>
+      <span class="kicker">tenet 03</span>
+      <h4>Master the trade-offs</h4>
+      <p>Autonomy vs control, flexibility vs predictability, speed vs safety — every call needs the constraints underneath.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== 4. HERO MOCKUP ===================== -->
+<section class="section" style="border-top:1px solid var(--color-border)"><div class="wrap">
+  <div class="doc" style="padding:0;margin-bottom:16px"><span class="eyebrow">04 · page mockup</span><h2>Redesigned hero</h2><p class="muted">Same content as today, in the new language: accent rule instead of glow bar, Inter headline instead of gradient Rajdhani, a line-art loop diagram (one orbiting token) instead of a beveled glowing panel.</p></div>
+
+  <div class="hero">
+    <div class="heroGrid">
+      <div>
+        <div class="flex" style="margin-bottom:24px">
+          <span class="badge b-high"><span class="dot"></span>code first</span>
+          <span class="chip">no hype</span>
+        </div>
+        <h1><span class="accentrule">Agentic Loops</span></h1>
+        <p class="sub">Design patterns, system architecture, and production-grade implementations for software engineers building autonomous AI systems.</p>
+        <div class="actions">
+          <a class="btn btn-primary">⌥ Explore repos →</a>
+          <a class="btn btn-secondary">Read the blog →</a>
+        </div>
+        <p class="note" style="margin-top:24px;font-family:var(--font-mono)">building agents is <span style="color:var(--color-accent)">≈ 80%</span> software engineering</p>
+      </div>
+
+      <div class="loop card" style="padding:28px">
+        <svg viewBox="0 0 300 150" role="img" aria-label="Agent loop diagram">
+          <ellipse class="edge" cx="150" cy="75" rx="90" ry="48"/>
+          <circle class="tok" r="5"/>
+          <g class="node-set">
+            <rect class="node" x="120" y="14" width="60" height="26" rx="5"/>
+            <text class="lbl" x="150" y="31" text-anchor="middle">decide</text>
+            <rect class="node" x="222" y="62" width="56" height="26" rx="5"/>
+            <text class="lbl" x="250" y="79" text-anchor="middle">act</text>
+            <rect class="node" x="120" y="110" width="60" height="26" rx="5"/>
+            <text class="lbl" x="150" y="127" text-anchor="middle">observe</text>
+            <rect class="node" x="22" y="62" width="58" height="26" rx="5"/>
+            <text class="lbl" x="51" y="79" text-anchor="middle">reflect</text>
+          </g>
+        </svg>
+        <p class="note" style="text-align:center;margin-top:6px">the loop · one token, one accent, reduced-motion aware</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== 5. COURSE MOCKUP ===================== -->
+<section class="section" id="course"><div class="wrap">
+  <div class="doc" style="padding:0;margin-bottom:20px"><span class="eyebrow">05 · page mockup</span><h2>Course / Topics grid</h2><p class="muted">Module cards keep their per-module color, but drawn from the earth-tone viz palette as a 3px left rule — the same role-stable encoding Tokenomy uses for charts. No gradient blobs, no neon hover.</p></div>
+  <div class="legend" style="margin-bottom:16px">
+    <span><span class="swatch" style="background:var(--color-viz-1)"></span>foundations</span>
+    <span><span class="swatch" style="background:var(--color-viz-2)"></span>effective agents</span>
+    <span><span class="swatch" style="background:var(--color-viz-3)"></span>advanced</span>
+    <span><span class="swatch" style="background:var(--color-viz-4)"></span>frameworks</span>
+    <span><span class="swatch" style="background:var(--color-viz-5)"></span>production</span>
+  </div>
+  <div class="grid g3">
+    <div class="card interactive modcard" style="--vc:var(--color-viz-1)"><div class="flex" style="justify-content:space-between"><span class="numtag">01</span><span class="badge b-high">6 lessons</span></div><h4>Foundations</h4><p>LLM calls, prompting, chat, tool use, the agent loop, codebase navigation.</p><div class="card-foot"><span>start →</span><span>~3h</span></div></div>
+    <div class="card interactive modcard" style="--vc:var(--color-viz-2)"><div class="flex" style="justify-content:space-between"><span class="numtag">02</span><span class="badge b-high">7 lessons</span></div><h4>Effective agents</h4><p>Prompt chaining, routing, parallelization, orchestrator-workers, HITL.</p><div class="card-foot"><span>start →</span><span>~4h</span></div></div>
+    <div class="card interactive modcard" style="--vc:var(--color-viz-3)"><div class="flex" style="justify-content:space-between"><span class="numtag">03</span><span class="badge b-med">coming soon</span></div><h4>Advanced techniques</h4><p>Structured output, streaming, context engineering, memory, RAG, guardrails.</p><div class="card-foot"><span>preview →</span><span>~6h</span></div></div>
+    <div class="card interactive modcard" style="--vc:var(--color-viz-4)"><div class="flex" style="justify-content:space-between"><span class="numtag">04</span><span class="badge b-med">coming soon</span></div><h4>Frameworks</h4><p>LangGraph, Pydantic AI, ADK, Strands, CrewAI, AutoGen, and going framework-free.</p><div class="card-foot"><span>preview →</span><span>~5h</span></div></div>
+    <div class="card interactive modcard" style="--vc:var(--color-viz-5)"><div class="flex" style="justify-content:space-between"><span class="numtag">05</span><span class="badge b-low">⚠ draft</span></div><h4>Testing &amp; evaluation</h4><p>Unit-testing agents, evals, tracing &amp; debugging, red-teaming.</p><div class="card-foot"><span>preview →</span><span>~4h</span></div></div>
+    <div class="card interactive modcard" style="--vc:var(--color-viz-1)"><div class="flex" style="justify-content:space-between"><span class="numtag">06</span><span class="badge b-low">⚠ draft</span></div><h4>Production</h4><p>12-factor agents, deployment, observability, cost optimization, guardrails.</p><div class="card-foot"><span>preview →</span><span>~5h</span></div></div>
+  </div>
+</div></section>
+
+<!-- ===================== 6. MOTION ===================== -->
+<section class="section"><div class="doc">
+  <span class="eyebrow">06 · motion</span>
+  <h2>Animation language</h2>
+  <p>Tokenomy's rule: <b>CSS transition → motion.dev → anime.js</b>, in order of increasing expressiveness, and <em>motion only when motion is the point</em>. Every ambient animation is viewport-gated and has a reduced-motion fallback that renders the terminal frame statically.</p>
+  <ul>
+    <li><b>CSS</b> — hovers, focus rings, the subtle card lift, link underlines. Replaces glow-pulse / shimmer / float.</li>
+    <li><b>motion.dev</b> — React-island work: section reveals (replacing <code>ScrollReveal</code>'s slide-ins with a calm fade+8px rise), accordion expand, theme cross-fade.</li>
+    <li><b>anime.js v4</b> — the hero loop's orbiting token and any SVG path-draw. Wrap in <code>createScope</code> with a <code>reduce</code> media query; <code>scope.revert()</code> on cleanup.</li>
+  </ul>
+  <div class="callout">Hard cuts from the current site: the fixed grid+scanline overlay, gradient-blur blobs, glow box-shadows, <code>translateX(4px)</code> button nudge, and the custom cyan scrollbar. Keep <code>prefers-reduced-motion</code> honored everywhere (already present in <code>global.css</code>).</div>
+</div></section>
+
+<!-- ===================== 7. PLAN ===================== -->
+<section class="section"><div class="doc">
+  <span class="eyebrow">07 · execution</span>
+  <h2>Phased migration plan</h2>
+  <p class="muted">Astro + React + Tailwind stays. The work is concentrated in tokens, <code>global.css</code> component classes, and removing decorative markup from a handful of components. Estimated 2–3 focused days.</p>
+
+  <div style="margin-top:12px">
+    <div class="phase"><span class="n">P0</span><div><b>Tokens &amp; fonts.</b> Replace the <code>:root</code>/<code>[data-theme="light"]</code> blocks in <code>global.css</code> with the Tokenomy token set; switch theme strategy from <code>[data-theme]</code> to <code>.dark</code> on <code>&lt;html&gt;</code> (update <code>themeStore.ts</code> + <code>ThemeScript.astro</code>). Add <code>@fontsource/inter</code> + <code>@fontsource/jetbrains-mono</code>; drop Rajdhani/Azeret + the Google Fonts link. Update <code>tailwind.config.js</code> font families and color mappings.</div></div>
+    <div class="phase"><span class="n">P1</span><div><b>Primitive classes.</b> Rewrite <code>.btn-primary/.btn-secondary</code>, <code>.card</code> (+ color variants → viz palette), <code>.badge</code>/<code>.status-badge</code>/<code>.chip</code>, <code>.code-block</code>, <code>.icon-box</code>, <code>.section</code>. Delete all <code>clip-path</code> bevels, glow shadows, <code>.gradient-text</code>, <code>.corner-accent</code>, gradient blobs, scanline/grid <code>body::before</code>, custom scrollbar.</div></div>
+    <div class="phase"><span class="n">P2</span><div><b>Layout shell.</b> <code>Header.tsx</code> → quiet sticky nav (mono brand glyph, no glow). <code>Footer.tsx</code> → host the theme toggle (Tokenomy pattern). Set max-widths (1080 home, ~860 prose).</div></div>
+    <div class="phase"><span class="n">P3</span><div><b>Sections.</b> <code>Hero.tsx</code> (accent rule + line-art loop), <code>About.tsx</code> (drop uppercase Rajdhani beliefs), <code>Topics.tsx</code> (viz-palette module cards), <code>Team / RepoSection / Subscribe</code>. Replace <code>ScrollReveal</code> slide-ins with a calm fade-rise.</div></div>
+    <div class="phase"><span class="n">P4</span><div><b>Content &amp; polish.</b> Course/MDX prose styles to Tokenomy reading rhythm, KaTeX if formulas appear, <code>Search</code> popover restyle, OG images, favicon to bracket-glyph mark. QA both themes + reduced-motion + AA contrast.</div></div>
+  </div>
+
+  <h3>Files touched (high level)</h3>
+  <ul>
+    <li><b>Rewrite:</b> <code>src/styles/global.css</code>, <code>tailwind.config.js</code>, <code>src/stores/themeStore.ts</code>, <code>ThemeScript.astro</code></li>
+    <li><b>Edit:</b> <code>Header.tsx</code>, <code>Footer.tsx</code>, <code>Hero.tsx</code>, <code>About.tsx</code>, <code>Topics.tsx</code>, <code>Team.tsx</code>, <code>RepoSection.tsx</code>, <code>Subscribe.tsx</code>, <code>ScrollReveal.tsx</code>, <code>AgentLoopDiagram.tsx</code>, <code>Layout.astro</code></li>
+    <li><b>Add:</b> <code>@fontsource/*</code> deps; optional <code>animejs</code> + <code>motion</code> for the loop &amp; reveals</li>
+  </ul>
+
+  <div class="callout" style="margin-top:18px"><b>Open question to confirm before P0:</b> keep dark mode as the <em>default</em> (matches today, and Tokenomy currently force-enables dark), or default to light paper with a toggle? My recommendation: <b>default light</b> (the textbook vibe lives in paper), honoring <code>prefers-color-scheme</code>, with the toggle in the footer.</div>
+</div></section>
+
+<footer class="section" style="padding:40px 0"><div class="doc">
+  <p class="note">Mockup &amp; plan · rendered in the proposed Tokenomy design system · toggle theme top-right. Source design language: <code>tokenomy/docs/wiki/design/{design-language,animation,ux-principles}.md</code>.</p>
+</div></footer>
+
+<script>
+const btn=document.getElementById('themeBtn');
+btn.addEventListener('click',()=>{document.documentElement.classList.toggle('dark');});
+</script>
+</body>
+</html>

@@ -8,10 +8,10 @@ export function Footer() {
                 <div className="flex justify-between items-center flex-wrap gap-6">
                     {/* Copyright & Motto */}
                     <div className="flex flex-col gap-1">
-                        <p className="font-mono text-xs text-text-muted tracking-wide m-0">
+                        <p className="font-mono text-xs text-text-muted m-0">
                             © {new Date().getFullYear()} {config.brand.name}
                         </p>
-                        <p className="font-mono text-[0.7rem] text-text-muted opacity-60 tracking-wide m-0">
+                        <p className="font-mono text-[0.7rem] text-text-muted opacity-60 m-0">
                             Built by engineers, for engineers
                         </p>
                     </div>

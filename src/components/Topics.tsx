@@ -50,23 +50,12 @@ export function Topics() {
     }, []);
 
     return (
-        <section className="section relative overflow-hidden" id="topics">
-            {/* Background Gradient Blurs */}
-            <div className="gradient-blur gradient-blur-blue absolute -top-32 -right-[5%] opacity-15"></div>
-            <div className="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%] opacity-15"></div>
-            {/* Section Accent Line */}
-            <div
-                className="absolute top-0 right-0 w-[300px] h-1 shadow-[0_0_20px_var(--color-accent-cyan)]"
-                style={{ background: 'var(--color-accent-gradient)' }}
-            ></div>
-
+        <section className="section" id="topics">
             <div className="container">
                 <ScrollReveal>
                     <div className="text-center mb-20 relative">
-                        <div className="flex items-center justify-center gap-4 mb-6">
-                            <div className="w-10 h-0.5 bg-accent-cyan"></div>
+                        <div className="flex items-center justify-center mb-6">
                             <span className="badge">topics</span>
-                            <div className="w-10 h-0.5 bg-accent-cyan"></div>
                         </div>
 
                         <h2 className="mb-6">
@@ -95,31 +84,19 @@ export function Topics() {
                             <div key={module.id} className={moduleIndex < modules.length - 1 ? 'mb-24' : ''}>
                                 <ScrollReveal>
                                     <div
-                                        className="mb-12 pt-4 pb-6 pl-6 border-b-2 border-border relative"
-                                        style={{
-                                            borderLeft: `4px solid var(--palette-${colorClass})`,
-                                            background: `linear-gradient(90deg, color-mix(in srgb, var(--palette-${colorClass}) 5%, transparent), transparent)`
-                                        }}
+                                        className="mb-12 pt-4 pb-6 pl-6 border-b border-border"
+                                        style={{ borderLeft: `3px solid var(--palette-${colorClass})` }}
                                     >
-                                        <div
-                                            className="absolute top-0 -left-1 w-1 h-10"
-                                            style={{ background: `var(--palette-${colorClass})`, boxShadow: `0 0 20px var(--palette-${colorClass})` }}
-                                        ></div>
-
                                         <div className="flex items-center gap-4 mb-3">
                                             <div
-                                                className="label py-1 px-3 border-2"
-                                                style={{
-                                                    color: `var(--palette-${colorClass})`,
-                                                    borderColor: `var(--palette-${colorClass})`,
-                                                    clipPath: 'var(--clip-corner-sm)'
-                                                }}
+                                                className="label py-1 px-3 border border-border rounded"
+                                                style={{ color: `var(--palette-${colorClass})` }}
                                             >
                                                 MODULE_0{moduleIndex + 1}
                                             </div>
                                             <h3
-                                                className="text-2xl font-bold m-0"
-                                                style={{ color: `var(--palette-${colorClass})`, textShadow: `0 0 20px color-mix(in srgb, var(--palette-${colorClass}) 25%, transparent)` }}
+                                                className="text-2xl font-semibold m-0"
+                                                style={{ color: `var(--palette-${colorClass})` }}
                                             >
                                                 {module.title}
                                             </h3>
@@ -153,20 +130,11 @@ export function Topics() {
                                                             });
                                                         }
                                                     }}
-                                                    className={`card card-color-${colorClass} block p-6 h-full relative overflow-hidden no-underline text-inherit transition-all hover:translate-x-1.5 group flex flex-col`}
+                                                    className={`card card-color-${colorClass} block p-6 h-full relative no-underline text-inherit transition-all hover:translate-x-1.5 group flex flex-col`}
                                                 >
-                                                    <div className="corner-accent corner-accent-lg"></div>
-
                                                     {/* Coming Soon Badge - Top Right */}
                                                     {lesson.status === 'coming-soon' && (
-                                                        <div
-                                                            className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 text-xs font-mono uppercase tracking-wider border rounded"
-                                                            style={{
-                                                                color: 'var(--color-text-muted)',
-                                                                borderColor: 'var(--color-border)',
-                                                                background: 'color-mix(in srgb, var(--color-bg-elevated) 80%, transparent)'
-                                                            }}
-                                                        >
+                                                        <div className="coming-soon-badge absolute top-4 right-4 gap-1.5">
                                                             <Icons.Clock size={10} /> Coming Soon
                                                         </div>
                                                     )}
@@ -186,7 +154,7 @@ export function Topics() {
                                                         </p>
                                                     )}
 
-                                                    <div className="mt-auto pt-2 flex items-center justify-end gap-2 text-xs font-mono font-bold uppercase tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">
+                                                    <div className="mt-auto pt-2 flex items-center justify-end gap-2 text-xs font-mono opacity-60 group-hover:opacity-100 transition-opacity">
                                                         <span className="flex items-center gap-1.5">
                                                             view code <Github size={14} />
                                                         </span>
