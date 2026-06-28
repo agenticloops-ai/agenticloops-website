@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Agentic Loops - Design patterns, system architecture, and production-grade implementations for AI agents"><meta name="viewport" content="width=device-width"><link rel="apple-touch-icon" sizes="180x180" href="/pr-preview/pr-17/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/pr-preview/pr-17/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/pr-preview/pr-17/favicon-16x16.png"><link rel="manifest" href="/pr-preview/pr-17/site.webmanifest"><title>Agentic Loops</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-GTWLJHN33C"></script><script>(function(){const GA_ID = "G-GTWLJHN33C";
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', GA_ID);
+          })();</script><link rel="stylesheet" href="/pr-preview/pr-17/_astro/index._vVrDDHV.css"></head> <body class="bg-bg-primary text-text-primary">  <script>
+  // Set the theme before hydration to avoid a flash. Defaults to the OS
+  // preference; a saved choice in localStorage wins. Applied as a `.dark`
+  // class on <html> (Tailwind/token strategy).
+  (function () {
+    try {
+      const saved = localStorage.getItem('theme');
+      const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const theme = saved || system;
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    } catch (e) {
+      console.error('Failed to set theme', e);
+    }
+  })();
+</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="1yt4pp" prefix="r8" component-url="/pr-preview/pr-17/_astro/Islands.BcjE8IYH.js" component-export="Header" renderer-url="/pr-preview/pr-17/_astro/client.Dc9Vh3na.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;Header&quot;,&quot;value&quot;:true}" await-children><link rel="preload" as="image" href="/pr-preview/pr-17/logo.png"/><header class="fixed top-0 left-0 right-0 z-[100] h-[60px] transition-all duration-300" style="background:transparent;backdrop-filter:none;border-bottom:1px solid transparent"><div class="container h-full px-6 flex items-center justify-between gap-4"><a href="/pr-preview/pr-17/" class="flex items-center gap-3 no-underline text-inherit opacity-90 hover:opacity-100 transition-opacity flex-shrink-0"><img src="/pr-preview/pr-17/logo.png" alt="Agentic Loops Logo" class="w-9 h-9 object-contain"/><span class="md:inline text-lg font-bold tracking-tight text-text-primary">Agentic Loops</span></a><div class="flex-1"></div><nav class="hidden-mobile flex gap-4 items-center"><a href="/pr-preview/pr-17/#tenets" class="py-2 px-2 text-sm font-medium text-text-secondary no-underline transition-colors hover:text-accent">Tenets</a><a href="/pr-preview/pr-17/#team" class="py-2 px-2 text-sm font-medium text-text-secondary no-underline transition-colors hover:text-accent">Team</a><a href="/pr-preview/pr-17/#topics" class="py-2 px-2 text-sm font-medium text-text-secondary no-underline transition-colors hover:text-accent">Topics</a></nav><div class="hidden md:block w-px h-6 bg-border"></div><div class="flex items-center gap-5 flex-shrink-0"><div class="hidden md:flex items-center gap-3"><a href="https://github.com/agenticloops-ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-text-secondary hover:text-accent transition-colors flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></a><a href="https://agenticloopsai.substack.com" target="_blank" rel="noopener noreferrer" aria-label="Substack" class="text-text-secondary hover:text-accent transition-colors flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg></a><a href="https://www.linkedin.com/company/agenticloops-ai" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-text-secondary hover:text-accent transition-colors flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a><a href="https://x.com/agenticloops_ai" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="text-text-secondary hover:text-accent transition-colors flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a></div><div class="hidden md:block w-px h-6 bg-border"></div><button class="search-button" aria-label="Search documentation" title="Search (⌘K)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button><style>
+                .search-button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 36px;
+                    height: 36px;
+                    padding: 0;
+                    background: transparent;
+                    border: 1px solid var(--color-border);
+                    border-radius: var(--radius-input);
+                    color: var(--color-text-secondary);
+                    cursor: pointer;
+                    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+                    position: relative;
+                }
+
+                .search-button svg {
+                    color: currentColor;
+                    transition: color 0.15s;
+                }
+
+                .search-button:hover {
+                    border-color: var(--color-accent);
+                    background: var(--color-accent-bg);
+                    color: var(--color-accent);
+                }
+
+                .search-button:focus-visible {
+                    outline: 2px solid var(--color-accent);
+                    outline-offset: 2px;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes slideDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-20px) scale(0.98);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0) scale(1);
+                    }
+                }
+
+                .search-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.4);
+                    z-index: 1000;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+                    padding-top: 15vh;
+                    animation: fadeIn 0.2s ease-out;
+                }
+
+                .search-modal {
+                    width: 100%;
+                    max-width: 600px;
+                    background: var(--color-surface);
+                    border: 1px solid var(--color-border);
+                    border-radius: var(--radius-card);
+                    box-shadow: var(--shadow-lg);
+                    overflow: hidden;
+                    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                }
+
+                .search-input-wrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.875rem;
+                    padding: 1.25rem 1.5rem;
+                    border-bottom: 1px solid var(--color-border);
+                    transition: border-color 0.15s;
+                    background: transparent;
+                }
+
+                .search-input-wrapper:focus-within {
+                    border-bottom-color: var(--color-accent);
+                }
+
+                .search-icon {
+                    color: var(--color-text-tertiary);
+                    flex-shrink: 0;
+                }
+
+                .search-input {
+                    flex: 1;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    font-size: 1.05rem;
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 500;
+                    color: var(--color-text-primary);
+                    letter-spacing: 0;
+                }
+
+                .search-input::placeholder {
+                    color: var(--color-text-tertiary);
+                }
+
+                .search-clear {
+                    background: transparent;
+                    border: 1px solid var(--color-border);
+                    color: var(--color-text-secondary);
+                    padding: 0.375rem 0.625rem;
+                    border-radius: var(--radius-input);
+                    cursor: pointer;
+                    font-size: 0.75rem;
+                    font-family: 'JetBrains Mono', monospace;
+                    transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .search-clear:hover {
+                    background: var(--color-accent-bg);
+                    border-color: var(--color-accent);
+                    color: var(--color-accent);
+                }
+
+                .search-results {
+                    max-height: 400px;
+                    overflow-y: auto;
+                }
+
+                .search-results::-webkit-scrollbar {
+                    width: 8px;
+                }
+
+                .search-results::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+
+                .search-results::-webkit-scrollbar-thumb {
+                    background: var(--color-border);
+                    border-radius: var(--radius-chip);
+                }
+
+                .search-results::-webkit-scrollbar-thumb:hover {
+                    background: var(--color-text-tertiary);
+                }
+
+                .search-results ul {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0.5rem;
+                }
+
+                .search-result {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.875rem;
+                    padding: 0.875rem 1.25rem;
+                    border-radius: var(--radius-input);
+                    text-decoration: none;
+                    color: var(--color-text-secondary);
+                    transition: background-color 0.15s ease, border-color 0.15s ease;
+                    border-left: 2px solid transparent;
+                    position: relative;
+                }
+
+                .search-result:hover {
+                    background: var(--color-accent-bg);
+                    border-left-color: var(--color-accent);
+                }
+
+                .search-result.selected {
+                    background: var(--color-accent-bg);
+                    border-left-color: var(--color-accent);
+                }
+
+                .result-icon {
+                    color: var(--color-text-tertiary);
+                    flex-shrink: 0;
+                }
+
+                .result-content {
+                    flex: 1;
+                    min-width: 0;
+                }
+
+                .result-title {
+                    font-weight: 600;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 0.95rem;
+                    color: var(--color-text-primary);
+                    margin-bottom: 0.25rem;
+                    letter-spacing: -0.01em;
+                }
+
+                .result-description {
+                    font-size: 0.8125rem;
+                    font-family: 'JetBrains Mono', monospace;
+                    color: var(--color-text-tertiary);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .result-arrow {
+                    color: var(--color-accent);
+                    opacity: 0;
+                    transition: opacity 0.15s;
+                    font-size: 1.25rem;
+                }
+
+                .search-result:hover .result-arrow,
+                .search-result.selected .result-arrow {
+                    opacity: 1;
+                }
+
+                .search-no-results,
+                .search-hints {
+                    padding: 2.5rem;
+                    text-align: center;
+                    color: var(--color-text-tertiary);
+                    font-family: 'Inter', sans-serif;
+                }
+
+                .search-no-results .hint {
+                    font-size: 0.875rem;
+                    margin-top: 0.5rem;
+                }
+
+                .keyboard-hints {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1.5rem;
+                    margin-top: 1.5rem;
+                    font-size: 0.75rem;
+                    font-family: 'JetBrains Mono', monospace;
+                }
+
+                .keyboard-hints kbd {
+                    padding: 0.2rem 0.5rem;
+                    background: var(--color-subtle);
+                    border: 1px solid var(--color-border);
+                    border-radius: var(--radius-input);
+                    margin: 0 0.15rem;
+                    color: var(--color-text-secondary);
+                    font-family: 'JetBrains Mono', monospace;
+                    font-weight: 500;
+                }
+            </style><button aria-label="Toggle theme" class="bg-transparent border-none text-text-secondary p-1 transition-colors hover:text-accent flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg></button></div></div></header><!--astro:end--></astro-island> <main> <astro-island uid="Z2dRpgG" prefix="r9" component-url="/pr-preview/pr-17/_astro/Islands.BcjE8IYH.js" component-export="Hero" renderer-url="/pr-preview/pr-17/_astro/client.Dc9Vh3na.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;Hero&quot;,&quot;value&quot;:true}" await-children><section class="section hero-section min-h-screen flex items-center overflow-hidden relative"><div class="container relative z-10"><div class="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-20 items-center"><div><div class="" style="opacity:0;transform:translateX(-60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s"><div class="mb-10 flex flex-wrap gap-3 items-center"><span class="badge"><span class="badge-dot"></span>code first</span><span class="badge">no hype</span></div></div><div class="" style="opacity:0;transform:translateX(-60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s"><h1 class="mb-8 relative inline-block border-l-[3px] border-accent pl-5">Agentic<br/>Loops</h1></div><div class="" style="opacity:0;transform:translateX(-60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"><p class="lead-text mb-12 max-w-[600px]">Design patterns, system architecture, and production-grade implementations for software engineers building autonomous AI systems.</p></div><div class="" style="opacity:0;transform:translateX(-60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s"><div class="flex flex-wrap gap-4"><a href="https://github.com/agenticloops-ai" class="btn-primary" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>Explore Repos<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a><a href="https://agenticloopsai.substack.com" class="btn-secondary" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>Read the Blog<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div></div></div><div class="" style="opacity:0;transform:translateX(60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"><div class="flex justify-center items-center relative"><div class="card relative p-4 lg:p-8 origin-top scale-[0.8] sm:scale-90 lg:scale-100"><div style="position:relative;width:400px;height:560px;display:flex;flex-direction:column;align-items:center;padding-top:20px"><svg style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:3"><defs><style>
+              .flow-line {
+                stroke-dasharray: 5 5;
+                animation: dash 1s linear infinite;
+              }
+              @keyframes dash {
+                to {
+                  stroke-dashoffset: -10;
+                }
+              }
+              @media (prefers-reduced-motion: reduce) {
+                .flow-line {
+                  animation: none;
+                }
+              }
+            </style></defs><line x1="200" y1="210" x2="200" y2="260" stroke="var(--color-accent)" stroke-width="2" stroke-dasharray="5 5" class="flow-line" style="opacity:0.2;transition:opacity 0.3s"></line><line x1="200" y1="320" x2="200" y2="380" stroke="var(--color-accent)" stroke-width="2" stroke-dasharray="5 5" class="flow-line" style="opacity:0.2;transition:opacity 0.3s"></line><path d="M 70 445
+             L 30 445
+             L 30 155
+             L 70 155" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-dasharray="5 5" class="flow-line" style="opacity:0.2;transition:opacity 0.3s"></path></svg><div style="position:absolute;top:350px;left:220px;transform:translateY(-50%);font-size:0.75rem;color:var(--color-text-secondary);font-weight:500;font-family:&#x27;JetBrains Mono&#x27;, monospace;z-index:1;white-space:nowrap;transition:opacity 0.3s;opacity:0">decides what to do</div><div style="position:absolute;left:-30px;top:300px;transform:translateY(-50%) rotate(-90deg);font-size:0.75rem;color:var(--color-text-secondary);font-weight:500;font-family:&#x27;JetBrains Mono&#x27;, monospace;z-index:1;white-space:nowrap;transition:opacity 0.3s;opacity:0">add result to context</div><div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-text-secondary);font-weight:500;font-family:&#x27;JetBrains Mono&#x27;, monospace;z-index:1;white-space:nowrap;transition:opacity 0.3s;opacity:1"><div style="font-size:1rem">↺</div>repeat until done</div><div style="display:flex;flex-direction:column;align-items:center;width:100%;z-index:1"><div style="background:var(--color-surface);border:1px solid var(--color-accent);border-radius:var(--radius-card);padding:1rem;width:260px;height:190px;transition:border-color 0.3s;margin-bottom:50px;display:flex;flex-direction:column"><div class="text-muted" style="font-size:0.7rem;margin-bottom:0.5rem;font-weight:600">Context</div><div style="display:flex;flex-direction:column;gap:0.35rem"><div style="background:var(--color-subtle);color:var(--color-text-secondary);border:1px solid var(--color-border);padding:0.35rem 0.75rem;border-radius:var(--radius-input);font-size:0.7rem;font-weight:500">System Instructions</div><div style="background:var(--color-subtle);color:var(--color-text-secondary);border:1px solid var(--color-border);padding:0.35rem 0.75rem;border-radius:var(--radius-input);font-size:0.7rem;font-weight:500">Tools Definitions</div><div style="background:var(--color-subtle);color:var(--color-text-secondary);border:1px solid var(--color-border);padding:0.35rem 0.75rem;border-radius:var(--radius-input);font-size:0.7rem;font-weight:500;opacity:1;transition:opacity 0.5s">User Message</div><div style="background:var(--color-subtle);color:var(--color-text-secondary);border:1px solid var(--color-border);padding:0.35rem 0.75rem;border-radius:var(--radius-input);font-size:0.7rem;font-weight:500;opacity:0;transition:opacity 0.5s">Tool Result</div></div></div><div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);padding:1rem 2.5rem;font-weight:600;font-size:1rem;color:var(--color-text-primary);transition:border-color 0.3s;margin-bottom:60px;z-index:2;min-width:140px;text-align:center">LLM</div><div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);padding:1rem 1.25rem;transition:border-color 0.3s;width:260px;z-index:2"><div class="text-muted" style="font-size:0.75rem;margin-bottom:0.5rem;font-weight:600">Tools</div><div style="display:flex;flex-direction:column;gap:0.35rem"><div class="font-mono" style="background:var(--color-subtle);color:var(--color-text-secondary);border:1px solid var(--color-border);padding:0.45rem 0.75rem;border-radius:var(--radius-input);font-size:0.8rem;font-weight:500;letter-spacing:0;transition:background-color 0.3s, color 0.3s, border-color 0.3s">web_search()</div><div class="font-mono" style="background:var(--color-subtle);color:var(--color-text-secondary);border:1px solid var(--color-border);padding:0.45rem 0.75rem;border-radius:var(--radius-input);font-size:0.8rem;font-weight:500;letter-spacing:0;transition:background-color 0.3s, color 0.3s, border-color 0.3s">execute_code()</div><div class="font-mono" style="background:var(--color-subtle);color:var(--color-text-secondary);border:1px solid var(--color-border);padding:0.45rem 0.75rem;border-radius:var(--radius-input);font-size:0.8rem;font-weight:500;letter-spacing:0;transition:background-color 0.3s, color 0.3s, border-color 0.3s">read_file()</div></div></div></div></div></div></div></div></div></div><a href="#tenets" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted hover:text-accent-cyan transition-colors no-underline" aria-label="Scroll to content"><span class="text-xs font-mono tracking-widest uppercase opacity-60">scroll</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down animate-bounce-slow"><path d="m6 9 6 6 6-6"></path></svg></a></section><!--astro:end--></astro-island> <script>(()=>{var a=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let l of e)if(l.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=a;window.dispatchEvent(new Event("astro:visible"));})();</script><astro-island uid="Z2eJopL" prefix="r10" component-url="/pr-preview/pr-17/_astro/Islands.BcjE8IYH.js" component-export="About" renderer-url="/pr-preview/pr-17/_astro/client.Dc9Vh3na.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;About&quot;,&quot;value&quot;:true}" await-children><section class="section section-alt relative overflow-hidden" id="tenets"><div class="container"><div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start"><div class="" style="opacity:0;transform:translateX(-60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s"><div><div class="flex items-center gap-4 mb-8"><span class="badge">tenets</span></div><h2 class="mb-8 border-l-[3px] border-accent pl-5">Our <span class="gradient-text">Beliefs</span></h2><p class="font-display text-xl mb-6 text-text-primary leading-snug">Building AI agents is engineering, not magic.</p><p class="body-text mb-8">LLMs are powerful, but on their own they&#x27;re unpredictable and fragile. Building reliable agents takes real engineering — constraints, failure handling, testing, and clear system boundaries. We treat agents as software systems, not black boxes.</p><div class="flex flex-col gap-5"><div><span class="font-display text-base text-text-primary font-semibold">01. First principles over frameworks</span><span class="body-text"> — Frameworks come and go. Context limits, statelessness, and hallucination don&#x27;t. Master the constraints, not the hype.</span></div><div><span class="font-display text-base text-text-primary font-semibold">02. Design for non-determinism</span><span class="body-text"> — Traditional software gives you guarantees. LLMs don&#x27;t. Architect for the uncertainty, don&#x27;t pretend it away.</span></div><div><span class="font-display text-base text-text-primary font-semibold">03. Master the trade-offs</span><span class="body-text"> — Writing code has never been easier. Making the right architectural trade-off has never been harder. Autonomy vs control, flexibility vs predictability, speed vs safety — every decision demands deep understanding of the constraints underneath.</span></div><div><span class="font-display text-base text-text-primary font-semibold">04. Learn by building</span><span class="body-text"> — Reference implementations, battle-tested patterns, and first-principles thinking. No magic prompts. No black boxes. Just engineering.</span></div></div></div></div><div class="" style="opacity:0;transform:translateX(60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s"><div class="relative lg:mt-[4.5rem]"><div class="code-block relative !p-0"><div class="h-10 bg-subtle border-b border-border flex items-center px-4 rounded-t-card"><div class="label">tenets.json</div></div><pre class="p-5">{<!-- -->
+<!-- -->  <span class="property">&quot;belief&quot;</span>: <span class="string">&quot;engineering <!-- -->&gt;<!-- --> hype&quot;</span>,<!-- -->
+<!-- -->  <span class="property">&quot;approach&quot;</span>: <span class="string">&quot;first_principle_thinking&quot;</span>,<!-- -->
+<!-- -->  <span class="property">&quot;determinism&quot;</span>: <span class="keyword">false</span>,<!-- -->
+<!-- -->  <span class="property">&quot;accept_constraints&quot;</span>: <span class="keyword">true</span>,<!-- -->
+<!-- -->  <span class="property">&quot;constraints&quot;</span>: [<!-- -->
+<!-- -->    <span class="string-warn">&quot;context_limits&quot;</span>,<!-- -->
+<!-- -->    <span class="string-warn">&quot;stateless_inference&quot;</span>,<!-- -->
+<!-- -->    <span class="string-warn">&quot;hallucination&quot;</span>,<!-- -->
+<!-- -->    <span class="string-warn">&quot;no_native_memory&quot;</span>,<!-- -->
+<!-- -->    <span class="string-warn">&quot;prompt_injection&quot;</span>
+<!-- -->  ],<!-- -->
+<!-- -->  <span class="property">&quot;require&quot;</span>: [<!-- -->
+<!-- -->    <span class="string-require">&quot;context_engineering&quot;</span>,<!-- -->
+<!-- -->    <span class="string-require">&quot;tool_engineering&quot;</span>,<!-- -->
+<!-- -->    <span class="string-require">&quot;reusable_patterns&quot;</span>,<!-- -->
+<!-- -->    <span class="string-require">&quot;security_as_first_class_citizen&quot;</span>,<!-- -->
+<!-- -->    <span class="string-require">&quot;deliberate_trade_offs&quot;</span>,<!-- -->
+<!-- -->    <span class="string-require">&quot;traceability_and_auditability&quot;</span>
+<!-- -->  ],<!-- -->
+<!-- -->  <span class="property">&quot;reject&quot;</span>: [<!-- -->
+<!-- -->    <span class="string-reject">&quot;prompt_and_pray&quot;</span>,<!-- -->
+<!-- -->    <span class="string-reject">&quot;demo_driven_design&quot;</span>,<!-- -->
+<!-- -->    <span class="string-reject">&quot;unverifiable_autonomy&quot;</span>,<!-- -->
+<!-- -->    <span class="string-reject">&quot;trust_by_default&quot;</span>
+<!-- -->  ]<!-- -->
+<!-- -->}</pre></div></div></div></div></div></section><!--astro:end--></astro-island> <astro-island uid="A4piH" prefix="r11" component-url="/pr-preview/pr-17/_astro/Islands.BcjE8IYH.js" component-export="Team" renderer-url="/pr-preview/pr-17/_astro/client.Dc9Vh3na.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;Team&quot;,&quot;value&quot;:true}" await-children><link rel="preload" as="image" href="/pr-preview/pr-17/photos/alex.jpg"/><link rel="preload" as="image" href="/pr-preview/pr-17/photos/vishal.jpg"/><section class="section" id="team"><div class="container"><div class="" style="opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s"><div class="text-center mb-12"><div class="flex items-center justify-center gap-4 mb-6"><span class="badge">team</span></div><h2 class="mb-4">Who We <span class="gradient-text">Are</span></h2></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"><div class="h-full" style="opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s"><div class="card h-full text-center group"><a href="https://www.linkedin.com/in/alexmynsky/" target="_blank" rel="noopener noreferrer" class="icon-box-outline absolute top-4 right-4 w-9 h-9 flex items-center justify-center z-10 transition-colors duration-200 hover:border-accent hover:text-accent"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><div class="w-[120px] h-[120px] mx-auto mb-6 relative"><div class="w-full h-full overflow-hidden rounded-full border border-border"><img src="/pr-preview/pr-17/photos/alex.jpg" alt="Alex Mrynskyi" class="w-full h-full object-cover"/></div></div><h3 class="text-2xl font-display text-text-primary mb-2">Alex Mrynskyi</h3><div class="text-sm text-accent font-mono mb-4">Software Engineer</div><p class="text-secondary text-sm leading-relaxed">Software architect with extensive experience building large-scale data applications and distributed systems. Passionate about designing patterns that scale gracefully — turning complex data challenges into clean, resilient solutions.</p></div></div><div class="h-full" style="opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s"><div class="card h-full text-center group"><a href="https://www.linkedin.com/in/vishal-banthia-b4191396/" target="_blank" rel="noopener noreferrer" class="icon-box-outline absolute top-4 right-4 w-9 h-9 flex items-center justify-center z-10 transition-colors duration-200 hover:border-accent hover:text-accent"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><div class="w-[120px] h-[120px] mx-auto mb-6 relative"><div class="w-full h-full overflow-hidden rounded-full border border-border"><img src="/pr-preview/pr-17/photos/vishal.jpg" alt="Vishal Banthia" class="w-full h-full object-cover"/></div></div><h3 class="text-2xl font-display text-text-primary mb-2">Vishal Banthia</h3><div class="text-sm text-accent font-mono mb-4">Software Engineer</div><p class="text-secondary text-sm leading-relaxed">Platform engineer with deep roots in infrastructure, security, and reliability. Passionate about developer experience — building the tools and platforms that handle the heavy lifting so developers can focus purely on business logic.</p></div></div></div></div></section><!--astro:end--></astro-island> <astro-island uid="Lpjoe" prefix="r12" component-url="/pr-preview/pr-17/_astro/Islands.BcjE8IYH.js" component-export="RepoSection" renderer-url="/pr-preview/pr-17/_astro/client.Dc9Vh3na.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;RepoSection&quot;,&quot;value&quot;:true}" await-children><section class="section" id="code"><div class="container"><div class="" style="opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s"><div class="text-center mb-20"><div class="flex items-center justify-center gap-4 mb-6"><span class="badge">code</span></div><h2 class="mb-6">Featured <span class="gradient-text">Repos</span></h2><p class="body-text max-w-[700px] mx-auto mb-8">We focus on internals, so engineers understand how agents work.</p></div></div><div class="grid grid-cols-1 lg:grid-cols-2 gap-6"><div class="" style="opacity:0;transform:translateX(-60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s"><a href="https://github.com/agenticloops-ai/agentic-ai-engineering" target="_blank" rel="noopener noreferrer" class="card card-color-cyan flex flex-col h-full relative no-underline text-inherit cursor-pointer"><div class="flex justify-between items-start mb-6"><div class="flex items-center gap-3"><div class="icon-box icon-box-outline w-10 h-10"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg></div><div><div class="font-mono font-bold text-lg text-text-primary mb-1">agentic-ai-engineering</div><div class="status-badge" style="color:var(--card-color);border-color:var(--card-color)"><span class="w-1.5 h-1.5 rounded-full" style="background:var(--card-color)"></span>Python</div></div></div></div><p class="body-text mb-6 flex-1">Hands-on tutorials for building AI agents from scratch. Learn LLM APIs, prompt engineering, tool calling, and the agent loop through practical examples.</p><div class="card-footer min-h-[3.5rem]"><div class="link-action ml-auto flex items-center gap-2" style="color:var(--card-color)">VIEW REPO <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></div></a></div><div class="" style="opacity:0;transform:translateX(60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"><a href="#" class="card card-color-violet flex flex-col h-full relative no-underline text-inherit opacity-75 cursor-default"><div class="coming-soon-badge absolute top-4 right-4 gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Coming Soon</div><div class="flex justify-between items-start mb-6"><div class="flex items-center gap-3"><div class="icon-box icon-box-outline w-10 h-10"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-microscope"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg></div><div><div class="font-mono font-bold text-lg text-text-primary mb-1">agentic-apps-internals</div></div></div></div><p class="body-text mb-6 flex-1">Reverse-engineering analysis of popular AI agents — system prompts, tool architectures, and implementation patterns.</p><div class="card-footer min-h-[3.5rem]"><div class="code-comment ml-auto">RELEASING <!-- -->Q1 2026</div></div></a></div><div class="" style="opacity:0;transform:translateX(-60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.30000000000000004s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.30000000000000004s"><a href="#" class="card card-color-pink flex flex-col h-full relative no-underline text-inherit opacity-75 cursor-default"><div class="coming-soon-badge absolute top-4 right-4 gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Coming Soon</div><div class="flex justify-between items-start mb-6"><div class="flex items-center gap-3"><div class="icon-box icon-box-outline w-10 h-10"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-factory"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M17 18h1"></path><path d="M12 18h1"></path><path d="M7 18h1"></path></svg></div><div><div class="font-mono font-bold text-lg text-text-primary mb-1">agentic-ai-patterns</div></div></div></div><p class="body-text mb-6 flex-1">Design patterns for agentic AI systems. ReAct, multi-agent orchestration, memory management, and structured outputs.</p><div class="card-footer min-h-[3.5rem]"><div class="code-comment ml-auto">RELEASING <!-- -->Q2 2026</div></div></a></div><div class="" style="opacity:0;transform:translateX(60px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s"><a href="#" class="card card-color-emerald flex flex-col h-full relative no-underline text-inherit opacity-75 cursor-default"><div class="coming-soon-badge absolute top-4 right-4 gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Coming Soon</div><div class="flex justify-between items-start mb-6"><div class="flex items-center gap-3"><div class="icon-box icon-box-outline w-10 h-10"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-server"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect><rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect><line x1="6" x2="6.01" y1="6" y2="6"></line><line x1="6" x2="6.01" y1="18" y2="18"></line></svg></div><div><div class="font-mono font-bold text-lg text-text-primary mb-1">agentic-platform-engineering</div></div></div></div><p class="body-text mb-6 flex-1">Building internal AI agentic platforms. Infrastructure, orchestration, and operational patterns for running AI agents in production.</p><div class="card-footer min-h-[3.5rem]"><div class="code-comment ml-auto">RELEASING <!-- -->Q2 2026</div></div></a></div></div></div></section><!--astro:end--></astro-island> <astro-island uid="1cORG8" prefix="r13" component-url="/pr-preview/pr-17/_astro/Islands.BcjE8IYH.js" component-export="Topics" renderer-url="/pr-preview/pr-17/_astro/client.Dc9Vh3na.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;Topics&quot;,&quot;value&quot;:true}" await-children><section class="section" id="topics"><div class="container"><div class="" style="opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s"><div class="text-center mb-20 relative"><div class="flex items-center justify-center mb-6"><span class="badge">topics</span></div><h2 class="mb-6">What We <span class="gradient-text">Cover</span></h2><p class="body-text max-w-[700px] mx-auto">A comprehensive curriculum for building production-ready AI agents</p></div></div><div class="text-center py-12 text-text-muted">Loading course content...</div></div></section><!--astro:end--></astro-island> <astro-island uid="1o11cv" prefix="r14" component-url="/pr-preview/pr-17/_astro/Islands.BcjE8IYH.js" component-export="Subscribe" renderer-url="/pr-preview/pr-17/_astro/client.Dc9Vh3na.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;Subscribe&quot;,&quot;value&quot;:true}" await-children><section class="section" id="subscribe"><div class="container"><div class="" style="opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s"><div class="card card-featured max-w-[900px] mx-auto text-center p-12 md:p-16"><div class="icon-box w-14 h-14 mx-auto mb-6"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></div><h2 class="mb-4">Stay in the <span class="gradient-text">Loop</span></h2><p class="text-secondary mb-10 max-w-[500px] mx-auto text-lg">Subscribe for early access to repos, patterns, and engineering deep-dives before they go public.</p><div class="flex justify-center gap-4 flex-wrap"><a href="https://agenticloopsai.substack.com" class="btn-primary" target="_blank" rel="noopener noreferrer">Get Early Access <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a><a href="https://github.com/orgs/agenticloops-ai/discussions" class="btn-secondary" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Join Discussion</a></div><p class="text-muted mt-8 text-sm">Engineering-first. Production-grade. No magic.</p></div></div></div></section><!--astro:end--></astro-island> </main> <astro-island uid="1cbzhi" prefix="r15" component-url="/pr-preview/pr-17/_astro/Islands.BcjE8IYH.js" component-export="Footer" renderer-url="/pr-preview/pr-17/_astro/client.Dc9Vh3na.js" props="{}" ssr client="visible" opts="{&quot;name&quot;:&quot;Footer&quot;,&quot;value&quot;:true}" await-children><footer class="bg-bg-secondary border-t border-border py-8 px-6 mt-auto"><div class="container max-w-[1200px] mx-auto"><div class="flex justify-between items-center flex-wrap gap-6"><div class="flex flex-col gap-1"><p class="font-mono text-xs text-text-muted m-0">© <!-- -->2026<!-- --> <!-- -->Agentic Loops</p><p class="font-mono text-[0.7rem] text-text-muted opacity-60 m-0">Built by engineers, for engineers</p></div><div class="flex gap-5 items-center"><a href="https://github.com/agenticloops-ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-text-muted hover:text-text-primary transition-colors flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" stroke-width="2"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></a><a href="https://agenticloopsai.substack.com" target="_blank" rel="noopener noreferrer" aria-label="Substack" class="text-text-muted hover:text-text-primary transition-colors flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" stroke-width="2"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"></path></svg></a><a href="https://www.linkedin.com/company/agenticloops-ai" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-text-muted hover:text-text-primary transition-colors flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" stroke-width="2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a><a href="https://x.com/agenticloops_ai" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="text-text-muted hover:text-text-primary transition-colors flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" stroke-width="2"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg></a></div></div></div></footer><!--astro:end--></astro-island>  </body></html>
