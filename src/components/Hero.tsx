@@ -7,10 +7,6 @@ import { AgentLoopDiagram } from './AgentLoopDiagram';
 export function Hero() {
     return (
         <section className="section hero-section min-h-screen flex items-center overflow-hidden relative">
-            {/* Background Gradient Blurs */}
-            <div className="gradient-blur gradient-blur-blue absolute top-32 -right-[5%]"></div>
-            <div className="gradient-blur gradient-blur-violet absolute -bottom-32 -left-[5%]"></div>
-
             <div className="container relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-20 items-center">
 
@@ -29,9 +25,8 @@ export function Hero() {
                         </ScrollReveal>
 
                         <ScrollReveal direction="left" delay={0.1}>
-                            <h1 className="mb-8 relative inline-block">
-                                <div className="absolute -top-5 -left-2.5 w-1 h-[120%] bg-gradient-to-b from-accent-cyan to-accent-teal shadow-[0_0_20px_var(--color-accent-cyan)]"></div>
-                                <span className="gradient-text">Agentic</span><br />Loops
+                            <h1 className="mb-8 relative inline-block border-l-[3px] border-accent pl-5">
+                                Agentic<br />Loops
                             </h1>
                         </ScrollReveal>
 
@@ -87,17 +82,7 @@ export function Hero() {
                     {/* Right (desktop) / Below (mobile): Agent Loop Diagram */}
                     <ScrollReveal direction="right" delay={0.2}>
                         <div className="flex justify-center items-center relative">
-                            <div
-                                className="hidden lg:block absolute -top-5 -right-5 w-[100px] h-[100px] border-2 border-accent-cyan opacity-30"
-                                style={{ clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)' }}
-                            ></div>
-                            <div
-                                className="relative p-4 lg:p-8 border-2 border-border-accent bg-accent-cyan/[0.03] origin-top scale-[0.75] sm:scale-[0.85] lg:scale-100"
-                                style={{
-                                    clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))',
-                                    boxShadow: 'var(--shadow-glow)'
-                                }}
-                            >
+                            <div className="card relative p-4 lg:p-8 origin-top scale-[0.8] sm:scale-90 lg:scale-100">
                                 <AgentLoopDiagram />
                             </div>
                         </div>

@@ -52,23 +52,12 @@ const repos = [
 
 export function RepoSection() {
     return (
-        <section className="section relative overflow-hidden" id="code">
-            {/* Background Gradient Blurs */}
-            <div className="gradient-blur gradient-blur-violet absolute -top-32 -left-[5%] opacity-15"></div>
-            <div className="gradient-blur gradient-blur-blue absolute -bottom-32 -right-[5%] opacity-15"></div>
-            {/* Section Accent Line */}
-            <div
-                className="absolute top-0 left-0 w-[300px] h-1 shadow-[0_0_20px_var(--color-accent-cyan)]"
-                style={{ background: 'var(--color-accent-gradient)' }}
-            ></div>
-
+        <section className="section" id="code">
             <div className="container">
                 <ScrollReveal>
                     <div className="text-center mb-20">
                         <div className="flex items-center justify-center gap-4 mb-6">
-                            <div className="w-10 h-0.5 bg-accent-cyan"></div>
                             <span className="badge">code</span>
-                            <div className="w-10 h-0.5 bg-accent-cyan"></div>
                         </div>
                         <h2 className="mb-6">
                             Featured <span className="gradient-text">Repos</span>
@@ -100,24 +89,14 @@ export function RepoSection() {
                                             }
                                         }
                                     }}
-                                    className={`card card-color-${colorClass} flex flex-col h-full relative overflow-hidden no-underline text-inherit ${repo.comingSoon
+                                    className={`card card-color-${colorClass} flex flex-col h-full relative no-underline text-inherit ${repo.comingSoon
                                         ? 'opacity-75 cursor-default'
                                         : 'cursor-pointer'
                                         }`}
                                 >
-                                    {/* Corner Accent */}
-                                    <div className="corner-accent corner-accent-lg"></div>
-
                                     {/* Coming Soon Badge - Top Right */}
                                     {repo.comingSoon && (
-                                        <div
-                                            className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1 text-xs font-mono uppercase tracking-wider border rounded"
-                                            style={{
-                                                color: 'var(--color-text-muted)',
-                                                borderColor: 'var(--color-border)',
-                                                background: 'color-mix(in srgb, var(--color-bg-elevated) 80%, transparent)'
-                                            }}
-                                        >
+                                        <div className="coming-soon-badge absolute top-4 right-4 gap-1.5">
                                             <Clock size={10} /> Coming Soon
                                         </div>
                                     )}
@@ -141,7 +120,7 @@ export function RepoSection() {
                                                     >
                                                         <span
                                                             className="w-1.5 h-1.5 rounded-full"
-                                                            style={{ background: 'var(--card-color)', boxShadow: '0 0 6px var(--card-color)' }}
+                                                            style={{ background: 'var(--card-color)' }}
                                                         ></span>
                                                         {repo.language}
                                                     </div>

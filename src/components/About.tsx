@@ -2,17 +2,7 @@ import { ScrollReveal } from './ScrollReveal';
 
 export function About() {
     return (
-        <section className="section relative overflow-hidden" id="tenets">
-            {/* Background Gradient Blurs */}
-            <div className="gradient-blur gradient-blur-violet absolute -top-32 -left-[5%] opacity-15"></div>
-            <div className="gradient-blur gradient-blur-blue absolute -bottom-32 -right-[5%] opacity-15"></div>
-
-            {/* Section Header Accent */}
-            <div
-                className="absolute top-0 left-0 w-[300px] h-1 shadow-[0_0_20px_var(--color-accent-cyan)]"
-                style={{ background: 'var(--color-accent-gradient)' }}
-            ></div>
-
+        <section className="section section-alt relative overflow-hidden" id="tenets">
             <div className="container">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
                     <ScrollReveal direction="left">
@@ -21,12 +11,11 @@ export function About() {
                                 <span className="badge">tenets</span>
                             </div>
 
-                            <h2 className="mb-8 relative">
-                                <div className="absolute -left-6 top-0 w-1.5 h-full bg-accent-amber shadow-[0_0_15px_var(--color-accent-amber)]"></div>
+                            <h2 className="mb-8 border-l-[3px] border-accent pl-5">
                                 Our <span className="gradient-text">Beliefs</span>
                             </h2>
 
-                            <p className="font-display text-xl mb-6 text-text-primary uppercase tracking-wide leading-tight">
+                            <p className="font-display text-xl mb-6 text-text-primary leading-snug">
                                 Building AI agents is engineering, not magic.
                             </p>
 
@@ -36,19 +25,19 @@ export function About() {
 
                             <div className="flex flex-col gap-5">
                                 <div>
-                                    <span className="font-display text-base text-text-primary uppercase tracking-wide font-bold">01. First principles over frameworks</span>
+                                    <span className="font-display text-base text-text-primary font-semibold">01. First principles over frameworks</span>
                                     <span className="body-text"> — Frameworks come and go. Context limits, statelessness, and hallucination don't. Master the constraints, not the hype.</span>
                                 </div>
                                 <div>
-                                    <span className="font-display text-base text-text-primary uppercase tracking-wide font-bold">02. Design for non-determinism</span>
+                                    <span className="font-display text-base text-text-primary font-semibold">02. Design for non-determinism</span>
                                     <span className="body-text"> — Traditional software gives you guarantees. LLMs don't. Architect for the uncertainty, don't pretend it away.</span>
                                 </div>
                                 <div>
-                                    <span className="font-display text-base text-text-primary uppercase tracking-wide font-bold">03. Master the trade-offs</span>
+                                    <span className="font-display text-base text-text-primary font-semibold">03. Master the trade-offs</span>
                                     <span className="body-text"> — Writing code has never been easier. Making the right architectural trade-off has never been harder. Autonomy vs control, flexibility vs predictability, speed vs safety — every decision demands deep understanding of the constraints underneath.</span>
                                 </div>
                                 <div>
-                                    <span className="font-display text-base text-text-primary uppercase tracking-wide font-bold">04. Learn by building</span>
+                                    <span className="font-display text-base text-text-primary font-semibold">04. Learn by building</span>
                                     <span className="body-text"> — Reference implementations, battle-tested patterns, and first-principles thinking. No magic prompts. No black boxes. Just engineering.</span>
                                 </div>
                             </div>
@@ -57,15 +46,12 @@ export function About() {
 
                     <ScrollReveal direction="right" delay={0.1}>
                         <div className="relative lg:mt-[4.5rem]">
-                            <div className="code-block relative">
-                                {/* Terminal Header Bar */}
-                                <div className="absolute top-0 left-0 right-0 h-10 bg-accent-cyan/10 border-b-2 border-accent-cyan flex items-center justify-between px-4">
-                                    <div className="label text-accent-cyan font-bold">
-                                        TENETS.json
-                                    </div>
+                            <div className="code-block relative !p-0">
+                                {/* File header bar */}
+                                <div className="h-10 bg-subtle border-b border-border flex items-center px-4 rounded-t-card">
+                                    <div className="label">tenets.json</div>
                                 </div>
-                                <div className="pt-[50px]"></div>
-                                <pre>
+                                <pre className="p-5">
                                     {`{`}
                                     {'\n'}  <span className="property">"belief"</span>: <span className="string">"engineering {'>'} hype"</span>,
                                     {'\n'}  <span className="property">"approach"</span>: <span className="string">"first_principle_thinking"</span>,
@@ -95,11 +81,6 @@ export function About() {
                                     {'\n'}{`}`}
                                 </pre>
                             </div>
-
-                            {/* Decorative Technical Corner */}
-                            <div
-                                className="absolute -bottom-2.5 -right-2.5 w-[60px] h-[60px] border-r-2 border-b-2 border-accent-amber opacity-40"
-                            ></div>
                         </div>
                     </ScrollReveal>
                 </div>

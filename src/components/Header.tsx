@@ -58,7 +58,7 @@ export function Header() {
                         <a
                             key={label}
                             href={href}
-                            className="py-2 px-2 text-sm font-medium text-text-secondary no-underline transition-colors hover:text-accent-cyan"
+                            className="py-2 px-2 text-sm font-medium text-text-secondary no-underline transition-colors hover:text-accent"
                         >
                             {label}
                         </a>
@@ -83,7 +83,7 @@ export function Header() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={label}
-                                    className="text-text-secondary hover:text-accent-cyan transition-colors flex items-center justify-center"
+                                    className="text-text-secondary hover:text-accent transition-colors flex items-center justify-center"
                                 >
                                     <Icon size={20} />
                                 </a>
@@ -98,7 +98,7 @@ export function Header() {
                     <button
                         onClick={() => toggleTheme()}
                         aria-label="Toggle theme"
-                        className="bg-transparent border-none text-text-secondary p-1 transition-colors hover:text-accent-cyan flex items-center"
+                        className="bg-transparent border-none text-text-secondary p-1 transition-colors hover:text-accent flex items-center"
                     >
                         {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
                     </button>

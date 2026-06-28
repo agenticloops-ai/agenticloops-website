@@ -28,16 +28,25 @@ export function AgentLoopDiagram() {
     }, [activeStep]);
 
     const tools = ['web_search()', 'execute_code()', 'read_file()'];
-    const contextColors = ['#60a5fa', '#34d399', '#fbbf24', '#c084fc'];
 
     const labelStyle = {
         fontSize: '0.75rem',
-        color: 'var(--color-text-muted)',
+        color: 'var(--color-text-secondary)',
         fontWeight: 500,
-        fontFamily: 'var(--font-mono)',
+        fontFamily: "'JetBrains Mono', monospace",
         zIndex: 1,
         whiteSpace: 'nowrap' as const,
         transition: 'opacity 0.3s',
+    };
+
+    const chipStyle = {
+        background: 'var(--color-subtle)',
+        color: 'var(--color-text-secondary)',
+        border: '1px solid var(--color-border)',
+        padding: '0.35rem 0.75rem',
+        borderRadius: 'var(--radius-input)',
+        fontSize: '0.7rem',
+        fontWeight: 500,
     };
 
     // Layout Constants
@@ -89,11 +98,6 @@ export function AgentLoopDiagram() {
                 zIndex: 3
             }}>
                 <defs>
-                    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#8b5cf6" />
-                        <stop offset="100%" stopColor="#3b82f6" />
-                    </linearGradient>
-
                     <style>
                         {`
               .flow-line {
@@ -105,6 +109,11 @@ export function AgentLoopDiagram() {
                   stroke-dashoffset: -10;
                 }
               }
+              @media (prefers-reduced-motion: reduce) {
+                .flow-line {
+                  animation: none;
+                }
+              }
             `}
                     </style>
                 </defs>
@@ -112,7 +121,7 @@ export function AgentLoopDiagram() {
                 {/* Line 1: Context -> LLM */}
                 <line
                     x1={centerX} y1={contextBottomY} x2={centerX} y2={llmTopY}
-                    stroke="#8b5cf6"
+                    stroke="var(--color-accent)"
                     strokeWidth="2"
                     strokeDasharray="5 5"
                     className="flow-line"
@@ -125,7 +134,7 @@ export function AgentLoopDiagram() {
                 {/* Line 2: LLM -> Tools */}
                 <line
                     x1={centerX} y1={llmBottomY} x2={centerX} y2={toolsTopY}
-                    stroke="#8b5cf6"
+                    stroke="var(--color-accent)"
                     strokeWidth="2"
                     strokeDasharray="5 5"
                     className="flow-line"
@@ -137,12 +146,12 @@ export function AgentLoopDiagram() {
 
                 {/* Line 3: Loop (Tools Side -> Context Side) */}
                 <path
-                    d={`M ${boxLeftX} ${loopStartY} 
+                    d={`M ${boxLeftX} ${loopStartY}
              L ${boxLeftX - 40} ${loopStartY}
              L ${boxLeftX - 40} ${loopEndY}
              L ${boxLeftX} ${loopEndY}`}
                     fill="none"
-                    stroke="#8b5cf6"
+                    stroke="var(--color-accent)"
                     strokeWidth="2"
                     strokeDasharray="5 5"
                     className="flow-line"
@@ -162,7 +171,6 @@ export function AgentLoopDiagram() {
                 left: `${centerX + 20}px`,
                 transform: 'translateY(-50%)',
                 ...labelStyle,
-                color: 'var(--color-accent-violet)',
                 opacity: activeStep === 2 ? 1 : 0,
             }}>
                 decides what to do
@@ -175,7 +183,6 @@ export function AgentLoopDiagram() {
                 top: `${(loopStartY + loopEndY) / 2}px`,
                 transform: 'translateY(-50%) rotate(-90deg)',
                 ...labelStyle,
-                color: 'var(--color-accent-violet)',
                 opacity: activeStep === 3 ? 1 : 0,
             }}>
                 add result to context
@@ -207,44 +214,28 @@ export function AgentLoopDiagram() {
             }}>
                 {/* Context Box */}
                 <div style={{
-                    background: 'var(--color-bg-card-solid)',
-                    border: `2px solid ${activeStep === 0 ? 'var(--color-accent-blue)' : 'var(--color-border)'}`,
-                    borderRadius: '12px',
+                    background: 'var(--color-surface)',
+                    border: `1px solid ${activeStep === 0 ? 'var(--color-accent)' : 'var(--color-border)'}`,
+                    borderRadius: 'var(--radius-card)',
                     padding: '1rem',
                     width: `${boxWidth}px`,
                     height: `${contextHeight}px`,
-                    transition: 'all 0.3s',
-                    boxShadow: activeStep === 0 ? '0 0 20px rgba(59, 130, 246, 0.2)' : 'var(--shadow-sm)',
+                    transition: 'border-color 0.3s',
                     marginBottom: `${gap1}px`,
                     display: 'flex',
                     flexDirection: 'column'
                 }}>
                     <div className="text-muted" style={{ fontSize: '0.7rem', marginBottom: '0.5rem', fontWeight: 600 }}>Context</div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                        {['System Instructions', 'Tools Definitions'].map((item, i) => (
-                            <div
-                                key={item}
-                                style={{
-                                    background: contextColors[i],
-                                    color: 'white',
-                                    padding: '0.35rem 0.75rem',
-                                    borderRadius: '6px',
-                                    fontSize: '0.7rem',
-                                    fontWeight: 500,
-                                }}
-                            >
+                        {['System Instructions', 'Tools Definitions'].map((item) => (
+                            <div key={item} style={chipStyle}>
                                 {item}
                             </div>
                         ))}
 
                         <div
                             style={{
-                                background: contextColors[2],
-                                color: 'white',
-                                padding: '0.35rem 0.75rem',
-                                borderRadius: '6px',
-                                fontSize: '0.7rem',
-                                fontWeight: 500,
+                                ...chipStyle,
                                 opacity: showUserMessage || activeStep === 0 ? 1 : 0.3,
                                 transition: 'opacity 0.5s',
                             }}
@@ -254,12 +245,7 @@ export function AgentLoopDiagram() {
 
                         <div
                             style={{
-                                background: contextColors[3],
-                                color: 'white',
-                                padding: '0.35rem 0.75rem',
-                                borderRadius: '6px',
-                                fontSize: '0.7rem',
-                                fontWeight: 500,
+                                ...chipStyle,
                                 opacity: showToolResult ? 1 : 0,
                                 transition: 'opacity 0.5s',
                             }}
@@ -271,15 +257,14 @@ export function AgentLoopDiagram() {
 
                 {/* LLM Box */}
                 <div style={{
-                    background: activeStep === 1 ? 'linear-gradient(135deg, #fef3c7, #fde68a)' : 'linear-gradient(135deg, #fef9c3, #fef08a)',
-                    border: `2px solid ${activeStep === 1 ? '#f59e0b' : '#fcd34d'}`,
-                    borderRadius: '12px',
+                    background: 'var(--color-surface)',
+                    border: `1px solid ${activeStep === 1 ? 'var(--color-accent)' : 'var(--color-border)'}`,
+                    borderRadius: 'var(--radius-card)',
                     padding: '1rem 2.5rem',
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontSize: '1rem',
-                    color: '#78350f',
-                    transition: 'all 0.3s',
-                    boxShadow: activeStep === 1 ? '0 0 20px rgba(245, 158, 11, 0.3)' : 'var(--shadow-sm)',
+                    color: 'var(--color-text-primary)',
+                    transition: 'border-color 0.3s',
                     marginBottom: `${gap2}px`,
                     zIndex: 2,
                     minWidth: '140px',
@@ -290,35 +275,38 @@ export function AgentLoopDiagram() {
 
                 {/* Tools Box */}
                 <div style={{
-                    background: activeStep === 2 ? 'linear-gradient(135deg, #ede9fe, #ddd6fe)' : 'linear-gradient(135deg, #f3e8ff, #e9d5ff)',
-                    border: `2px solid ${activeStep === 2 ? '#8b5cf6' : '#c4b5fd'}`,
-                    borderRadius: '12px',
+                    background: 'var(--color-surface)',
+                    border: `1px solid ${activeStep === 2 ? 'var(--color-accent)' : 'var(--color-border)'}`,
+                    borderRadius: 'var(--radius-card)',
                     padding: '1rem 1.25rem',
-                    transition: 'all 0.3s',
-                    boxShadow: activeStep === 2 ? '0 0 20px rgba(139, 92, 246, 0.3)' : 'var(--shadow-sm)',
+                    transition: 'border-color 0.3s',
                     width: `${boxWidth}px`,
                     zIndex: 2
                 }}>
-                    <div style={{ fontSize: '0.75rem', color: '#5b21b6', marginBottom: '0.5rem', fontWeight: 700 }}>Tools</div>
+                    <div className="text-muted" style={{ fontSize: '0.75rem', marginBottom: '0.5rem', fontWeight: 600 }}>Tools</div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                        {tools.map((tool, i) => (
-                            <div
-                                key={tool}
-                                className="font-mono"
-                                style={{
-                                    background: activeStep === 2 && activeTool === i ? '#7c3aed' : 'rgba(91, 33, 182, 0.2)',
-                                    color: activeStep === 2 && activeTool === i ? 'white' : '#3b0764',
-                                    padding: '0.45rem 0.75rem',
-                                    borderRadius: '6px',
-                                    fontSize: '0.8rem',
-                                    fontWeight: 700,
-                                    letterSpacing: '0.02em',
-                                    transition: 'all 0.3s',
-                                }}
-                            >
-                                {tool}
-                            </div>
-                        ))}
+                        {tools.map((tool, i) => {
+                            const active = activeStep === 2 && activeTool === i;
+                            return (
+                                <div
+                                    key={tool}
+                                    className="font-mono"
+                                    style={{
+                                        background: active ? 'var(--color-accent)' : 'var(--color-subtle)',
+                                        color: active ? '#ffffff' : 'var(--color-text-secondary)',
+                                        border: `1px solid ${active ? 'var(--color-accent)' : 'var(--color-border)'}`,
+                                        padding: '0.45rem 0.75rem',
+                                        borderRadius: 'var(--radius-input)',
+                                        fontSize: '0.8rem',
+                                        fontWeight: 500,
+                                        letterSpacing: '0',
+                                        transition: 'background-color 0.3s, color 0.3s, border-color 0.3s',
+                                    }}
+                                >
+                                    {tool}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
